@@ -1,1 +1,2 @@
 # RenderLamp
+![Cover](RenderLampCover.png)
