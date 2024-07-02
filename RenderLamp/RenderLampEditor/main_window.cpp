@@ -16,7 +16,6 @@ int main(void) {
     //-----------------------------------
     const int screenWidth = 1700;
     const int screenHeight = 900;
-
     InitWindow(screenWidth, screenHeight, "RenderLamp Editor - Buzz Renderer");
 
     Camera3D camera = { 0 };
@@ -29,11 +28,23 @@ int main(void) {
     Vector3 cubePosition = { 0.0f, 0.0f, 0.0f };
 
 
+    // Debug data 
+    bool pressed = false;
+
     SetTargetFPS(60);
     while (!WindowShouldClose()) {
         //-----------------------------------
         //            Debug GUI
         //-----------------------------------
+
+        if (IsKeyPressed(KEY_R)) {
+            pressed = true;
+        }
+
+        if (pressed) {
+            DrawText("RENDER DONE", 20, 30, 10, RED);
+        }
+        
 
 
         //-----------------------------------
@@ -51,8 +62,7 @@ int main(void) {
 
         BeginMode3D(camera);
 
-        DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-        DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+
 
         DrawGrid(10, 1.0f);
 
