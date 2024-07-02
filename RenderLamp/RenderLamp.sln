@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderLampEditor", "RenderLampEditor\RenderLampEditor.vcxproj", "{1C9F145F-A1E9-482E-9789-18A487BC8A0E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderLampBuzz", "RenderLampBuzz\RenderLampBuzz.vcxproj", "{A1E2EF93-51CB-4F2F-9969-A9686FE08536}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{1C9F145F-A1E9-482E-9789-18A487BC8A0E}.Release|x64.Build.0 = Release|x64
 		{1C9F145F-A1E9-482E-9789-18A487BC8A0E}.Release|x86.ActiveCfg = Release|Win32
 		{1C9F145F-A1E9-482E-9789-18A487BC8A0E}.Release|x86.Build.0 = Release|Win32
+		{A1E2EF93-51CB-4F2F-9969-A9686FE08536}.Debug|x64.ActiveCfg = Debug|x64
+		{A1E2EF93-51CB-4F2F-9969-A9686FE08536}.Debug|x64.Build.0 = Debug|x64
+		{A1E2EF93-51CB-4F2F-9969-A9686FE08536}.Debug|x86.ActiveCfg = Debug|Win32
+		{A1E2EF93-51CB-4F2F-9969-A9686FE08536}.Debug|x86.Build.0 = Debug|Win32
+		{A1E2EF93-51CB-4F2F-9969-A9686FE08536}.Release|x64.ActiveCfg = Release|x64
+		{A1E2EF93-51CB-4F2F-9969-A9686FE08536}.Release|x64.Build.0 = Release|x64
+		{A1E2EF93-51CB-4F2F-9969-A9686FE08536}.Release|x86.ActiveCfg = Release|Win32
+		{A1E2EF93-51CB-4F2F-9969-A9686FE08536}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
