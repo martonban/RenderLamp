@@ -8,6 +8,7 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+#include "buzz_renderer.h"
 
 
 int main(void) {
@@ -42,6 +43,7 @@ int main(void) {
         }
 
         if (pressed) {
+            buzz_renderer::render();
             DrawText("RENDER DONE", 20, 30, 10, RED);
         }
         

@@ -15,15 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RenderLampBuzz.cpp">
+    <ClCompile Include="tgaimage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tgaimage.cpp">
+    <ClCompile Include="buzz_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tgaimage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="buzz_renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
