@@ -1,1 +1,0 @@
-#include "RenderLampManager.h"
