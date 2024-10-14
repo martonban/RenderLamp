@@ -14,6 +14,7 @@ file(GLOB RenderLamp_SRC "*.h" "*.cpp")  # Include all .cpp files
 
 add_executable(RenderLamp ${RenderLamp_SRC})
 target_link_libraries(${PROJECT_NAME} raylib)
+target_link_libraries(${PROJECT_NAME} renderer)
 
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

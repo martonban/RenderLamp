@@ -22,6 +22,7 @@
 ********************************************************************************************/
 
 #include "raylib.h"
+#include "renderer/renderer.h"
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -48,11 +49,15 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
+
+        int a = 200;
+
         BeginDrawing();
 
             ClearBackground(RAYWHITE);
+            //int a = 20;
 
-            DrawText("Congrats! You created your second window!", 190, 200, 20, LIGHTGRAY);
+            DrawText("Teeest", 190, 200, a, LIGHTGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
