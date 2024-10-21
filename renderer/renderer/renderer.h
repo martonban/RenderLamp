@@ -3,6 +3,7 @@
 
 class Renderer {
 public:
+    Renderer();
     int Test();
 };
 
