@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "renderer/renderer.h"
+#include "renderer.h"
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -27,7 +27,7 @@ int main(void)
 
             ClearBackground(RAYWHITE);
 
-            DrawText("Teeest", 190, 200, 10, LIGHTGRAY);
+            DrawText("Teeest", 190, 200, a, LIGHTGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
