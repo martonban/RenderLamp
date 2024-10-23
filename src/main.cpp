@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "renderer/renderer.h"
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -15,23 +16,18 @@ int main(void)
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
+    Renderer renderer;
+    int a = renderer.Test();
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
-        //----------------------------------------------------------------------------------
 
-        // Draw
-        //----------------------------------------------------------------------------------
 
-        int a = 200;
         BeginDrawing();
 
             ClearBackground(RAYWHITE);
 
-            DrawText("Teeest", 190, 200, a, LIGHTGRAY);
+            DrawText("Teeest", 190, 200, 10, LIGHTGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
