@@ -1,42 +1,35 @@
 #include "raylib.h"
 #include "renderer.h"
+#include "Application.h"
 
-//------------------------------------------------------------------------------------
-// Program main entry point
-//------------------------------------------------------------------------------------
 int main(void)
 {
-    // Initialization
-    //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    Application& render_lamp_app = Application::GetInstance();
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
+    render_lamp_app.Init();
+    render_lamp_app.Start();
 
-    Renderer renderer;
+    const int screenWidth = 1800;
+    const int screenHeight = 900;
+
+    InitWindow(screenWidth, screenHeight, "RenderLamp Editor");
+
+    SetTargetFPS(60);
+    Renderer renderer; 
     int a = renderer.Test();
-    // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
-    {
 
 
+    while (!WindowShouldClose()) {
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
-
-            DrawText("Teeest", 190, 200, a, LIGHTGRAY);
+        ClearBackground(RAYWHITE);
+        DrawText("Push F5 to render", 0, 0, 10, RED);
+        DrawText("Congrats! You created your first window!", 190, 200, a, LIGHTGRAY);
 
         EndDrawing();
-        //----------------------------------------------------------------------------------
     }
 
-    // De-Initialization
-    //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
-    //--------------------------------------------------------------------------------------
-
+    CloseWindow();
     return 0;
 }
