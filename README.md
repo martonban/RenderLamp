@@ -2,7 +2,10 @@
 ![Cover](RenderLampCover.png)
 
 ## What RenderLamp is
-RenderLamp is a 3D CPU raytracer with a simple 3D editor. With this software you can create scenes and render them with a raytracer.
+RenderLamp is a 3D CPU ray tracer with a simple editor. You can create scenes give properties to objects and render those scenes with a raytracer. 
+
+## Motivation
+This project is mainly a C++ project to me and not a graphics one. So please don't expect complicated rendering algorithms. In the future I want to continue this project like using CUDA/OpenCL or implementing a renderer for the editor too. 
 
 ## Resoures
 I used CMAKE and MSVC for the whole project.<br>
