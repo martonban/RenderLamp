@@ -1,4 +1,5 @@
 #include "Application.h"
+#include <nlohmann/json.hpp>
 
 /****************************************************************************
  *                             RenderLamp - main.cpp

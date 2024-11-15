@@ -3,7 +3,6 @@
 
 #include <iostream> 
 
-#include "raylib.h"
 
 
 class Application {
