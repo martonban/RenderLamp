@@ -12,5 +12,6 @@ void Application::Init() {
 void Application::Start() {
     // Later this is going to be expand.
     // For now I will open a basic 3D editor
-    //Window(1800, 900);
+    Window editor_window = Window(1800, 900);
+    editor_window.Start();
 }

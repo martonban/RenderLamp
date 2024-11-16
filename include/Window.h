@@ -1,30 +1,23 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <vector>
-
-#include "WindowComponent.h"
-
 class Window {
     // Functions
     public:
-        Window(const char* window_defination_file);
+        Window(int width, int height) {
+            window_height = height;
+            window_width = width;
+        }
         void Start();
     private:
-        void FetchData();
-        bool FatchValidator();
+        void Loop();
+        void Close();
 
     // Data fields
     private:
         // Basic properties for the window
         int window_height;
         int window_width;
-        const char* window_title;
-
-        const char* configuration_file;
-        
-        // Window Component System
-        std::vector<WindowComponent> component_vector;
 };
 
 #endif
