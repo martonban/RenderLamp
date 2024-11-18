@@ -2,6 +2,7 @@
 #define WINDOW_H
 
 #include "raylib.h"
+#include <iostream>
 
 class Window {
     // Functions
