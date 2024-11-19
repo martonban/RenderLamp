@@ -1,13 +1,14 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include "raylib.h"
 #include <iostream>
+#include "raylib.h"
+#include "RendererRayLib.h"
 
 class Window {
     // Functions
     public:
-        Window(int width, int height) {
+        Window (int width, int height) {
             window_height = height;
             window_width = width;
         }
@@ -22,8 +23,7 @@ class Window {
         int window_height;
         int window_width;
 
-        Camera3D camera = { 0 };
-        Vector3 cubePosition = { 0.0f, 0.0f, 0.0f };
+        RendererRayLib renderer;
 };
 
 #endif
