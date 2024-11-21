@@ -1,18 +1,21 @@
 #include "RendererRayLib.h"
 
+void RendererRayLib::Start() {
+    // Camera System Init
+    // ECS Init
+}
+
+
 void RendererRayLib::RenderLoop() {
-        UpdateCameraPro(&camera, { 0.01, 0.0, 0.0 }, {0.0}, 0.0);
+        // Update Camera System
+        UpdateCameraPro(&camera, { 0.001, 0.0, 0.0 }, {0.0}, 0.0);
 
         BeginDrawing();
 
             ClearBackground(RAYWHITE);
 
              BeginMode3D(camera);
-
-                //DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-                //DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
-                //std::cout << GetMouseX() << " - " << GetMouseY() << std::endl;
-                //std::cout << GetMouseDelta().x << " - " << GetMouseDelta().y << std::endl;
+                // ECS UPDATE 
                 DrawGrid(10, 1.0f);
 
             EndMode3D();
