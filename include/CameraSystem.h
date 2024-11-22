@@ -2,6 +2,7 @@
 #define CAMERA_SYSTEM_H
 
 #include "raylib.h"
+#include "raymath.h"
 
 class CameraSystem {
     // Funcions
@@ -11,6 +12,10 @@ class CameraSystem {
         Camera3D GetCameraInstance( void ) {
             return camera;
         };
+    private: 
+        Vector3 CameraControllerMovementListener();
+        Vector3 CameraControllerRotationListener();
+        float CameraControllerZoomListener();
     
     // Data fileds
     private:
