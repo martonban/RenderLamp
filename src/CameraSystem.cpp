@@ -10,7 +10,7 @@ void CameraSystem::StartCamera() {
 
 
 void CameraSystem::UpdateCamera () {
-    UpdateCameraPro(&camera, CameraControllerMovementListener(), {0.0}, 0);
+    UpdateCameraPro(&camera, CameraControllerMovementListener(), {0.0}, CameraControllerZoomListener());
 }
 
 
@@ -29,4 +29,12 @@ Vector3 CameraSystem::CameraControllerMovementListener() {
         } 
     }
     return delta;
+}
+
+
+// TO DO CameraControllerRotationListener()
+
+
+float CameraSystem::CameraControllerZoomListener() {
+    return -(GetMouseWheelMove());
 }
