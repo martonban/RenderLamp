@@ -1,6 +1,8 @@
 #ifndef CAMERA_SYSTEM_H
 #define CAMERA_SYSTEM_H
 
+#include <iostream>
+
 #include "raylib.h"
 #include "raymath.h"
 
@@ -15,6 +17,7 @@ class CameraSystem {
     private: 
         Vector3 CameraControllerMovementListener();
         Vector3 CameraControllerRotationListener();
+        Vector3 CalculateFinalPostion(Vector3 pos, Vector3 rot);
         float CameraControllerZoomListener();
     
     // Data fileds
