@@ -36,7 +36,6 @@ void CameraSystem::UpdateCamera () {
 Vector3 CameraSystem::CameraControllerMovementListener() {
     //Vector3 delta = Vector3Normalize(camera.target);
     Vector3 delta = {0};
-        // TODO CURSOR HIDE
     if (IsKeyDown(KEY_W)){
         delta.x += 0.01f;
     } else if (IsKeyDown(KEY_S)) {
@@ -54,7 +53,18 @@ Vector3 CameraSystem::CameraControllerRotationListener() {
     return Vector3(GetMouseDelta().x/10, GetMouseDelta().y/10, 0.0f);
 }
 
+Vector3 CameraSystem::CalculateFinalPostion(Vector3 pos, Vector3 rot) {
+    Vector3 result = {0};
+    if(IsKeyDown(KEY_LEFT_SHIFT)) {
+        result.z += 0.005f;
+    } else if(IsKeyDown(KEY_LEFT_CONTROL)) {
+        result.z -= 0.005f;
+    }
+    return result;
+}
 
+/*
+// Best Camera Controll System
 Vector3 CameraSystem::CalculateFinalPostion(Vector3 pos, Vector3 rot) {
     Vector3 result = {0};
     Vector3 look_at = GetLookDirectionNormalVector();
@@ -62,7 +72,7 @@ Vector3 CameraSystem::CalculateFinalPostion(Vector3 pos, Vector3 rot) {
 
     return {0, 0, -dot};
 }
-
+*/
 
 float CameraSystem::CameraControllerZoomListener() {
     return -(GetMouseWheelMove());
