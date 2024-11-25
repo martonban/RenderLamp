@@ -15,11 +15,13 @@ void CameraSystem::UpdateCamera () {
     if(IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
         based_on_input_position = CameraControllerMovementListener();
         final_rotation = CameraControllerRotationListener();
+        final_position = Vector3Add(CalculateFinalPostion(based_on_input_position, final_rotation), based_on_input_position);
+        HideCursor();
+    } else {
+        ShowCursor();
     }
 
-    //final_position = CalculateFinalPosition(based_on_input_position, final_rotation);
-
-    UpdateCameraPro(&camera, based_on_input_position, final_rotation,
+    UpdateCameraPro(&camera, final_position, final_rotation,
                     CameraControllerZoomListener());
 }
 
@@ -52,12 +54,20 @@ Vector3 CameraSystem::CameraControllerRotationListener() {
     return Vector3(GetMouseDelta().x/10, GetMouseDelta().y/10, 0.0f);
 }
 
-/*
-Vector3 CalculateFinalPostion(Vector3 pos, Vector3 rot) {
 
+Vector3 CameraSystem::CalculateFinalPostion(Vector3 pos, Vector3 rot) {
+    Vector3 result = {0};
+    Vector3 look_at = GetLookDirectionNormalVector();
+    float dot = Vector3DotProduct(look_at, rot);
+
+    return {0, 0, -dot};
 }
-*/
+
 
 float CameraSystem::CameraControllerZoomListener() {
     return -(GetMouseWheelMove());
+}
+
+Vector3 CameraSystem::GetLookDirectionNormalVector() {
+    return Vector3Normalize(Vector3Subtract(camera.position, camera.target));
 }

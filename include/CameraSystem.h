@@ -17,8 +17,9 @@ class CameraSystem {
     private: 
         Vector3 CameraControllerMovementListener();
         Vector3 CameraControllerRotationListener();
-        Vector3 CalculateFinalPostion(Vector3 pos, Vector3 rot);
         float CameraControllerZoomListener();
+        Vector3 CalculateFinalPostion(Vector3 pos, Vector3 rot);
+        Vector3 GetLookDirectionNormalVector();
     
     // Data fileds
     private:
