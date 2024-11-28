@@ -9,5 +9,6 @@ This project is mainly a C++ project to me and not a graphics one. So please don
 
 ## Resoures
 I used CMAKE and MSVC for the whole project.<br>
-The editor based on raylib, ImGUI and rlImGui <br>
+The editor based on raylib. <br>
+The whole project will use [nlohmannjson](https://github.com/nlohmann/json) libary for handling json files and GoogleTest for unit testing. <br>
 The renderer is based on the Ray Tracing in One Weekend series and much more.
