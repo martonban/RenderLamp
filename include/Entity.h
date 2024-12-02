@@ -20,7 +20,7 @@ class Entity {
         // ECS
         void Start();
         void Update();
-        void Destory();
+        void Destroy();
 
         // Get Transform
         Transform GetTransform();
@@ -28,7 +28,7 @@ class Entity {
 
     private:
         Transform transform;
-        std::vector<Component> component_map;
+        std::vector<Component> component_vector;
 };
 
 #endif
