@@ -15,7 +15,7 @@ class Entity {
 
         // Manage Components
         void AddNewComponent(Component component);
-        void RemoveComponent(Component component);
+        //void RemoveComponent(Component component);
 
         // ECS
         void Start();

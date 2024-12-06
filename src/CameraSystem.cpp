@@ -26,13 +26,6 @@ void CameraSystem::UpdateCamera () {
 }
 
 
-/*
-void CameraSystem::UpdateCamera () {
-    UpdateCameraPro(&camera, CameraControllerMovementListener(), CameraControllerRotationListener(),
-                    CameraControllerZoomListener());
-}
-*/
-
 Vector3 CameraSystem::CameraControllerMovementListener() {
     //Vector3 delta = Vector3Normalize(camera.target);
     Vector3 delta = {0};
