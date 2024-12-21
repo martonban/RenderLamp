@@ -2,8 +2,8 @@
 
 // Constructures
 Entity::Entity():
-    transform(
-        Transform {
+    transform (
+        Transform3D {
             Vector3 { 0, 0, 0 },
             Vector3 { 0, 0, 0 },
             Vector3 { 1, 1, 1 }
@@ -11,8 +11,7 @@ Entity::Entity():
     )
 {}
 
-Entity::Entity(Transform transform) : transform(transform) {}
-
+Entity::Entity(Transform3D trans):transform(trans) {}
 
 // Manage Components
 void Entity::AddNewComponent(Component component) {
@@ -40,4 +39,4 @@ void Entity::Destroy() {
 }
 
 // Getters
-Transform Entity::GetTransform() { return transform; }
+Transform3D Entity::GetTransform() { return transform; }

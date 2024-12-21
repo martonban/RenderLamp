@@ -2,8 +2,10 @@
 #define WINDOW_H
 
 #include <iostream>
+
 #include "raylib.h"
-#include "RendererRayLib.h"
+
+#include "Scene.h"
 
 class Window {
     // Functions
@@ -23,7 +25,8 @@ class Window {
         int window_height;
         int window_width;
 
-        RendererRayLib renderer;
+        Scene current_scene;
+       
 };
 
 #endif

@@ -6,10 +6,11 @@
 #include "RendererRayLib.h"
 #include "Entity.h"
 
-
 class Scene {
     public:
-        Scene();
+        Scene(){
+            
+        };
         void Start();
         void Tick();
         void Destroy();
@@ -17,6 +18,7 @@ class Scene {
     private:
         RendererRayLib renderer;
         std::vector<Entity> entity_vector;
+
 };
 
 #endif

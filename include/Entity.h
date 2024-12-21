@@ -4,14 +4,14 @@
 #include <iostream>
 #include <vector>
 
-#include "Transform.h"
+#include "Transform3D.h"
 #include "Component.h"
 
 class Entity {
     public:
         // Constractors
         Entity();
-        Entity(Transform transform);
+        Entity(Transform3D trans);
 
         // Manage Components
         void AddNewComponent(Component component);
@@ -23,11 +23,11 @@ class Entity {
         void Destroy();
 
         // Get Transform
-        Transform GetTransform();
+        Transform3D GetTransform();
 
 
     private:
-        Transform transform;
+        Transform3D transform;
         std::vector<Component> component_vector;
 };
 
