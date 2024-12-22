@@ -41,4 +41,4 @@ FetchContent_MakeAvailable(json)
 
 
 # Renderer Dependencies
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib renderer nlohmann_json::nlohmann_json googletest)
+target_link_libraries(${PROJECT_NAME} PRIVATE raylib renderer nlohmann_json::nlohmann_json gtest)

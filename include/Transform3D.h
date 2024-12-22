@@ -47,7 +47,6 @@ class Transform3D {
 
     private:
         struct TransformData transform;
-        
 };
 
 #endif
