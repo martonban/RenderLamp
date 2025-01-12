@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "Window.h"
 
+
 void Application::Init() {
     // This is currently empty
     // TODOs:

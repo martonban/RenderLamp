@@ -1,9 +1,9 @@
 #include "../include/renderer.h"
 
-Renderer::Renderer(){
+BuzzRenderer::BuzzRenderer(){
 
 }
 
-int Renderer::Test() {
+int BuzzRenderer::Test() {
     return 10;
 }

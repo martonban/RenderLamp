@@ -1,9 +1,9 @@
 #ifndef RENDERER_H
 #define RENDERER_H 
 
-class Renderer {
+class BuzzRenderer {
 public:
-    Renderer();
+    BuzzRenderer();
     int Test();
 };
 
