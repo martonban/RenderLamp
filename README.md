@@ -4,6 +4,33 @@
 ## What RenderLamp is
 RenderLamp is a 3D CPU ray tracer with a simple editor. You can create scenes give properties to objects and render those scenes with a raytracer.
 
+## Geting Started (WIP)
+1. **Clone the Repository**:
+    ```sh
+    git clone https://github.com/martonban/RenderLamp.git
+    cd RenderLamp
+    ```
+
+2. **Install Dependencies**:
+    Ensure you have CMake and a compatible C++ compiler (like MSVC) installed on your system.
+
+3. **Build the Project**:
+    ```sh
+    mkdir build
+    cd build
+    cmake ..
+    cmake --build .
+    ```
+
+4. **Run the Application**:
+    After building, you can run the application from the build directory:
+    ```sh
+    ./RenderLamp
+    ```
+
+
+Make sure to check the documentation and comments within the code for more detailed instructions and troubleshooting tips.
+
 ## Motivation
 This project is mainly a C++ project to me and not a graphics one. So please don't expect complicated rendering algorithms. In the future I want to continue this project like using CUDA/OpenCL or implementing a renderer for the editor too. 
 
