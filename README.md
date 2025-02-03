@@ -1,5 +1,5 @@
 # [WIP] RenderLamp 
-![Cover](RenderLampCover.png)
+⚠️ WARNING! This repository is not yet finished. The descriptions and code found here are not complete.
 
 ## What RenderLamp is
 RenderLamp is a 3D CPU ray tracer with a simple editor. You can create scenes give properties to objects and render those scenes with a raytracer.
