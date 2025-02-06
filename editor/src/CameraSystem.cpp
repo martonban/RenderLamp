@@ -56,17 +56,6 @@ Vector3 CameraSystem::CalculateFinalPostion(Vector3 pos, Vector3 rot) {
     return result;
 }
 
-/*
-// Best Camera Controll System
-Vector3 CameraSystem::CalculateFinalPostion(Vector3 pos, Vector3 rot) {
-    Vector3 result = {0};
-    Vector3 look_at = GetLookDirectionNormalVector();
-    float dot = Vector3DotProduct(look_at, rot);
-
-    return {0, 0, -dot};
-}
-*/
-
 float CameraSystem::CameraControllerZoomListener() {
     return -(GetMouseWheelMove());
 }
