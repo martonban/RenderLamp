@@ -12,20 +12,18 @@ RenderLamp is a 3D CPU ray tracer with a simple editor. You can create scenes gi
     ```
 
 2. **Install Dependencies**:
-    Ensure you have CMake and a compatible C++ compiler (like MSVC) installed on your system.
+    Ensure you have CMake and a compatible C++ compiler (MSVC) installed on your system.
 
 3. **Build the Project**:
     ```sh
-    mkdir build
-    cd build
-    cmake ..
-    cmake --build .
+    cmake -S . -B build
+    cmake --build build
     ```
 
 4. **Run the Application**:
     After building, you can run the application from the build directory:
     ```sh
-    ./RenderLamp
+    ./RenderLamp/build/editor/Debug
     ```
 
 
