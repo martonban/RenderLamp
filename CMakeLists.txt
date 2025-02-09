@@ -28,3 +28,4 @@ FetchContent_MakeAvailable(googletest)
 
 add_subdirectory(editor)
 add_subdirectory(renderer)
+add_subdirectory(test)
