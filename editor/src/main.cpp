@@ -9,6 +9,7 @@
  * 
 ****************************************************************************/
 
+
 int main(void)
 {
     Application& render_lamp_app = Application::GetInstance();
@@ -18,3 +19,4 @@ int main(void)
 
     return 0;
 }
+

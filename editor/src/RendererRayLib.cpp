@@ -15,7 +15,7 @@ void RendererRayLib::RenderLoop() {
 
             BeginMode3D(cameraSystem.GetCameraInstance());
                 // ECS UPDATE 
-                DrawGrid(100, 1.0f);
+                DrawGrid(10, 1.0f);
 
             EndMode3D();
 

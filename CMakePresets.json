@@ -97,5 +97,13 @@
                 }
             }
         }
+    ],
+    "testPresets": [
+        {
+            "name": "Enter",
+            "description": "",
+            "displayName": "",
+            "configurePreset": "x86-release"
+        }
     ]
 }
