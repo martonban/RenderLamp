@@ -1,16 +1,13 @@
 cmake_minimum_required(VERSION 3.8)
 
-set(RenderLampTest RenderLampTestExecutable)
+# Add Google Test
+include(GoogleTest)
 
-set(Sources
-    first_test.cpp
-)
+# Define the test executable
+add_executable(RenderLampTestExecutable first_test.cpp)
 
-add_executable(${RenderLampTest} ${Sources})
+# Link the test executable against gtest and gtest_main
+target_link_libraries(RenderLampTestExecutable gtest gtest_main)
 
-target_link_libraries(${RenderLampTest} PUBLIC gtest_main)
-
-add_test(
-    NAME ${RenderLampTest}
-    COMMAND ${RenderLampTest}
-)
+# Discover and add tests
+gtest_discover_tests(RenderLampTestExecutable)

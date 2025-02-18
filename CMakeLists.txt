@@ -25,6 +25,8 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
+# Enable testing
+enable_testing()
 
 add_subdirectory(editor)
 add_subdirectory(renderer)
