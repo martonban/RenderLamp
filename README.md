@@ -42,4 +42,8 @@ This version of RenderLamp you can use the Buzz Renderer. This renderer is based
     ```
 
 
-Make sure to check the documentation and comments within the code for more detailed instructions and troubleshooting tips.
+# Resources
+- [tinyseries](https://github.com/ssloy/tinyrenderer)
+- [Scratchpixel](https://www.scratchapixel.com/index.html)
+- [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
+- [Fundamentals of Computer Graphics](https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390)
