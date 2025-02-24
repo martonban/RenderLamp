@@ -18,17 +18,17 @@ class Transform3D {
     Transform3D() : position(Vector3{0.0, 0.0, 0.0}), rotation(Vector3{0.0, 0.0, 0.0}), scale(Vector3{1.0, 1.0, 1.0}) {};
 
     // Geters
-    Vector3 GetPos() {};
-    Vector3 GetRot() {};
-    Vector3 GetScale() {};
+    Vector3 GetPos();
+    Vector3 GetRot();
+    Vector3 GetScale();
 
     // Setters
-    void SetPos(Vector3 pos) {};
-    void SetRot(Vector3 rot) {};
-    void SetScale(Vector3 scal) {};
+    void SetPos(Vector3 pos);
+    void SetRot(Vector3 rot);
+    void SetScale(Vector3 scal);
 
     // Modifiers
-    
+
 };
 
 #endif
