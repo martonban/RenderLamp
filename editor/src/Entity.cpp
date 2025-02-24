@@ -1,15 +1,6 @@
 #include "Entity.h"
 
-// Constructures
-Entity::Entity():
-    transform (
-        Transform3D {
-            Vector3 { 0, 0, 0 },
-            Vector3 { 0, 0, 0 },
-            Vector3 { 1, 1, 1 }
-        }
-    )
-{}
+
 
 Entity::Entity(Transform3D trans):transform(trans) {}
 

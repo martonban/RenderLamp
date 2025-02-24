@@ -17,6 +17,9 @@ class Entity {
         void AddNewComponent(Component component);
         //void RemoveComponent(Component component);
 
+
+        // TODO: Rule of Five 
+
         // ECS
         void Start();
         void Update();
