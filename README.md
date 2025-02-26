@@ -38,7 +38,7 @@ This version of RenderLamp you can use the Buzz Renderer. This renderer is based
 4. **Run the Application**:
     After building, you can run the application from the build directory:
     ```sh
-    ./RenderLamp/build/editor/Debug
+    ./build/editor/Debug/RenderLamp
     ```
 ## Tests
 This project is using GoogleTest for unit testing. 
