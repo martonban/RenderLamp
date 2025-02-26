@@ -19,7 +19,7 @@ This project is mainly a C++ project to me and not a graphics one. So please don
 ## Renderer - Buzz Renderer
 This version of RenderLamp you can use the Buzz Renderer. This renderer is based on the [Ray Tracing in One Weekend book](https://raytracing.github.io/books/RayTracingInOneWeekend.html).
 
-## Geting Started (WIP)
+## Build the Project
 1. **Clone the Repository**:
     ```sh
     git clone https://github.com/martonban/RenderLamp.git
@@ -39,6 +39,17 @@ This version of RenderLamp you can use the Buzz Renderer. This renderer is based
     After building, you can run the application from the build directory:
     ```sh
     ./RenderLamp/build/editor/Debug
+    ```
+## Tests
+This project is using GoogleTest for unit testing. 
+1. **Go to the build directory**:
+    ```sh
+    cd build
+    ```
+
+2. **Run the tests**:
+    ```sh
+   ctest
     ```
 
 
