@@ -3,9 +3,9 @@
 
 class Component {
     public:
-        virtual void Update() {};
-        virtual void Start() {};
-        virtual void Destroy() {};
+        virtual void Update() = 0;
+        virtual void Start() = 0;
+        virtual void Destroy() = 0;
 };
 
 #endif

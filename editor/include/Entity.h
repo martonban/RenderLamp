@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #include "Transform3D.h"
 #include "Component.h"
@@ -14,7 +15,7 @@ class Entity {
         Entity(Transform3D trans);
 
         // Manage Components
-        void AddNewComponent(Component component);
+        void AddNewComponent(Component* component);
         //void RemoveComponent(Component component);
 
 
@@ -31,7 +32,7 @@ class Entity {
 
     private:
         Transform3D transform;
-        std::vector<Component> component_vector;
+        std::vector<Component*> component_vector;
 };
 
 #endif
