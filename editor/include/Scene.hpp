@@ -1,10 +1,10 @@
-#ifndef SCENE_H
-#define SCENE_H
+#ifndef SCENE_HPP
+#define SCENE_HPP
 
 #include <vector>
 
-#include "RendererRayLib.h"
-#include "Entity.h"
+#include "RendererRayLib.hpp"
+#include "Entity.hpp"
 
 class Scene {
     public:

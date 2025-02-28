@@ -1,4 +1,4 @@
-#include "RendererRayLib.h"
+#include "RendererRayLib.hpp"
 
 void RendererRayLib::Start() {
     // ECS Init

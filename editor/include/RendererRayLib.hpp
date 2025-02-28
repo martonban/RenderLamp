@@ -1,9 +1,9 @@
-#ifndef RENDERER_RAYLIB_H
-#define RENDERER_RAYLIB_H
+#ifndef RENDERER_RAYLIB_HPP
+#define RENDERER_RAYLIB_HPP
 
 #include "raylib.h"
 
-#include "CameraSystem.h"
+#include "CameraSystem.hpp"
 
 class RendererRayLib {
     // Functions 

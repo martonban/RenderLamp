@@ -1,11 +1,11 @@
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef WINDOW_HPP
+#define WINDOW_HPP
 
 #include <iostream>
 
 #include "raylib.h"
 
-#include "Scene.h"
+#include "Scene.hpp"
 
 class Window {
     // Functions

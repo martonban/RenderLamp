@@ -1,4 +1,4 @@
-#include "Window.h"
+#include "Window.hpp"
 
 void Window::Start() {  
     InitWindow(window_width, window_height, "RenderLamp Editor");

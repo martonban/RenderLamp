@@ -1,12 +1,12 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef ENTITY_HPP
+#define ENTITY_HPP
 
 #include <iostream>
 #include <vector>
 #include <memory>
 
-#include "Transform3D.h"
-#include "Component.h"
+#include "Transform3D.hpp"
+#include "Component.hpp"
 
 class Entity {
     public:

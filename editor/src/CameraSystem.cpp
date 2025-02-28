@@ -1,4 +1,4 @@
-#include "CameraSystem.h"
+#include "CameraSystem.hpp"
 
 void CameraSystem::StartCamera() {
     camera.position = {10.0, 10.0, 10.0};
