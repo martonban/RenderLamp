@@ -17,7 +17,7 @@ This project is mainly a C++ project to me and not a graphics one. So please don
 - [GoogleTest](https://github.com/google/googletest)
 
 ## Renderer - Buzz Renderer
-This version of RenderLamp you can use the Buzz Renderer. This renderer is based on the [Ray Tracing in One Weekend book](https://raytracing.github.io/books/RayTracingInOneWeekend.html).
+This version of RenderLamp you can use the Buzz Renderer. This renderer is based on the [Ray Tracing in One Weekend book](https://raytracing.github.io/books/RayTracingInOneWeekend.html), [tinyseries](https://github.com/ssloy/tinyrenderer/wiki) and [Fundamentals Of Computer Graphics](https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/1482229390).
 
 ## Build the Project
 1. **Clone the Repository**:
