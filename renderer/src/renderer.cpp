@@ -3,7 +3,3 @@
 BuzzRenderer::BuzzRenderer(){
 
 }
-
-int BuzzRenderer::Test() {
-    return 10;
-}

@@ -1,14 +1,11 @@
 #include "Entity.hpp"
 
-
-
 Entity::Entity(Transform3D trans):transform(trans) {}
 
 // Manage Components
 void Entity::AddNewComponent(Component* component) {
     component_vector.push_back(component);
 }
-
 
 // ECS
 void Entity::Start() {

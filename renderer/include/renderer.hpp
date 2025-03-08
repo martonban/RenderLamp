@@ -5,7 +5,8 @@
 class BuzzRenderer {
 public:
     BuzzRenderer();
-    int Test();
+private:
+    
 };
 
 #endif
