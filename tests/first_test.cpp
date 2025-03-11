@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "../editor/include/Transform3D.hpp"
+#include "raymath.h"
 
 // Demonstrate some basic assertions.
 TEST(HelloTest, BasicAssertions) {

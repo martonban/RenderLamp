@@ -7,7 +7,7 @@ include(GoogleTest)
 add_executable(RenderLampTestExecutable first_test.cpp)
 
 # Link the test executable against gtest and gtest_main
-target_link_libraries(RenderLampTestExecutable gtest gtest_main)
+target_link_libraries(RenderLampTestExecutable raylib gtest gtest_main)
 
 # Discover and add tests
 gtest_discover_tests(RenderLampTestExecutable)
