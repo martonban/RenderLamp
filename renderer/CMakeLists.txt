@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.10)
 project(renderer)
 
 add_library(renderer STATIC
@@ -10,12 +10,11 @@ target_include_directories(renderer
         ${PROJECT_SOURCE_DIR}/include
 )
 
-add_executable( renderer_binary
+add_executable(renderer_binary
     src/main.cpp
 )
 
-target_link_libraries( renderer_binary
+target_link_libraries(renderer_binary
     PRIVATE 
         renderer
-
 )
