@@ -68,6 +68,7 @@ I utilized several academic and technical sources to understand the fundamentals
 - Projection: [How Do Computers Display 3D on a 2D Screen? (Perspective Projection)](https://www.youtube.com/watch?v=eoXn6nwV694) by Carl the Person
 - C++/Graphics Concepts : [Code-It-Yourself! Series](https://www.youtube.com/watch?v=8OK8_tHeCIA&list=PLrOv9FMX8xJE8NgepZR1etrsU63fDDGxO) by javidx9
 - CMAKE: [CMake Examples](https://github.com/ttroy50/cmake-examples) by Thom Troy
+- Projection Matrix: [OpenGL Projection Matrix](https://www.songho.ca/opengl/gl_projectionmatrix.html) by Song Ho Ahn
 
 ## Generative AI tools
 In this project, I utilized various generative AI tools, such as ChatGPT and GitHub Copilot. ChatGPT was used exclusively to improve the spelling and grammatical structure of my sentences, as well as to translate some of my more complex sentences from Hungarian to English. <br>
