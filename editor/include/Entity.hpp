@@ -15,7 +15,7 @@ class Entity {
         Entity(Transform3D trans);
 
         // Manage Components
-        void AddNewComponent(Component* component);
+        void AddNewComponent(const std::shared_ptr<Component>& component);
         //void RemoveComponent(Component component);
 
 
@@ -32,7 +32,7 @@ class Entity {
 
     private:
         Transform3D transform;
-        std::vector<Component*> component_vector;
+        std::vector<std::shared_ptr<Component>> component_vector;
 };
 
 #endif

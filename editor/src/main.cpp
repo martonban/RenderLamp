@@ -1,5 +1,6 @@
 #include "Application.hpp"
 
+
 int main(void)
 {
     Application& render_lamp_app = Application::GetInstance();
