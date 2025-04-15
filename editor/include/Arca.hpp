@@ -13,6 +13,11 @@
 #include <string>
 #include <sstream>
 
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+
+#include "ArcaConfig.hpp"
+
 class Arca {
     public:
         Arca(const std::string& endOfPath);
@@ -27,7 +32,7 @@ class Arca {
 
 #endif
 
-// 
+// Arca Instance constructor
 inline Arca::Arca(const std::string& endOfPath) {
     m_arcaInstanceFilePath = GetAppDataPath() + endOfPath;
     std::cout << m_arcaInstanceFilePath << std::endl;
