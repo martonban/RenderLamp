@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(RenderLamp)
 
+
 include(FetchContent)
 
 # Raylib dependences
@@ -24,6 +25,14 @@ FetchContent_Declare(
 )
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
+
+
+# Arca 
+#FetchContent_Declare(
+#  Arca
+#  URL https://github.com/martonban/Arca/releases/download/v0.0.1/Arca.zip
+#)
+#FetchContent_MakeAvailable(Arca)
 
 # Enable testing
 enable_testing()
