@@ -2,10 +2,7 @@
 #define WINDOW_HPP
 
 #include <iostream>
-
 #include "raylib.h"
-
-#include "Scene.hpp"
 
 class Window {
     // Functions
@@ -24,8 +21,6 @@ class Window {
         // Basic properties for the window
         int window_height;
         int window_width;
-
-        Scene current_scene;
        
 };
 

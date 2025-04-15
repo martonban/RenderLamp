@@ -3,8 +3,6 @@
 
 #include <iostream> 
 
-
-
 class Application {
     // Functions
     public:
@@ -16,11 +14,6 @@ class Application {
         }
     protected:
         Application() = default;
-    private:
-
-    // Data fileds Instances
-    private:
-
 };
 
 #endif

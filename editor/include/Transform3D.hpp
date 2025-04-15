@@ -1,15 +1,6 @@
 #ifndef TRANSFORM_HPP
 #define TRANSFORM_HPP
 
-/*
-*   This class is a ECS component wich holds the position, rotation and scale of an entity. 
-*   This calss is critical fo not just the editor but also for the ray tracer. 
-*   Evencially this class will store the Entities world attributes.
-*
-*/
-
-
-
 #include "raymath.h"
 
 

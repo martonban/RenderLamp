@@ -6,15 +6,30 @@
 #include "CameraSystem.hpp"
 
 class RendererRayLib {
-    // Functions 
     public: 
         RendererRayLib() {
             cameraSystem.StartCamera();
         };
         void Start();
-        void RenderLoop();
+        void RenderLoop() {
+             // Update Camera System
+        cameraSystem.UpdateCamera();
 
-    // Data Fields
+        BeginDrawing();
+
+            ClearBackground(RAYWHITE);
+
+            BeginMode3D(cameraSystem.GetCameraInstance());
+                // ECS UPDATE 
+                DrawGrid(10, 1.0f);
+                std::cout << GetFPS() << std::endl;
+            EndMode3D();
+
+          // Text
+
+        EndDrawing();
+        }
+
     private:
         CameraSystem cameraSystem;
 };
