@@ -19,6 +19,7 @@ This project is mainly a C++ project to me and not a graphics one. So please don
 This version of RenderLamp you can use the Buzz Renderer. Coming Soon...
 
 ## Build the Project
+⚠️ WARNING! The software currently depends on manually placed AppData files. I'm working on a solution for this
 1. **Clone the Repository**:
     ```sh
     git clone https://github.com/martonban/RenderLamp.git
