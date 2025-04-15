@@ -16,12 +16,9 @@ class Window {
         void Loop();
         void Close();
 
-    // Data fields
     private:
-        // Basic properties for the window
         int window_height;
         int window_width;
-       
 };
 
 #endif

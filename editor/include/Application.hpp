@@ -2,6 +2,8 @@
 #define APPLICATION_HPP
 
 #include <iostream> 
+#include "Window.hpp"
+#include "Arca.hpp"
 
 class Application {
     // Functions
@@ -14,6 +16,7 @@ class Application {
         }
     protected:
         Application() = default;
+
 };
 
 #endif
