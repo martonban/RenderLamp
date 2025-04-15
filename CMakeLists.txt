@@ -5,7 +5,7 @@ project(RenderLamp)
 include(FetchContent)
 
 # Raylib dependences
-set(RAYLIB_VERSION 5.0)
+set(RAYLIB_VERSION 5.5)
 FetchContent_Declare(
   raylib
   URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
