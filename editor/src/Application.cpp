@@ -2,8 +2,7 @@
 
 void Application::Init() {
     Arca arcaInstance("/RenderLamp/ArcaInstance.txt");
-    ArcaConfig arcaconf;
-    arcaconf.Test();
+    
 }
 
 void Application::Start() {

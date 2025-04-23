@@ -1,7 +1,7 @@
 #ifndef ARCA_HPP
 #define ARCA_HPP
 
-//-------------------------------------------------------------------------------------------------------------------------------*                                          	
+//-------------------------------------------------------------------------------------------------------------------------------                                          	
 //												RenderLamp - Arca
 //                                      	Copyright (c) Márton Bán 2025
 //	This is the prototype version of my own asset manager libary ARCA. If the libary is ready this class will be
@@ -21,26 +21,41 @@ using json = nlohmann::json;
 class Arca {
     public:
         Arca(const std::string& endOfPath);
+        template <typename T>
+        T FetchConfigParameter(const std::string& input);
     private:
+        // Instances
+        ArcaConfig m_arcaConfig {""};
+        // Data fields
         std::string m_arcaInstanceFilePath;
         std::string m_configFilePath;
         std::string m_sceneManagerFilePath;
         std::string m_sceneBankFilePath;
+        // Helper Functions
         void FetchArcaInstacePaths();
+        void FetchConfigData();
         std::string GetAppDataPath(); 
 };
 
-#endif
+
+//-------------------------------
+//      ARCA API FUNCTIONS
+//-------------------------------
 
 // Arca Instance constructor
-inline Arca::Arca(const std::string& endOfPath) {
+Arca::Arca(const std::string& endOfPath) {
     m_arcaInstanceFilePath = GetAppDataPath() + endOfPath;
-    std::cout << m_arcaInstanceFilePath << std::endl;
     FetchArcaInstacePaths();
+    m_arcaConfig = ArcaConfig(m_configFilePath);
 }
 
+
+//-------------------------------
+//     ARCA Helper Functions
+//-------------------------------
+
 // Fetch ArcaInstance.txt wich will store the crucial dependencies file path   
-inline void Arca::FetchArcaInstacePaths() {
+void Arca::FetchArcaInstacePaths() {
     std::ifstream file(m_arcaInstanceFilePath);
     if (!file.is_open()) {
         std::cerr << "Error: The file is not existing! \n";
@@ -61,6 +76,9 @@ inline void Arca::FetchArcaInstacePaths() {
 }
 
 // TODO: Make it more elegant 
-inline std::string Arca::GetAppDataPath() {
+std::string Arca::GetAppDataPath() {
     return "C:/Users/Marci/AppData/Roaming/Arca";
 }
+
+#endif
+
