@@ -2,38 +2,40 @@
 #define ARCA_HPP
 
 //-------------------------------------------------------------------------------------------------------------------------------                                          	
-//												RenderLamp - Arca
+//												 RenderLamp - Arca
 //                                      	Copyright (c) Márton Bán 2025
-//	This is the prototype version of my own asset manager libary ARCA. If the libary is ready this class will be
-// the wrapper for the libary.
+//
+//  Arca is part of mine own C++ framework I am developping in the background. Currently this is just a experimenting system 
+//
+//  If you create an application Arca will 
 //-------------------------------------------------------------------------------------------------------------------------------
 
 #include <iostream>
-#include <fstream>
+
+#include <map>
+#include <any>
 #include <string>
+
+#include <fstream>
 #include <sstream>
+
 
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
+
+#include "ArcaFileHandler.hpp"
 #include "ArcaConfig.hpp"
 
 class Arca {
     public:
         Arca(const std::string& endOfPath);
-        template <typename T>
-        T FetchConfigParameter(const std::string& input);
     private:
         // Instances
         ArcaConfig m_arcaConfig {""};
         // Data fields
-        std::string m_arcaInstanceFilePath;
-        std::string m_configFilePath;
-        std::string m_sceneManagerFilePath;
-        std::string m_sceneBankFilePath;
+        std::string m_projectPath;
         // Helper Functions
-        void FetchArcaInstacePaths();
-        void FetchConfigData();
         std::string GetAppDataPath(); 
 };
 
@@ -42,38 +44,16 @@ class Arca {
 //      ARCA API FUNCTIONS
 //-------------------------------
 
-// Arca Instance constructor
+// To create an Arca Instance you need the file
 Arca::Arca(const std::string& endOfPath) {
-    m_arcaInstanceFilePath = GetAppDataPath() + endOfPath;
-    FetchArcaInstacePaths();
-    m_arcaConfig = ArcaConfig(m_configFilePath);
+    m_projectPath = GetAppDataPath() + endOfPath;
+
 }
 
 
 //-------------------------------
 //     ARCA Helper Functions
 //-------------------------------
-
-// Fetch ArcaInstance.txt wich will store the crucial dependencies file path   
-void Arca::FetchArcaInstacePaths() {
-    std::ifstream file(m_arcaInstanceFilePath);
-    if (!file.is_open()) {
-        std::cerr << "Error: The file is not existing! \n";
-        return;
-    }
-
-    std::string line;
-    if (std::getline(file, line)) {
-        std::stringstream ss(line);
-        std::getline(ss, m_configFilePath, ';');
-        std::getline(ss, m_sceneManagerFilePath, ';');
-        std::getline(ss, m_sceneBankFilePath, ';');
-    } else {
-        std::cerr << "Error: The file is not valid! \n";
-    }
-
-    file.close();
-}
 
 // TODO: Make it more elegant 
 std::string Arca::GetAppDataPath() {

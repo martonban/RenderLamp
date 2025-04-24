@@ -1,8 +1,7 @@
 #include "Application.hpp"
 
 void Application::Init() {
-    Arca arcaInstance("/RenderLamp/ArcaInstance.txt");
-    
+    Arca arca("/RenderLamp/ArcaInstance.txt");
 }
 
 void Application::Start() {
