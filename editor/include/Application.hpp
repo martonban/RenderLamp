@@ -3,7 +3,7 @@
 
 #include <iostream> 
 #include "Window.hpp"
-#include "Arca.hpp"
+#include "Marathon.hpp"
 
 class Application {
     // Functions

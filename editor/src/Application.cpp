@@ -1,9 +1,7 @@
 #include "Application.hpp"
 
 void Application::Init() {
-    Arca arca{"RenderLamp"};
-
-
+    Marathon marathon {std::string{"RenderLamp"}};
 }
 
 void Application::Start() {
