@@ -17,4 +17,5 @@ add_executable(renderer_binary
 target_link_libraries(renderer_binary
     PRIVATE 
         renderer
+        glm::glm
 )
