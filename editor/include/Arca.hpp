@@ -5,9 +5,7 @@
 //												 RenderLamp - Arca
 //                                      	Copyright (c) Márton Bán 2025
 //
-//  Arca is part of mine own C++ framework I am developping in the background. Currently this is just a experimenting system 
-//
-//  If you create an application Arca will 
+//  Arca is a subsystem of RenderLamp. Arca will handle of the application and user data, with a simple Interface
 //-------------------------------------------------------------------------------------------------------------------------------
 
 #include <iostream>
@@ -18,12 +16,12 @@
 
 class Arca {
     public:
-        Arca();
+        Arca(const std::string& applicationName);
         void CreateDirectory(const std::string& path, const std::string& name);
     private:
         // Instances 
         ArcaIO arcaIO{};
-        std::string GetAppDataPath(); 
+        std::string GetAppPath(); 
 };
 
 
