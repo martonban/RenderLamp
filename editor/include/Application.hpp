@@ -4,6 +4,7 @@
 #include <iostream> 
 #include "Window.hpp"
 #include "Marathon.hpp"
+#include "ArcaConfig.hpp"
 
 class Application {
     // Functions
