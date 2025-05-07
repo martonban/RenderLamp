@@ -2,9 +2,14 @@
 #define ARCA_IO_HPP
 
 #include <iostream>
-#include <string>
 #include <fstream>
 #include <filesystem>
+
+#include <string>
+#include <map>
+
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 
 class ArcaIO {
     public: 
@@ -26,20 +31,22 @@ class ArcaIO {
 
     // Fetch all strings from a CSV file
     void FetchCSVData(const std::string& filePath, std::vector<std::string>& returnVector) {
-    std::ifstream file(filePath);
-    if (!std::filesystem::exists(filePath)) {
-        std::cerr << "Error: The file does not exist! \n";
-        return;
-    }
+        std::ifstream file(filePath);
+        if (!std::filesystem::exists(filePath)) {
+            std::cerr << "Error: The file does not exist! \n";
+            return;
+        }
     
-    std::string temp;
+        std::string temp;
 
-    if(std::getline(file, temp, ';')) {
-        returnVector.push_back(temp);
+        if(std::getline(file, temp, ';')) {
+            returnVector.push_back(temp);
+        }
+
+        file.close();
     }
 
-    file.close();
-}
+    
 };
 
 
