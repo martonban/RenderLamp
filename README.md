@@ -14,6 +14,7 @@ This project is mainly a C++ project to me and not a graphics one. So please don
 - [rlImGui](https://github.com/raylib-extras/rlImGui)
 - [nlohmannjson](https://github.com/nlohmann/json)
 - [GoogleTest](https://github.com/google/googletest)
+- [GLM](https://github.com/g-truc/glm)
 
 ## Renderer - Buzz Renderer
 This version of RenderLamp you can use the Buzz Renderer. Coming Soon...
