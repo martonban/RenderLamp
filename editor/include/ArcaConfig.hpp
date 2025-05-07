@@ -20,6 +20,8 @@ class ArcaConfig {
         ArcaConfig(const std::string& cofigFilePath);
         void AddValue(const std::string& key, const std::string& value);
         std::string GetStringValue(const std::string& key);
+        float GetFloatValue(const std::string& key);
+        int GetIntValue(const std::string& key);
     private:
         ArcaIO arcaIO {};
         std::map<std::string, std::string> mConfigData;

@@ -14,3 +14,11 @@ void ArcaConfig::AddValue(const std::string& key, const std::string& value) {
 std::string ArcaConfig::GetStringValue(const std::string& key) {
     return mConfigData[key];
 }
+
+float ArcaConfig::GetFloatValue(const std::string& key) {
+    return std::atof(mConfigData[key].c_str());
+}
+
+int ArcaConfig::GetIntValue(const std::string& key) {
+    return std::atoi(mConfigData[key].c_str());
+}
