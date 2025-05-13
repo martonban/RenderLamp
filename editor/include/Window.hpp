@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "raylib.h"
+#include "SphereMeshComponent.hpp"
 
 class Window {
     // Functions
@@ -19,6 +20,8 @@ class Window {
     private:
         int window_height;
         int window_width;
+        SphereMeshComponent sp { {0, 0, 0}, 1.0f };
+        Camera3D camera = {0};
 };
 
 #endif
