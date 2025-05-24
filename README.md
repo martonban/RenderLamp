@@ -55,7 +55,7 @@ This project is using GoogleTest for unit testing.
 
 
 # Resources/Credits
-In the following section, I would like to clarify the guidelines I followed during the project and give proper credit to everyone who contributed to its creation. First and foremost, I would like to express my gratitude to my university advisor, Dr. Péter Mileff, for his guidance and valuable advice throughout this journey. Additionally, I would like to thank Levente Fazekas for contributing to my C++ knowledge through his university course. And, of course, I am deeply grateful to my family and friends for their support. <br>
+In the following section, I would like to clarify the guidelines I followed during the project and give proper credit to everyone who contributed to its creation. First and foremost, I would like to express my gratitude to my university advisor, Dr. Péter Mileff, for his guidance and valuable advice throughout this journey. Additionally, I would like to thank Levente Fazekas for contributing to my C++ knowledge through his university course. <br>
 The most important point to clarify is that whenever I use a code snippet, I will explicitly reference it in my source code and provide a link to the original author. Unfortunately, due to time constraints, I am unable to verify the originality of every single source, but I will make every effort to do so to the best of my ability.
 
 ## Literature
