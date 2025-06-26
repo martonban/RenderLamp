@@ -3,11 +3,8 @@
 
 class Component {
     public:
-        //virtual void Init();
+        // This can be logic or rendering
         virtual void Update() = 0;
-        //virtual void Destroy();
-        //virtual void Gui();
-        //virtual void RenderBatch();
 };
 
 

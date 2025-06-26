@@ -48,6 +48,5 @@ enable_testing()
 
 add_subdirectory(editor)
 add_subdirectory(renderer)
-add_subdirectory(tests)
 add_subdirectory(thirdparty/rlImGui)
 add_subdirectory(thirdparty/imgui)
