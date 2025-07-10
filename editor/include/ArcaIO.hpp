@@ -27,26 +27,7 @@ class ArcaIO {
         } catch (const std::filesystem::filesystem_error& e) {
             std::cerr << "Exception: " << e.what() << std::endl;
         }
-    }
-
-    // Fetch all strings from a CSV file
-    void FetchCSVData(const std::string& filePath, std::vector<std::string>& returnVector) {
-        std::ifstream file(filePath);
-        if (!std::filesystem::exists(filePath)) {
-            std::cerr << "Error: The file does not exist! \n";
-            return;
-        }
-    
-        std::string temp;
-
-        if(std::getline(file, temp, ';')) {
-            returnVector.push_back(temp);
-        }
-
-        file.close();
-    }
-
-    
+    } 
 };
 
 

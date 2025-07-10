@@ -11,4 +11,4 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
 endif()
 
 
-target_link_libraries(RenderLamp PRIVATE raylib renderer nlohmann_json::nlohmann_json ImGui rlImGui gtest gtest_main)
+target_link_libraries(RenderLamp PRIVATE raylib renderer nlohmann_json::nlohmann_json ImGui rlImGui)

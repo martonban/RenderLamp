@@ -6,7 +6,6 @@
 #include "SphereMeshComponent.hpp"
 
 class Window {
-    // Functions
     public:
         Window (int width, int height) {
             window_height = height;
