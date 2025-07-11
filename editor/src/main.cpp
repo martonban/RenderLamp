@@ -1,7 +1,7 @@
 #include "Application.hpp"
+#include "../../renderer/include/BuzzRenderer.hpp"
 
-int main(void)
-{
+int main(void) {
     // Renderer Testing
     
 

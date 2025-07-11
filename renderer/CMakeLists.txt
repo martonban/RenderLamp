@@ -14,8 +14,4 @@ add_executable(renderer_binary
     src/main.cpp
 )
 
-target_link_libraries(renderer_binary
-    PRIVATE 
-        renderer
-        glm::glm
-)
+target_link_libraries(renderer_binary PRIVATE renderer glm::glm)

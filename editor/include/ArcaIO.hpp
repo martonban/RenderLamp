@@ -11,6 +11,14 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
+//-----------------------------------------------------------------------------
+//                              RenderLamp - ArcaIO
+//
+//  This class is responsible for file handleing.
+//-----------------------------------------------------------------------------
+
+
+
 class ArcaIO {
     public: 
     void CreateFolder(const std::string& path, const std::string& name) {
