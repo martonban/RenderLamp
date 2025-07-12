@@ -4,12 +4,13 @@
 #include <iostream>
 #include "raylib.h"
 #include "SphereMeshComponent.hpp"
+#include "RenderingSystem.hpp"
 
 class Window {
     public:
         Window (int width, int height) {
-            window_height = height;
-            window_width = width;
+            mWindowHeight = height;
+            mWindowHeight = width;
         }
         void Start();
     private:
@@ -17,10 +18,11 @@ class Window {
         void Close();
 
     private:
-        int window_height;
-        int window_width;
-        SphereMeshComponent sp { {0, 0, 0}, 1.0f };
-        Camera3D camera = {0};
+        int mWindowHeight;
+        int mWindowWidth;
+
+        RenderingSystem mRenderingSystem;
+        Camera3D mCamera = {0};
 };
 
 #endif

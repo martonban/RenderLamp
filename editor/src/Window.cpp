@@ -1,22 +1,22 @@
 #include "Window.hpp"
 
 void Window::Start() {  
-    InitWindow(window_width, window_height, "RenderLamp Editor");
-    camera.position = Vector3 { 10.0f, 10.0f, 10.0f }; // Camera position
-    camera.target = Vector3 { 0.0f, 0.0f, 0.0f };      // Camera looking at point
-    camera.up = Vector3 { 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 45.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE; 
+    InitWindow(mWindowWidth, mWindowHeight, "RenderLamp Editor");
+    mCamera.position = Vector3 { 10.0f, 10.0f, 10.0f }; // Camera position
+    mCamera.target = Vector3 { 0.0f, 0.0f, 0.0f };      // Camera looking at point
+    mCamera.up = Vector3 { 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
+    mCamera.fovy = 45.0f;                                // Camera field-of-view Y
+    mCamera.projection = CAMERA_PERSPECTIVE; 
     Loop();
 }
 
 void Window::Loop() {
     while (!WindowShouldClose()) {
-        UpdateCamera(&camera, CAMERA_FREE);
+        UpdateCamera(&mCamera, CAMERA_FREE);
         ClearBackground(RAYWHITE);
         BeginDrawing();
-         BeginMode3D(camera);
-            sp.Update();
+         BeginMode3D(mCamera);
+            // Components
           EndMode3D();
     EndDrawing();
     }

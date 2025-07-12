@@ -4,7 +4,9 @@
 class Component {
     public:
         // This can be logic or rendering
+        
         virtual void Update() = 0;
+
 };
 
 
