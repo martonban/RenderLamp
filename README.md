@@ -71,10 +71,7 @@ I utilized several academic and technical sources to understand the fundamentals
 - C++/Graphics Concepts : [Code-It-Yourself! Series](https://www.youtube.com/watch?v=8OK8_tHeCIA&list=PLrOv9FMX8xJE8NgepZR1etrsU63fDDGxO) by javidx9
 - CMAKE: [CMake Examples](https://github.com/ttroy50/cmake-examples) by Thom Troy
 - Projection Matrix: [OpenGL Projection Matrix](https://www.songho.ca/opengl/gl_projectionmatrix.html) by Song Ho Ahn
-- ECS - [A Simple Entity Component System (ECS) [C++]](https://austinmorlan.com/posts/entity_component_system/) by Austin Morlan
-- ECS - [Nomad Game Engine - An ECS engine for learning](https://savas.ca/nomad) by Niko Savas
-- ECS - [Entity Component System](https://tsprojectsblog.wordpress.com/portfolio/entity-component-system/) by Tob's
-- ECS - [[C++] An Entity-Component-System From Scratch](https://www.codingwiththomas.com/blog/an-entity-component-system-from-scratch) by Thomas Sedlmair
+
 
 ## Generative AI tools
 In this project, I utilized various generative AI tools, such as ChatGPT and GitHub Copilot. ChatGPT was used exclusively to improve the spelling and grammatical structure of my sentences, as well as to translate some of my more complex sentences from Hungarian to English. <br>
