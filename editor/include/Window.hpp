@@ -1,20 +1,39 @@
+//------------------------------------------------------------------------------------------------
+//                                      RenderLamp - Window
+//                                      Márton Bán (C) 2024
+//	
+// The Window class is responsible for displaying the viewport and GUI to the user, as well as 
+//  handling all the mouse and keyboard inputs. 
+//
+//  Note: this project is follows  a tree-like structure. Thus the SceneManager component is
+//  initalized at this class, since both the rendering system and the ECS share the same hiearchy 
+//
+//  TODO: - RenderingSystem
+//        - SceneManager
+//        - GUI Layer
+//        - KeyListener
+//        - Mouse Listener
+//------------------------------------------------------------------------------------------------
+
+
+
+
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
 
 #include <iostream>
 #include "raylib.h"
-#include "SphereMeshComponent.hpp"
 #include "RenderingSystem.hpp"
 
 class Window {
     public:
         Window (int width, int height) {
             mWindowHeight = height;
-            mWindowHeight = width;
+            mWindowWidth = width;
         }
         void Start();
     private:
-        void Loop();
+        void WindowLoop();
         void Close();
 
     private:
@@ -22,7 +41,6 @@ class Window {
         int mWindowWidth;
 
         RenderingSystem mRenderingSystem;
-        Camera3D mCamera = {0};
 };
 
 #endif
