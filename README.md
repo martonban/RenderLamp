@@ -15,6 +15,7 @@ This project is mainly a C++ project to me and not a graphics one. So please don
 - [nlohmannjson](https://github.com/nlohmann/json)
 - [GoogleTest](https://github.com/google/googletest)
 - [GLM](https://github.com/g-truc/glm)
+- Arca
 
 ## Renderer - Buzz Renderer
 This version of RenderLamp you can use the Buzz Renderer. Coming Soon...
