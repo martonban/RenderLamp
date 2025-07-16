@@ -10,7 +10,8 @@
 
 
 class BuzzRenderer {
-
+public:
+    
 };
 
 #endif
