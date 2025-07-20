@@ -32,6 +32,7 @@ class Window {
             mWindowWidth = width;
         }
         void Start();
+        void AttachRenderer(RenderingSystem& renderer);
     private:
         void WindowLoop();
         void Close();
@@ -39,8 +40,7 @@ class Window {
     private:
         int mWindowHeight;
         int mWindowWidth;
-
-        RenderingSystem mRenderingSystem;
+        RenderingSystem* mRenderer = nullptr;
 };
 
 #endif

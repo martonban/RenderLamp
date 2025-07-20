@@ -11,7 +11,9 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
-#include <iostream> 
+#include <iostream>
+
+#include "RenderingSystem.hpp"
 #include "Window.hpp"
 
 
@@ -26,7 +28,7 @@ class Application {
         }
     protected:
         Application() = default;
-
+    private:
 };
 
 #endif
