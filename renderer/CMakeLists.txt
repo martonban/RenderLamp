@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(renderer)
 
 add_library(renderer STATIC
-    src/renderer.cpp
+    src/ImageHandler.cpp
 )
 
 target_include_directories(renderer 
