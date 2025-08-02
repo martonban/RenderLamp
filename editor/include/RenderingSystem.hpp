@@ -17,7 +17,6 @@
 #ifndef RENDERING_SYSTEM_HPP
 #define RENDERING_SYSTEM_HPP
 
-#include "../../renderer/include/BuzzRenderer.hpp"
 #include "raylib.h"
 
 class RenderingSystem {
@@ -33,6 +32,8 @@ public:
 
     RenderTexture2D mRenderTarget = {0};
     Camera3D mCamera = {0};
+    // TODO: INIT RenderLamp ray tracing renderer
+    // TODO: Renderer will need ARCA  
 };
 
 

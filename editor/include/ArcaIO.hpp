@@ -1,3 +1,9 @@
+//-----------------------------------------------------------------------------
+//                              RenderLamp - ArcaIO
+//
+//  This class is responsible for file handleing.
+//-----------------------------------------------------------------------------
+
 #ifndef ARCA_IO_HPP
 #define ARCA_IO_HPP
 
@@ -10,13 +16,6 @@
 
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
-
-//-----------------------------------------------------------------------------
-//                              RenderLamp - ArcaIO
-//
-//  This class is responsible for file handleing.
-//-----------------------------------------------------------------------------
-
 
 
 class ArcaIO {

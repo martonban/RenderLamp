@@ -11,7 +11,12 @@
 class SphereMeshComponent : public Component {
 public:
     SphereMeshComponent(Vector3 pos, float r);
-    void Update();
+    
+    // Override pure virtual functions from Component
+    void Start() override;
+    void LogicUpdate() override;
+    void RenderUpdate() override;
+    
 private: 
     Vector3 mPos;
     float mRadius;
