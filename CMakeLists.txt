@@ -36,17 +36,11 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(glm)
 
 
-# Arca 
-#FetchContent_Declare(
-#  Arca
-#  URL https://github.com/martonban/Arca/releases/download/v0.0.1/Arca.zip
-#)
-#FetchContent_MakeAvailable(Arca)
-
 # Enable testing
 enable_testing()
 
 add_subdirectory(editor)
 add_subdirectory(renderer)
+add_subdirectory(vendors/Arca)
 add_subdirectory(vendors/rlImGui)
 add_subdirectory(vendors/imgui)
