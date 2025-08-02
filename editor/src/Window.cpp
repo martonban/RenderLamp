@@ -1,5 +1,6 @@
 #include "Window.hpp"
 
+
 void Window::AttachRenderer(RenderingSystem& renderer) { 
     mRenderer = &renderer;
 }

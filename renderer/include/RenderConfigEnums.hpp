@@ -1,0 +1,9 @@
+#ifndef RENDER_CONFIG_ENUMS_HPP
+#define RENDER_CONFIG_ENUMS_HPP
+
+enum RenderEngine {
+    SOFTWARE_RENDERER,
+    BUZZ_RENDERER
+};
+
+#endif

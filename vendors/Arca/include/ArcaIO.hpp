@@ -34,7 +34,11 @@ class ArcaIO {
         } catch (const std::filesystem::filesystem_error& e) {
             std::cerr << "Exception: " << e.what() << std::endl;
         }
-    } 
+    }
+
+    bool IsFileExists(const std::string& fullFilePath) {
+        return std::filesystem::exists(fullFilePath) && std::filesystem::is_regular_file(fullFilePath);
+    }
 };
 
 

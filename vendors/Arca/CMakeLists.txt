@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 project(Arca)
 
+file(GLOB ARCA_SOURCES src/*.cpp)
+
 add_library(Arca STATIC
-    src/ArcaIO.cpp
+    ${ARCA_SOURCES}
 )
 
 target_include_directories(Arca 

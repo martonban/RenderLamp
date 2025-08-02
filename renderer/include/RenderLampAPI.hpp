@@ -1,12 +1,10 @@
 #ifndef RENDER_LAMP_API_HPP
 #define RENDER_LAMP_API_HPP
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
 #include <string>
+
+#include "nlohmann/json.hpp"
+#include "Arca.hpp"
 
 namespace RenderLamp {
     /**
@@ -14,12 +12,8 @@ namespace RenderLamp {
      * @param renderConfigPath A .json filepath 
      * @return True if initialization succeeded
     */
-    bool static InitRenderer(const std::string& renderConfigPath);
+    bool InitRenderer(const std::string& renderConfigPath);
 
 }
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif
