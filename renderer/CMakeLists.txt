@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
 project(renderer)
 
+
+file(GLOB RENDERER_SOURCES src/*.cpp)
+
 add_library(renderer STATIC
-    src/RenderLampAPI.cpp
+    ${RENDERER_SOURCES}
 )
 
 target_include_directories(renderer 
