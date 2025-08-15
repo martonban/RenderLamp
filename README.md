@@ -42,17 +42,12 @@ This version of RenderLamp you can use the Buzz Renderer. Coming Soon...
     ```sh
     ./build/editor/Debug/RenderLamp
     ```
-## Tests
-This project is using GoogleTest for unit testing. 
-1. **Go to the build directory**:
-    ```sh
-    cd build
-    ```
+## Tests Arca
+cmake --build build --target arca_tests
 
-2. **Run the tests**:
-    ```sh
-   ctest
-    ```
+
+cd build
+ctest --test-dir tests/Arca -V
 
 
 # Resources/Credits

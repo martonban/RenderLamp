@@ -17,7 +17,10 @@ bool ArcaIO::CreateFolder(const std::string& path, const std::string& name) {
             std::cerr << "Error: Failed to create directory at path: " << fullPath << std::endl;
             return false;
         }
+        
+        return true;
     } catch (const std::filesystem::filesystem_error& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
+        return false;
     }
 }
