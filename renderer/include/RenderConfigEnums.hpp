@@ -2,8 +2,8 @@
 #define RENDER_CONFIG_ENUMS_HPP
 
 enum RenderEngine {
-    SOFTWARE_RENDERER,
-    BUZZ_RENDERER
+    BUZZ_RENDERER,
+    POWDER_RENDERER
 };
 
 #endif

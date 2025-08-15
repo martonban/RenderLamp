@@ -10,7 +10,6 @@ class RenderConfig {
         int mWidth;
         int mHeight;
         RenderEngine mRenderEngine;
-
 };
 
 

@@ -12,6 +12,7 @@ class ArcaInstance {
             return instance;
         }
         bool IsFileExists(const std::string& fullFilePath);
+        bool CreateFolder(const std::string& path, const std::string& folderName);
     protected:
         ArcaInstance() = default;
     private:
