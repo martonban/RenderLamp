@@ -22,6 +22,7 @@ class ArcaIO {
     public:
         bool IsFileExists(const std::string& fullFilePath);
         bool CreateFolder(const std::string& path, const std::string& name);
+        
 };
 
 

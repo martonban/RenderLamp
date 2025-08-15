@@ -4,7 +4,6 @@ bool ArcaIO::IsFileExists(const std::string& fullFilePath) {
     return std::filesystem::exists(fullFilePath) && std::filesystem::is_regular_file(fullFilePath);
 }
 
-
 bool ArcaIO::CreateFolder(const std::string& path, const std::string& name) {
     std::string fullPath = path + "/" + name;
     try {

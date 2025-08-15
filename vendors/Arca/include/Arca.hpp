@@ -2,6 +2,7 @@
 #define ARCA_HPP
 
 #include <string>
+#include <fstream>
 
 #include "ArcaInstance.hpp"
 
@@ -23,9 +24,21 @@ namespace Arca {
         return ArcaInstance::GetInstance().IsFileExists(fullFilePath);
     }
 
+    /**
+     * @brief This function will create a directory on your system
+     * @param path Absolute path for the new folder
+     * @param folderName Name of the new folder name
+     * @return True if it gets created. False if it does not
+    */
     inline bool CreateFolder(const std::string& path, const std::string& folderName) {
         return ArcaInstance::GetInstance().CreateFolder(path, folderName);
     }
+
+    //-----------------------------------------------------------------------------
+    //                                 I/O UTILS 
+    //-----------------------------------------------------------------------------    
+    
+
 
 
     //-----------------------------------------------------------------------------
