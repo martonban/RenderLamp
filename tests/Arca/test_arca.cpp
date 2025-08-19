@@ -5,6 +5,7 @@
 #include <string>
 
 #include "Arca.hpp"
+#include "ArcaIO.hpp"
 
 class ArcaTest : public ::testing::Test {
 protected:
@@ -29,7 +30,7 @@ protected:
 // =====================================================================
 //                       IsFileExists Tests
 // =====================================================================
-
+// API TESTS
 TEST_F(ArcaTest, IsFileExists_ExistingFile_ReturnsTrue) {
     // Arrange
     std::string testFile = testDir + "/existing_file.txt";
@@ -91,6 +92,76 @@ TEST_F(ArcaTest, IsFileExists_RelativePath_WorksCorrectly) {
     // Clean up
     std::filesystem::remove(testFile);
 }
+
+// STANDALONE TESTS
+TEST_F(ArcaTest, IsFileExists_Standalone_ExistingFile_ReturnsTrue) {
+    // Arrange
+    std::string testFile = testDir + "/existing_file.txt";
+    std::ofstream file(testFile);
+    file << "test content";
+    file.close();
+    ArcaIO arcaIO;
+
+    // Act
+    bool result = arcaIO.IsFileExists(testFile);
+
+    // Assert
+    EXPECT_TRUE(result);
+}
+
+TEST_F(ArcaTest, IsFileExists_Standalone_NonExistingFile_ReturnsFalse) {
+    // Arrange
+    std::string nonExistentFile = testDir + "/non_existent_file.txt";
+    ArcaIO arcaIO;
+
+    // Act
+    bool result = arcaIO.IsFileExists(nonExistentFile);
+
+    // Assert
+    EXPECT_FALSE(result);
+}
+
+TEST_F(ArcaTest, IsFileExists_Standalone_Directory_ReturnsFalse) {
+    // Arrange
+    std::string testSubDir = testDir + "/subdirectory";
+    std::filesystem::create_directory(testSubDir);
+    ArcaIO arcaIO;
+
+    // Act
+    bool result = arcaIO.IsFileExists(testSubDir);
+
+    // Assert
+    EXPECT_FALSE(result);
+}
+
+TEST_F(ArcaTest, IsFileExists_Standalone_EmptyPath_ReturnsFalse) {
+    ArcaIO arcaIO;
+    // Act
+    bool result = arcaIO.IsFileExists("");
+
+    // Assert
+    EXPECT_FALSE(result);
+}
+
+TEST_F(ArcaTest, IsFileExists_Standalone_RelativePath_WorksCorrectly) {
+    // Arrange
+    std::string testFile = "temp_relative_file.txt";
+    std::ofstream file(testFile);
+    file << "test content";
+    file.close();
+    ArcaIO arcaIO;
+
+    // Act
+    bool result = arcaIO.IsFileExists(testFile);
+
+    // Assert
+    EXPECT_TRUE(result);
+
+    // Clean up
+    std::filesystem::remove(testFile);
+}
+
+
 
 // =====================================================================
 //                       CreateFolder Tests
@@ -186,6 +257,12 @@ TEST_F(ArcaTest, CreateFolder_SpecialCharactersInName_HandledCorrectly) {
     EXPECT_TRUE(std::filesystem::exists(expectedPath));
     EXPECT_TRUE(std::filesystem::is_directory(expectedPath));
 }
+
+// =====================================================================
+//                       CreateFolder Tests
+// =====================================================================
+
+
 
 
 
