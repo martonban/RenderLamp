@@ -1,5 +1,5 @@
-#ifndef ARCA_INSTACE_HPP
-#define ARCA_INSTANE_HPP
+#ifndef ARCA_INSTANCE_HPP
+#define ARCA_INSTANCE_HPP
 
 #include <string>
 
@@ -16,6 +16,8 @@ class ArcaInstance {
     protected:
         ArcaInstance() = default;
     private:
+        ArcaInstance(const ArcaInstance&) = delete;
+        ArcaInstance& operator=(const ArcaInstance&) = delete;
         ArcaIO mArcaIO;
 };
 
