@@ -10,6 +10,8 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <sys/stat.h>
+
 
 #include <string>
 #include <map>
@@ -22,7 +24,8 @@ class ArcaIO {
     public:
         bool IsFileExists(const std::string& fullFilePath);
         bool CreateFolder(const std::string& path, const std::string& name);
-        
+        bool IsDirectoryExists(const std::string& path);
+
 };
 
 

@@ -1,3 +1,11 @@
+//------------------------------------------------------------------------------------------------
+//                                              Arca
+//                                       Márton Bán (C) 2025
+//	
+//  Arca is a "I hate to develop this every time" libary. Handling application data, user data, 
+//  assets, files, and errors
+//------------------------------------------------------------------------------------------------
+
 #ifndef ARCA_HPP
 #define ARCA_HPP
 
@@ -7,10 +15,19 @@
 #include "ArcaInstance.hpp"
 
 namespace Arca {
-    //-----------------------------------------------------------------------------
-    //                              ARCA INSTANCE SETTING 
-    //-----------------------------------------------------------------------------    
 
+    //-----------------------------------------------------------------------------
+    //                                  ARCA INSTANCE 
+    //-----------------------------------------------------------------------------    
+    /**
+     * @brief Create an Arca instance (Arca API mode)
+     * @param absolutePath absolute path for the workspace on your disk
+     * @param folderName name of the workspce folder
+     * @return true if it succested, false if failed 
+    */
+    inline bool CreateArcaInstence(const std::string& instanceName) {
+        return ArcaInstance::GetInstance().CreateInstance(instanceName);
+    }
 
     //-----------------------------------------------------------------------------
     //                                  SIMPLE UTILS  
@@ -33,19 +50,6 @@ namespace Arca {
     inline bool CreateFolder(const std::string& path, const std::string& folderName) {
         return ArcaInstance::GetInstance().CreateFolder(path, folderName);
     }
-
-    //-----------------------------------------------------------------------------
-    //                                 I/O UTILS 
-    //-----------------------------------------------------------------------------    
-    
-
-
-
-    //-----------------------------------------------------------------------------
-    //                              SERILAZATION UTILS
-    //-----------------------------------------------------------------------------    
-
-
 }
 
 #endif

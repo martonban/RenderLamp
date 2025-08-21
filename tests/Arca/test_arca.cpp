@@ -7,6 +7,11 @@
 #include "Arca.hpp"
 #include "ArcaIO.hpp"
 
+//  TODO:  
+//  ArcaIO: ValidJson()
+//
+//
+
 class ArcaTest : public ::testing::Test {
 protected:
     void SetUp() override {
@@ -257,11 +262,6 @@ TEST_F(ArcaTest, CreateFolder_SpecialCharactersInName_HandledCorrectly) {
     EXPECT_TRUE(std::filesystem::exists(expectedPath));
     EXPECT_TRUE(std::filesystem::is_directory(expectedPath));
 }
-
-// =====================================================================
-//                       CreateFolder Tests
-// =====================================================================
-
 
 
 

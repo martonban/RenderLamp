@@ -1,0 +1,4 @@
+enum WorkspaceType {
+    INSTANCE_WORKSPACE,
+    REGULAR_WORKSPACE
+};

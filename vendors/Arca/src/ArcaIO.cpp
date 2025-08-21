@@ -23,3 +23,13 @@ bool ArcaIO::CreateFolder(const std::string& path, const std::string& name) {
         return false;
     }
 }
+
+
+bool ArcaIO::IsDirectoryExists(const std::string& path) {
+    struct stat sb;
+
+    if (stat(path.c_str(), &sb) == 0)
+        return true;
+    else
+        return false;
+}
