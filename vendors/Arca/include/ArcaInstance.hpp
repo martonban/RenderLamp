@@ -3,9 +3,9 @@
 
 #include <string>
 #include <memory>
+#include <filesystem>
 
 #include "ArcaIO.hpp"
-#include "WorkspaceType.hpp"
 
 class ArcaInstance {
     public:
@@ -14,19 +14,26 @@ class ArcaInstance {
             static ArcaInstance instance;
             return instance;
         }
-        bool CreateInstance(const std::string& instanceName);
+        bool ArcaInstanceBuilder(const std::string& instanceName);
 
         // ArcaIO Functions
-        bool IsFileExists(const std::string& fullFilePath);
-        bool CreateFolder(const std::string& path, const std::string& folderName);
+        bool IsFileExists(const std::filesystem::path& fullFilePath);
+        bool CreateFolder(const std::filesystem::path& path, const std::string& folderName);
     protected:
         ArcaInstance() = default;
     private:
+        ArcaIO mArcaIO;
+
+        std::filesystem::path mInstanceFolderPath;
+        std::filesystem::path mInstanceFilePath;
+
+        // Instace realated guard functions 
         ArcaInstance(const ArcaInstance&) = delete;
         ArcaInstance& operator=(const ArcaInstance&) = delete;
         
-        bool mIsSetuped = false;
-        ArcaIO mArcaIO;
+        // Arca Instance Builder 
+        bool InstanceBuilder(const std::filesystem::path& path);
+
 };
 
 #endif

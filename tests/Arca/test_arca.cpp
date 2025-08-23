@@ -29,7 +29,7 @@ protected:
         }
     }
 
-    std::string testDir;
+    std::filesystem::path testDir;
 };
 
 // =====================================================================
@@ -38,7 +38,7 @@ protected:
 // API TESTS
 TEST_F(ArcaTest, IsFileExists_ExistingFile_ReturnsTrue) {
     // Arrange
-    std::string testFile = testDir + "/existing_file.txt";
+    std::filesystem::path testFile = testDir / "existing_file.txt";
     std::ofstream file(testFile);
     file << "test content";
     file.close();
@@ -52,7 +52,7 @@ TEST_F(ArcaTest, IsFileExists_ExistingFile_ReturnsTrue) {
 
 TEST_F(ArcaTest, IsFileExists_NonExistingFile_ReturnsFalse) {
     // Arrange
-    std::string nonExistentFile = testDir + "/non_existent_file.txt";
+    std::filesystem::path nonExistentFile = testDir / "non_existent_file.txt";
 
     // Act
     bool result = Arca::IsFileExists(nonExistentFile);
@@ -63,7 +63,7 @@ TEST_F(ArcaTest, IsFileExists_NonExistingFile_ReturnsFalse) {
 
 TEST_F(ArcaTest, IsFileExists_Directory_ReturnsFalse) {
     // Arrange
-    std::string testSubDir = testDir + "/subdirectory";
+    std::filesystem::path testSubDir = testDir / "subdirectory";
     std::filesystem::create_directory(testSubDir);
 
     // Act
@@ -83,7 +83,7 @@ TEST_F(ArcaTest, IsFileExists_EmptyPath_ReturnsFalse) {
 
 TEST_F(ArcaTest, IsFileExists_RelativePath_WorksCorrectly) {
     // Arrange
-    std::string testFile = "temp_relative_file.txt";
+    std::filesystem::path testFile = "temp_relative_file.txt";
     std::ofstream file(testFile);
     file << "test content";
     file.close();
@@ -101,7 +101,7 @@ TEST_F(ArcaTest, IsFileExists_RelativePath_WorksCorrectly) {
 // STANDALONE TESTS
 TEST_F(ArcaTest, IsFileExists_Standalone_ExistingFile_ReturnsTrue) {
     // Arrange
-    std::string testFile = testDir + "/existing_file.txt";
+    std::filesystem::path testFile = testDir / "existing_file.txt";
     std::ofstream file(testFile);
     file << "test content";
     file.close();
@@ -116,7 +116,7 @@ TEST_F(ArcaTest, IsFileExists_Standalone_ExistingFile_ReturnsTrue) {
 
 TEST_F(ArcaTest, IsFileExists_Standalone_NonExistingFile_ReturnsFalse) {
     // Arrange
-    std::string nonExistentFile = testDir + "/non_existent_file.txt";
+    std::filesystem::path nonExistentFile = testDir / "non_existent_file.txt";
     ArcaIO arcaIO;
 
     // Act
@@ -128,7 +128,7 @@ TEST_F(ArcaTest, IsFileExists_Standalone_NonExistingFile_ReturnsFalse) {
 
 TEST_F(ArcaTest, IsFileExists_Standalone_Directory_ReturnsFalse) {
     // Arrange
-    std::string testSubDir = testDir + "/subdirectory";
+    std::filesystem::path testSubDir = testDir / "subdirectory";
     std::filesystem::create_directory(testSubDir);
     ArcaIO arcaIO;
 
@@ -150,7 +150,7 @@ TEST_F(ArcaTest, IsFileExists_Standalone_EmptyPath_ReturnsFalse) {
 
 TEST_F(ArcaTest, IsFileExists_Standalone_RelativePath_WorksCorrectly) {
     // Arrange
-    std::string testFile = "temp_relative_file.txt";
+    std::filesystem::path testFile = "temp_relative_file.txt";
     std::ofstream file(testFile);
     file << "test content";
     file.close();
@@ -169,13 +169,69 @@ TEST_F(ArcaTest, IsFileExists_Standalone_RelativePath_WorksCorrectly) {
 
 
 // =====================================================================
+//                       IsFolderExists Tests
+// =====================================================================
+
+TEST_F(ArcaTest, IsFolderExists_ExistingFolder_ReturnsTrue) {
+    // Arrange
+    std::filesystem::path testSubDir = testDir / "existing_folder";
+    std::filesystem::create_directory(testSubDir);
+    ArcaIO arcaIO;
+
+    // Act
+    bool result = arcaIO.IsFolderExists(testSubDir);
+
+    // Assert
+    EXPECT_TRUE(result);
+}
+
+TEST_F(ArcaTest, IsFolderExists_NonExistingFolder_ReturnsFalse) {
+    // Arrange
+    std::filesystem::path nonExistentFolder = testDir / "non_existent_folder";
+    ArcaIO arcaIO;
+
+    // Act
+    bool result = arcaIO.IsFolderExists(nonExistentFolder);
+
+    // Assert
+    EXPECT_FALSE(result);
+}
+
+TEST_F(ArcaTest, IsFolderExists_File_ReturnsFalse) {
+    // Arrange
+    std::filesystem::path testFile = testDir / "test_file.txt";
+    std::ofstream file(testFile);
+    file << "test content";
+    file.close();
+    ArcaIO arcaIO;
+
+    // Act
+    bool result = arcaIO.IsFolderExists(testFile);
+
+    // Assert
+    EXPECT_FALSE(result);
+}
+
+TEST_F(ArcaTest, IsFolderExists_EmptyPath_ReturnsFalse) {
+    // Arrange
+    ArcaIO arcaIO;
+
+    // Act
+    bool result = arcaIO.IsFolderExists("");
+
+    // Assert
+    EXPECT_FALSE(result);
+}
+
+
+// =====================================================================
 //                       CreateFolder Tests
 // =====================================================================
 
-TEST_F(ArcaTest, CreateFolder_ValidPath_ReturnsTrue) {
+TEST_F(ArcaTest, CreateDirectory_ValidPath_ReturnsTrue) {
     // Arrange
     std::string folderName = "new_test_folder";
-    std::string expectedPath = testDir + "/" + folderName;
+    std::filesystem::path expectedPath = testDir / folderName;
 
     // Act
     bool result = Arca::CreateFolder(testDir, folderName);
@@ -186,10 +242,10 @@ TEST_F(ArcaTest, CreateFolder_ValidPath_ReturnsTrue) {
     EXPECT_TRUE(std::filesystem::is_directory(expectedPath));
 }
 
-TEST_F(ArcaTest, CreateFolder_ExistingFolder_ReturnsTrue) {
+TEST_F(ArcaTest, CreateDirectory_ExistingFolder_ReturnsTrue) {
     // Arrange
     std::string folderName = "existing_folder";
-    std::string folderPath = testDir + "/" + folderName;
+    std::filesystem::path folderPath = testDir / folderName;
     std::filesystem::create_directory(folderPath);
 
     // Act
@@ -200,9 +256,9 @@ TEST_F(ArcaTest, CreateFolder_ExistingFolder_ReturnsTrue) {
     EXPECT_TRUE(std::filesystem::exists(folderPath));
 }
 
-TEST_F(ArcaTest, CreateFolder_NonExistentParentPath_ReturnsFalse) {
+TEST_F(ArcaTest, CreateDirectory_NonExistentParentPath_ReturnsFalse) {
     // Arrange
-    std::string nonExistentPath = "non_existent_parent_dir";
+    std::filesystem::path nonExistentPath = "non_existent_parent_dir";
     std::string folderName = "test_folder";
 
     // Act
@@ -212,7 +268,7 @@ TEST_F(ArcaTest, CreateFolder_NonExistentParentPath_ReturnsFalse) {
     EXPECT_FALSE(result);
 }
 
-TEST_F(ArcaTest, CreateFolder_EmptyFolderName_CreatesEmptyNameFolder) {
+TEST_F(ArcaTest, CreateDirectory_EmptyFolderName_CreatesEmptyNameFolder) {
     // Arrange
     std::string folderName = "";
 
@@ -221,13 +277,13 @@ TEST_F(ArcaTest, CreateFolder_EmptyFolderName_CreatesEmptyNameFolder) {
 
     // Assert
     // This depends on the implementation - it might create a folder with empty name
-    // or fail. Based on the current implementation, it will try to create path + "/" + ""
-    std::string expectedPath = testDir + "/";
+    // or fail. Based on the current implementation, it will try to create path / ""
+    std::filesystem::path expectedPath = testDir / "";
     // This test verifies the behavior - it might pass or fail depending on filesystem
     // The important thing is that it doesn't crash
 }
 
-TEST_F(ArcaTest, CreateFolder_NestedFolderCreation_WorksWithValidParent) {
+TEST_F(ArcaTest,CreateDirectory_NestedFolderCreation_WorksWithValidParent) {
     // Arrange
     std::string parentFolder = "parent";
     std::string childFolder = "child";
@@ -237,19 +293,19 @@ TEST_F(ArcaTest, CreateFolder_NestedFolderCreation_WorksWithValidParent) {
     EXPECT_TRUE(parentResult);
     
     // Then create child in parent
-    std::string parentPath = testDir + "/" + parentFolder;
+    std::filesystem::path parentPath = testDir / parentFolder;
     
     // Act
     bool childResult = Arca::CreateFolder(parentPath, childFolder);
     
     // Assert
     EXPECT_TRUE(childResult);
-    std::string expectedChildPath = parentPath + "/" + childFolder;
+    std::filesystem::path expectedChildPath = parentPath / childFolder;
     EXPECT_TRUE(std::filesystem::exists(expectedChildPath));
     EXPECT_TRUE(std::filesystem::is_directory(expectedChildPath));
 }
 
-TEST_F(ArcaTest, CreateFolder_SpecialCharactersInName_HandledCorrectly) {
+TEST_F(ArcaTest, CreateDirectory_SpecialCharactersInName_HandledCorrectly) {
     // Arrange
     std::string folderName = "test_folder_with-special.chars_123";
 
@@ -258,7 +314,7 @@ TEST_F(ArcaTest, CreateFolder_SpecialCharactersInName_HandledCorrectly) {
 
     // Assert
     EXPECT_TRUE(result);
-    std::string expectedPath = testDir + "/" + folderName;
+    std::filesystem::path expectedPath = testDir / folderName;
     EXPECT_TRUE(std::filesystem::exists(expectedPath));
     EXPECT_TRUE(std::filesystem::is_directory(expectedPath));
 }
@@ -270,17 +326,17 @@ TEST_F(ArcaTest, CreateFolder_SpecialCharactersInName_HandledCorrectly) {
 //                       Integration Tests
 // =====================================================================
 
-TEST_F(ArcaTest, Integration_CreateFolderThenCheckFile_WorksTogether) {
+TEST_F(ArcaTest, Integration_CreateDirectoryThenCheckFile_WorksTogether) {
     // Arrange
     std::string folderName = "integration_test_folder";
-    std::string fileName = "test_file.txt";
+    std::filesystem::path fileName = "test_file.txt";
     
     // Act - Create folder
     bool folderResult = Arca::CreateFolder(testDir, folderName);
     EXPECT_TRUE(folderResult);
     
     // Create a file in the new folder
-    std::string filePath = testDir + "/" + folderName + "/" + fileName;
+    std::filesystem::path filePath = testDir / folderName / fileName;
     std::ofstream file(filePath);
     file << "integration test content";
     file.close();

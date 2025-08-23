@@ -22,12 +22,10 @@ using json = nlohmann::json;
 
 class ArcaIO {
     public:
-        bool IsFileExists(const std::string& fullFilePath);
-        bool CreateFolder(const std::string& path, const std::string& name);
-        bool IsDirectoryExists(const std::string& path);
-
+        // General Functions
+        bool IsFileExists(const std::filesystem::path& fullFilePath);
+        bool CreateFolder(const std::filesystem::path& path, const std::string& name);
+        bool IsFolderExists(const std::filesystem::path& path);
 };
-
-
 
 #endif

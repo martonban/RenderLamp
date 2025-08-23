@@ -11,6 +11,7 @@
 
 #include <string>
 #include <fstream>
+#include <filesystem>
 
 #include "ArcaInstance.hpp"
 
@@ -20,13 +21,13 @@ namespace Arca {
     //                                  ARCA INSTANCE 
     //-----------------------------------------------------------------------------    
     /**
-     * @brief Create an Arca instance (Arca API mode)
+     * @brief Create an Arca instance
      * @param absolutePath absolute path for the workspace on your disk
      * @param folderName name of the workspce folder
      * @return true if it succested, false if failed 
     */
-    inline bool CreateArcaInstence(const std::string& instanceName) {
-        return ArcaInstance::GetInstance().CreateInstance(instanceName);
+    inline bool ArcaInstanceBuilder(const std::string& instanceName) {
+        return ArcaInstance::GetInstance().ArcaInstanceBuilder(instanceName);
     }
 
     //-----------------------------------------------------------------------------
@@ -37,7 +38,7 @@ namespace Arca {
      * @param fullFilePath an std::string for the file path 
      * @return True if exists, False if not
     */
-    inline bool IsFileExists(const std::string& fullFilePath) {
+    inline bool IsFileExists(const std::filesystem::path& fullFilePath) {
         return ArcaInstance::GetInstance().IsFileExists(fullFilePath);
     }
 
@@ -47,7 +48,7 @@ namespace Arca {
      * @param folderName Name of the new folder name
      * @return True if it gets created. False if it does not
     */
-    inline bool CreateFolder(const std::string& path, const std::string& folderName) {
+    inline bool CreateFolder(const std::filesystem::path& path, const std::string& folderName) {
         return ArcaInstance::GetInstance().CreateFolder(path, folderName);
     }
 }

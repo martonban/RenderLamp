@@ -14,9 +14,9 @@
 
 int main(void) {
 
-    // Arca Instance created
-    if(Arca::CreateArcaInstence("ArcaInstance")) {
-        std::cout << "Arca instance Creted!" << std::endl;
+    // Arca Instance Created
+    if(Arca::ArcaInstanceBuilder("ArcaInstance")) {
+        std::cout << "Arca instance is creted!" << std::endl;
     } else {
         std::cout << "Arca instance has been corrupted!" << std::endl;
     }
