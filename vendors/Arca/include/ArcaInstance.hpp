@@ -6,6 +6,7 @@
 #include <filesystem>
 
 #include "ArcaIO.hpp"
+#include "ArcaPath.hpp"
 
 class ArcaInstance {
     public:
@@ -15,6 +16,7 @@ class ArcaInstance {
             return instance;
         }
         bool ArcaInstanceBuilder(const std::string& instanceName);
+        void ApplicationDataSetup(const std::string& applicationName, const std::string& applicationCreator);
 
         // ArcaIO Functions
         bool IsFileExists(const std::filesystem::path& fullFilePath);
@@ -22,10 +24,14 @@ class ArcaInstance {
     protected:
         ArcaInstance() = default;
     private:
-        ArcaIO mArcaIO;
+        std::string mApplicationName = "Application";
+        std::string mApplicationCreator = "Company Name Inc.";
+        std::map <std::string, ArcaPath> mPathMap;
 
         std::filesystem::path mInstanceFolderPath;
         std::filesystem::path mInstanceFilePath;
+
+        ArcaIO mArcaIO;
 
         // Instace realated guard functions 
         ArcaInstance(const ArcaInstance&) = delete;
@@ -33,7 +39,7 @@ class ArcaInstance {
         
         // Arca Instance Builder 
         bool InstanceBuilder(const std::filesystem::path& path);
-
+        
 };
 
 #endif

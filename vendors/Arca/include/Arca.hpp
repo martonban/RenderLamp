@@ -16,18 +16,69 @@
 #include "ArcaInstance.hpp"
 
 namespace Arca {
-
     //-----------------------------------------------------------------------------
     //                                  ARCA INSTANCE 
     //-----------------------------------------------------------------------------    
     /**
      * @brief Create an Arca instance
-     * @param absolutePath absolute path for the workspace on your disk
-     * @param folderName name of the workspce folder
+     * @param instanceName name of the instance folder
      * @return true if it succested, false if failed 
     */
-    inline bool ArcaInstanceBuilder(const std::string& instanceName) {
+    inline bool InitArcaInstance(const std::string& instanceName) {
         return ArcaInstance::GetInstance().ArcaInstanceBuilder(instanceName);
+    }
+
+    /**
+     * @brief Arca instance Mandotary meta data
+     * @param applicationName Name of the application
+     * @param applicationCreator Name of the Application Developer
+     * @return true if it succested, false if failed 
+    */
+    inline void ArcaInstanceMetaDataSetup(const std::string& applicationName, const std::string& applicationCreator) {
+        ArcaInstance::GetInstance().ApplicationDataSetup(applicationName, applicationCreator);
+    }
+
+    inline bool ArcaInstaceBuild() {
+        return false;
+    }
+
+    inline void ArcaInstanceSave() {
+
+    }
+
+    //-----------------------------------------------------------------------------
+    //                                  ARCA MODULES 
+    //-----------------------------------------------------------------------------  
+
+    //-----------------------------------------------------------------------------
+    //                                  ARCA ASSETS
+    //-----------------------------------------------------------------------------  
+    
+    //-----------------------------------------------------------------------------
+    //                                 ARCA FILES
+    //-----------------------------------------------------------------------------  
+
+    //-----------------------------------------------------------------------------
+    //                                 ARCA PATH SYSTEM 
+    //-----------------------------------------------------------------------------  
+    /**
+     * @brief Create an ArcaPath Object from the ArcaInstance root directory
+     * @param key referance to the path
+     * @param path relative path
+     * @return void but it will saved by the Arca Instance
+    */
+    inline void CreateArcaPath(const std::string& key, const std::filesystem::path& path) {
+        
+    }
+
+    /**
+     * @brief Create an ArcaPath Object from the ArcaInstance root directory
+     * @param key referance to the path
+     * @param path relative path
+     * @return void but it will saved by the Arca Instance
+    */
+    inline void CreateArcaPath(const std::string& key, ArcaPath pathObject) {
+        
     }
 
     //-----------------------------------------------------------------------------

@@ -15,11 +15,17 @@
 int main(void) {
 
     // Arca Instance Created
-    if(Arca::ArcaInstanceBuilder("ArcaInstance")) {
+    if(Arca::InitArcaInstance("ArcaInstance")) {
         std::cout << "Arca instance is creted!" << std::endl;
     } else {
         std::cout << "Arca instance has been corrupted!" << std::endl;
     }
+
+    // Applicaton Data
+    Arca::ArcaInstanceMetaDataSetup("RenderLamp", "Márton Bán");
+    
+    // Build Arca Instance
+    
 
     // Application instance creted and stated
     Application& render_lamp_app = Application::GetInstance();

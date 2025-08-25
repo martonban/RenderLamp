@@ -19,7 +19,13 @@ bool ArcaInstance::CreateFolder(const std::filesystem::path& path, const std::st
     return mArcaIO.CreateFolder(path, folderName);
 }
 
-
 bool ArcaInstance::InstanceBuilder(const std::filesystem::path& path) {
     return true;
+}
+
+void ArcaInstance::ApplicationDataSetup(const std::string& applicationName, const std::string& applicationCreator) {
+    mApplicationName = applicationName;
+    mApplicationCreator = applicationCreator;
+
+    std::cout << std::filesystem::absolute(mInstanceFolderPath) << std::endl;
 }
