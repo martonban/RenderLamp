@@ -2,10 +2,10 @@
 ⚠️ WARNING! This project is not yet finished. The descriptions and code found here are not complete.
 
 ## What RenderLamp is
-RenderLamp is a 3D DCC tool. With this tool you can create, edit and save scenes. RenderLamp is shiped with a buildin 3D CPU raytracer.
+RenderLamp is a 3D DCC software developed in C++. Its main purpose is to allow users to create various scenes and render them using a chosen render engine. It is an ongoing project through which I aim to further develop my skills in both graphics and software development.
 
-## Motivation
-This project is mainly a C++ project to me and not a graphics one. So please don't expect complicated rendering algorithms. In the future I want to continue this project like using CUDA/OpenCL or implementing a renderer for the editor too. 
+## Structure
+RenderLamp consists of three main components, each reflecting my expertise in a specific area. The **Editor**, which interacts with the user, demonstrates my proficiency in real-time rendering. The **Renderer**, responsible for rendering the scenes created in the editor, highlights my skills in offline rendering. Finally, **Arca**, my file management library, showcases my abilities in API design and low-level C++ programming.
 
 ## Dependencies
 - Used CMAKE and MSVC for building the project.
@@ -15,7 +15,7 @@ This project is mainly a C++ project to me and not a graphics one. So please don
 - [nlohmannjson](https://github.com/nlohmann/json)
 - [GoogleTest](https://github.com/google/googletest)
 - [GLM](https://github.com/g-truc/glm)
-- Arca
+
 
 ## Renderer - Buzz Renderer
 This version of RenderLamp you can use the Buzz Renderer. Coming Soon...
