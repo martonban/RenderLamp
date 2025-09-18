@@ -6,7 +6,7 @@
 #include <filesystem>
 
 #include "ArcaIO.hpp"
-#include "ArcaPath.hpp"
+
 
 class ArcaInstance {
     public:
@@ -15,8 +15,17 @@ class ArcaInstance {
             static ArcaInstance instance;
             return instance;
         }
-        bool ArcaInstanceBuilder(const std::string& instanceName);
-        void ApplicationDataSetup(const std::string& applicationName, const std::string& applicationCreator);
+
+        void StartArcaInstance(const std::string& applicationName);
+        void CreateArcaInstance();
+        void AddCreator(const std::string& creatorName);
+
+        bool InstanceSerialize();
+
+        nlohmann::json Save();
+
+        // ArcaModule Functions
+        void CreateModule(const std::filesystem::path& moduleName);
 
         // ArcaIO Functions
         bool IsFileExists(const std::filesystem::path& fullFilePath);
@@ -26,11 +35,16 @@ class ArcaInstance {
     private:
         std::string mApplicationName = "Application";
         std::string mApplicationCreator = "Company Name Inc.";
-        std::map <std::string, ArcaPath> mPathMap;
 
         std::filesystem::path mInstanceFolderPath;
         std::filesystem::path mInstanceFilePath;
 
+        nlohmann::json instanceJson;
+
+        bool mIsInstanceFetched = false;
+
+        std::vector<std::filesystem::path> mModulePathContainer;
+        
         ArcaIO mArcaIO;
 
         // Instace realated guard functions 

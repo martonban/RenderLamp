@@ -1,15 +1,55 @@
 #include "ArcaInstance.hpp"
 
-bool ArcaInstance::ArcaInstanceBuilder(const std::string& instanceName) {
+void ArcaInstance::StartArcaInstance(const std::string& applicationName) {
+    mApplicationName = applicationName;
     mInstanceFolderPath = std::filesystem::path("./");
-    mInstanceFilePath = mInstanceFolderPath / instanceName / (instanceName + ".json");
+    mInstanceFilePath = mInstanceFolderPath / "ArcaFiles" / (applicationName + ".json");
+}
 
-    if(CreateFolder(mInstanceFolderPath, instanceName) && InstanceBuilder(mInstanceFilePath)) {
-        return true;
+void ArcaInstance::CreateArcaInstance() {
+    // Directory has been created
+    if(CreateFolder(mInstanceFolderPath, "ArcaFiles")) {
+        std::cout << "Arca Instance directory has been created" << std::endl;
     } else {
-        return false;
+        std::cout << "Arca Instance directory cannot able to create" << std::endl;
     }
 }
+
+void ArcaInstance::AddCreator(const std::string& creatorName) {
+    mApplicationCreator = creatorName;
+}
+
+
+bool ArcaInstance::InstanceSerialize() {
+    nlohmann::json instanceJson = Save();
+    std::ofstream file(mInstanceFilePath);
+    if (!file.is_open()) {
+        return false;
+    }
+    file << instanceJson.dump(4);
+    file.close();
+    return true;
+}
+
+nlohmann::json ArcaInstance::Save() {
+    nlohmann::json json;
+    json["ApplicationName"] = mApplicationName;
+    json["ApplicationCreator"] = mApplicationCreator;
+    
+    // Serialize module path container
+    nlohmann::json modulePaths = nlohmann::json::array();
+    for (const auto& path : mModulePathContainer) {
+        modulePaths.push_back(path.string());
+    }
+    json["ModulePaths"] = modulePaths;
+
+    return json;
+}
+
+void ArcaInstance::CreateModule(const std::filesystem::path& path) {
+    mModulePathContainer.push_back(path);
+}
+
 
 bool ArcaInstance::IsFileExists(const std::filesystem::path& fullFilePath) {
     return mArcaIO.IsFileExists(fullFilePath);
@@ -21,11 +61,4 @@ bool ArcaInstance::CreateFolder(const std::filesystem::path& path, const std::st
 
 bool ArcaInstance::InstanceBuilder(const std::filesystem::path& path) {
     return true;
-}
-
-void ArcaInstance::ApplicationDataSetup(const std::string& applicationName, const std::string& applicationCreator) {
-    mApplicationName = applicationName;
-    mApplicationCreator = applicationCreator;
-
-    std::cout << std::filesystem::absolute(mInstanceFolderPath) << std::endl;
 }

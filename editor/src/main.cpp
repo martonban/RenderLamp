@@ -14,18 +14,28 @@
 
 int main(void) {
 
-    // Arca Instance Created
-    if(Arca::InitArcaInstance("ArcaInstance")) {
-        std::cout << "Arca instance is creted!" << std::endl;
-    } else {
-        std::cout << "Arca instance has been corrupted!" << std::endl;
-    }
+    // Arca Instance Setup
+    Arca::StartArcaInstance("RenderLamp");
 
-    // Applicaton Data
-    Arca::ArcaInstanceMetaDataSetup("RenderLamp", "Márton Bán");
+    if(Arca::BuildArcaInstance()) {
+        std::cout << "Arca instance has been de-serialized!" << std::endl;
+    } else {
+        Arca::CreateArcaInstance();
+        
+        Arca::AddCreator("Márton Bán");
+        
+        Arca::CreateModule(R"(C:\Project)");
+        Arca::CreateModule(R"(C:\Project\Games)");
+
+        // Build the instance
+        if(Arca::InstanceSerialize()) {
+            std::cout << "Arca Instance has been created!" << std::endl;
+        }
+    }
     
-    // Build Arca Instance
-    
+    // Start Module Creation Pipileine
+    //             WIP
+
 
     // Application instance creted and stated
     Application& render_lamp_app = Application::GetInstance();

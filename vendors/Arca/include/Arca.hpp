@@ -20,69 +20,64 @@ namespace Arca {
     //                                  ARCA INSTANCE 
     //-----------------------------------------------------------------------------    
     /**
-     * @brief Create an Arca instance
-     * @param instanceName name of the instance folder
+     * @brief If Arca has been created before this line of code will fetch the existing data
      * @return true if it succested, false if failed 
     */
-    inline bool InitArcaInstance(const std::string& instanceName) {
-        return ArcaInstance::GetInstance().ArcaInstanceBuilder(instanceName);
+    inline void StartArcaInstance(const std::string& applicationName) {
+        ArcaInstance::GetInstance().StartArcaInstance(applicationName);
     }
 
     /**
-     * @brief Arca instance Mandotary meta data
-     * @param applicationName Name of the application
-     * @param applicationCreator Name of the Application Developer
-     * @return true if it succested, false if failed 
+     * @brief Check if this file exist on your system or not
+     * @param fullFilePath an std::string for the file path 
+     * @return True if exists, False if not
     */
-    inline void ArcaInstanceMetaDataSetup(const std::string& applicationName, const std::string& applicationCreator) {
-        ArcaInstance::GetInstance().ApplicationDataSetup(applicationName, applicationCreator);
-    }
-
-    inline bool ArcaInstaceBuild() {
+    inline bool BuildArcaInstance() {
         return false;
     }
 
-    inline void ArcaInstanceSave() {
-
+    /**
+     * @brief Check if this file exist on your system or not
+     * @param fullFilePath an std::string for the file path 
+     * @return True if exists, False if not
+    */
+    inline void CreateArcaInstance() {
+        ArcaInstance::GetInstance().CreateArcaInstance();
     }
-
-    //-----------------------------------------------------------------------------
-    //                                  ARCA MODULES 
-    //-----------------------------------------------------------------------------  
-
-    //-----------------------------------------------------------------------------
-    //                                  ARCA ASSETS
-    //-----------------------------------------------------------------------------  
     
-    //-----------------------------------------------------------------------------
-    //                                 ARCA FILES
-    //-----------------------------------------------------------------------------  
-
-    //-----------------------------------------------------------------------------
-    //                                 ARCA PATH SYSTEM 
-    //-----------------------------------------------------------------------------  
     /**
-     * @brief Create an ArcaPath Object from the ArcaInstance root directory
-     * @param key referance to the path
-     * @param path relative path
-     * @return void but it will saved by the Arca Instance
+     * @brief Check if this file exist on your system or not
+     * @param fullFilePath an std::string for the file path 
+     * @return True if exists, False if not
     */
-    inline void CreateArcaPath(const std::string& key, const std::filesystem::path& path) {
-        
+    inline void AddCreator(const std::string& creatorName) {
+        ArcaInstance::GetInstance().AddCreator(creatorName);
     }
 
     /**
-     * @brief Create an ArcaPath Object from the ArcaInstance root directory
-     * @param key referance to the path
-     * @param path relative path
-     * @return void but it will saved by the Arca Instance
+     * @brief Check if this file exist on your system or not
+     * @param fullFilePath an std::string for the file path 
+     * @return True if exists, False if not
     */
-    inline void CreateArcaPath(const std::string& key, ArcaPath pathObject) {
-        
+    inline bool InstanceSerialize() {
+        return ArcaInstance::GetInstance().InstanceSerialize();
+    }
+
+
+    //-----------------------------------------------------------------------------
+    //                                  ARCA Module
+    //----------------------------------------------------------------------------- 
+        /**
+     * @brief Check if this file exist on your system or not
+     * @param fullFilePath an std::string for the file path 
+     * @return True if exists, False if not
+    */
+    inline void CreateModule(const std::filesystem::path& moduleName) {
+        return ArcaInstance::GetInstance().CreateModule(moduleName);
     }
 
     //-----------------------------------------------------------------------------
-    //                                  SIMPLE UTILS  
+    //                               SIMPLE I/O UTILS  
     //-----------------------------------------------------------------------------    
     /**
      * @brief Check if this file exist on your system or not
