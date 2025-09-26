@@ -31,6 +31,21 @@ bool ArcaInstance::InstanceSerialize() {
     return true;
 }
 
+bool ArcaInstance::InstanceDeserialize() {
+    std::ifstream file(mInstanceFilePath);
+    if(file.is_open()) {
+        nlohmann::json instanceJson;
+        file >> instanceJson;
+        file.close();
+        Load(instanceJson);
+        return true;
+    } else {
+        std::cout << "Instance can't be deserialized" << std::endl;
+        return false;
+    }
+
+}
+
 nlohmann::json ArcaInstance::Save() {
     nlohmann::json json;
     json["ApplicationName"] = mApplicationName;
@@ -44,6 +59,33 @@ nlohmann::json ArcaInstance::Save() {
     json["ModulePaths"] = modulePaths;
 
     return json;
+}
+
+void ArcaInstance::Load(const nlohmann::json& json) {
+    if(json.contains("ApplicationName")) {
+        mApplicationName = json["ApplicationName"];
+    }
+
+    if(json.contains("ApplicationCreator")) {
+        mApplicationCreator = json["ApplicationCreator"];
+    }
+
+    if (json.contains("ModulePaths")) {
+        mModulePathContainer.clear(); // Clear existing paths
+        for (const auto& path : json["ModulePaths"]) {
+            if (path.is_string()) {
+                mModulePathContainer.push_back(std::filesystem::path(path.get<std::string>()));
+            }
+        }
+    }
+}
+
+void ArcaInstance::ArcaTest() {
+    std::cout << mApplicationName << std::endl;
+    std::cout << mApplicationCreator << std::endl;
+    for(const auto& path : mModulePathContainer) {
+        std::cout << path << std::endl;
+    }
 }
 
 void ArcaInstance::CreateModule(const std::filesystem::path& path) {

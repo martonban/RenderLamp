@@ -18,56 +18,77 @@
 namespace Arca {
     //-----------------------------------------------------------------------------
     //                                  ARCA INSTANCE 
-    //-----------------------------------------------------------------------------    
+    //-----------------------------------------------------------------------------
     /**
-     * @brief If Arca has been created before this line of code will fetch the existing data
-     * @return true if it succested, false if failed 
-    */
-    inline void StartArcaInstance(const std::string& applicationName) {
+     * @brief Initializes and starts the Arca Libary with the specified application name.
+     * 
+     * This function serves as a convenient wrapper for the singleton ArcaInstance's
+     * StartArcaInstance method. It initializes the Arca Libary for the application.
+     * 
+     * @param applicationName The name of the application to be used within Arca
+     * @return void
+     */
+    inline void InitArcaInstance(const std::string& applicationName) {
         ArcaInstance::GetInstance().StartArcaInstance(applicationName);
     }
 
     /**
-     * @brief Check if this file exist on your system or not
-     * @param fullFilePath an std::string for the file path 
-     * @return True if exists, False if not
+     * @brief This function will going to fetch all data from the instance serialzation file.
+     * 
+     * Note: This function is not going to merit a fully functional Arca Instance! If you need this use Arca::Build();
+     * @param 
+     * @return A bool value based on the file existance.
+    */
+    inline bool FetchArcaInstance() {
+        return ArcaInstance::GetInstance().InstanceDeserialize();
+    }
+   
+    /**
+     * @brief This function will trigger all the Arca components based on the ArcaInstance file
+     * @param 
+     * @return
     */
     inline bool BuildArcaInstance() {
         return false;
     }
 
     /**
-     * @brief Check if this file exist on your system or not
-     * @param fullFilePath an std::string for the file path 
-     * @return True if exists, False if not
+     * @brief This function will create the folder structure for ArcaFiles
+     * @param 
+     * @return void
     */
     inline void CreateArcaInstance() {
         ArcaInstance::GetInstance().CreateArcaInstance();
     }
     
     /**
-     * @brief Check if this file exist on your system or not
-     * @param fullFilePath an std::string for the file path 
-     * @return True if exists, False if not
+     * @brief Add extra metadata for the application
+     * @param creatorName an std::string for the creators
+     * @return void
     */
     inline void AddCreator(const std::string& creatorName) {
         ArcaInstance::GetInstance().AddCreator(creatorName);
     }
 
     /**
-     * @brief Check if this file exist on your system or not
-     * @param fullFilePath an std::string for the file path 
-     * @return True if exists, False if not
+     * @brief Once all data has been received, the Arca Instance saves its state and generates the metadata files.
+     * @param 
+     * @return
     */
-    inline bool InstanceSerialize() {
+    inline bool ReleaseArcaInstance() {
         return ArcaInstance::GetInstance().InstanceSerialize();
+    }
+
+
+    inline void ArcaTest() {
+        ArcaInstance::GetInstance().ArcaTest();
     }
 
 
     //-----------------------------------------------------------------------------
     //                                  ARCA Module
     //----------------------------------------------------------------------------- 
-        /**
+    /**
      * @brief Check if this file exist on your system or not
      * @param fullFilePath an std::string for the file path 
      * @return True if exists, False if not

@@ -21,8 +21,12 @@ class ArcaInstance {
         void AddCreator(const std::string& creatorName);
 
         bool InstanceSerialize();
+        bool InstanceDeserialize();
 
         nlohmann::json Save();
+        void Load(const nlohmann::json& json);
+
+        void ArcaTest();
 
         // ArcaModule Functions
         void CreateModule(const std::filesystem::path& moduleName);
@@ -41,7 +45,6 @@ class ArcaInstance {
 
         nlohmann::json instanceJson;
 
-        bool mIsInstanceFetched = false;
 
         std::vector<std::filesystem::path> mModulePathContainer;
         
