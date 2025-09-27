@@ -20,7 +20,6 @@ void ArcaAsset::AddStream(std::ostringstream& stream) {
     }
 }
 
-
 // PRIVATE FUNCTIONS
 std::filesystem::path ArcaAsset::PathBuilder(const std::filesystem::path& path, const std::string& fileName, const std::string& extension) {
     return path / (fileName + extension);

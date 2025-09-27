@@ -45,25 +45,8 @@ int main(void) {
 
 
     // Arca Asset Test 
-    ArcaAsset asset { R"(C:\Project)", "output", ".ppm" };
+    ArcaAsset asset { R"(C:\Project)", "batch", ".json" };
 
-    std::ostringstream oss;
-    oss << "P3\n" << 100 << ' ' << 100 << "\n255\n";
-
-    for (int j = 0; j < 100; j++) {
-        for (int i = 0; i < 100; i++) {
-            auto r = double(i) / (100-1);
-            auto g = double(j) / (100-1);
-            auto b = 0.0;
-
-            int ir = int(255.999 * r);
-            int ig = int(255.999 * g);
-            int ib = int(255.999 * b);
-            oss << ir << ' ' << ig << ' ' << ib << '\n';
-        }
-    }
-
-    asset.AddStream(oss);
 
 
 
