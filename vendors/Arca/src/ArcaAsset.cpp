@@ -6,10 +6,10 @@ ArcaAsset::ArcaAsset(const std::filesystem::path& path) {
 }
 
 ArcaAsset::ArcaAsset(const std::filesystem::path& path, const std::string& fileName, const std::string& extension) {
-    mPath =  PathBuilder(path, fileName, extension);
+    mPath = PathBuilder(path, fileName, extension);
 }
 
-void ArcaAsset::AddStream(std::ostringstream& stream) {
+void ArcaAsset::AddSingleStreamAndDispatch(std::ostringstream& stream) {
     std::ofstream ofs(mPath);
     if (!ofs) {
         throw std::runtime_error("Failed to open file: " + mPath.string());

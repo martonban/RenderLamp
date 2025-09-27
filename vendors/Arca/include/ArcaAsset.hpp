@@ -8,13 +8,16 @@
 
 class ArcaAsset {
     public:
+        // ArcaAsset Constractors 
         ArcaAsset(const std::filesystem::path& path);
         ArcaAsset(const std::filesystem::path& path, const std::string& fileName, const std::string& extension);
-        
+
         // Stream Based output asset
-        void AddStream(std::ostringstream& stream);
+        void AddSingleStreamAndDispatch(std::ostringstream& stream);
+
+        // Arca Archive  
         
-        // 
+
         
 
     private:
