@@ -12,7 +12,6 @@
 #include "Application.hpp"
 #include "Arca.hpp"
 #include "ArcaAsset.hpp"
-#include "ArcaContainer.hpp"
 
 
 int main(void) {
@@ -41,18 +40,6 @@ int main(void) {
         Arca::ArcaTest();
     }
 
-    // Arca Asset Test 
-   ArcaContainer c { R"(C:\Project)" };
-   std::any anyValue = 1;
-   std::any anyValue2 = "Test";
-   std::any anyValue3 = 3.1415;
-   std::any anyValue4 = R"(C:\Project)";
-   c.AddPair("Test", anyValue);
-   c.AddPair("Test", anyValue2);
-   c.AddPair("Test", anyValue3);
-   c.AddPair("Test", anyValue4);
-
-   c.Deserialize();
 
    
 
