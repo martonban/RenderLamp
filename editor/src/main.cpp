@@ -37,19 +37,10 @@ int main(void) {
         if(Arca::ReleaseArcaInstance()) {
             std::cout << "Arca Instance has been created!" << std::endl;
         }
-        Arca::ArcaTest();
     }
 
-    ArcaContainer config {R"(C:\Project)", "Config"};
 
 
-    config.Unpack();
-
-    int i = config.GetValue<int>("IntValue");
-    float f = config.GetValue<float>("FloatValue");
-    std::string s = config.GetValue<std::string>("StringtValue");
-
-    std::cout << i << std::endl << f << std::endl << s << std::endl;
 
 
     // START APPLICATION
