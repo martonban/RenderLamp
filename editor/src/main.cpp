@@ -12,6 +12,7 @@
 #include "Application.hpp"
 #include "Arca.hpp"
 #include "ArcaAsset.hpp"
+#include "ArcaContainer.hpp"
 
 
 int main(void) {
@@ -39,6 +40,17 @@ int main(void) {
         }
         Arca::ArcaTest();
     }
+
+    ArcaContainer config {R"(C:\Project)", "Config"};
+    config.AddPair("IntValue", int(1));
+    config.AddPair("FloatValue", float(2.0));
+    config.AddPair("StringtValue", std::string("Test"));
+
+    int i = config.GetValue<int>("IntValue");
+    float f = config.GetValue<float>("FloatValue");
+    std::string s = config.GetValue<std::string>("StringtValue");
+
+    std::cout << i << std::endl << f << std::endl << s << std::endl;
 
 
    
