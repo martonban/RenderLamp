@@ -15,15 +15,11 @@ class ArcaAsset {
         // Stream Based output asset
         void AddSingleStreamAndDispatch(std::ostringstream& stream);
 
-        // Arca Archive  
-        
-
-        
+        // Arca Config  
 
     private:
         std::filesystem::path PathBuilder(const std::filesystem::path& path, const std::string& fileName, const std::string& extension);
         std::filesystem::path mPath;
-
     };
 
 #endif 

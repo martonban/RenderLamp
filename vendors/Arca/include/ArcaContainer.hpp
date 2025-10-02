@@ -6,17 +6,17 @@
 #include <string>
 #include <filesystem>
 #include <iostream>
+#include <fstream>
+
+#include <nlohmann/json.hpp>
 
 class ArcaContainer {
     public:
         ArcaContainer(const std::filesystem::path& path, const std::string& fileName);
-        bool Load();
-        bool Save();
-
-
+        bool Dispatch();
+        bool Unpack();
         void AddPair(const std::string& key, const std::any& value);
         
- 
         template<typename T>
         T GetValue(const std::string& key) {
             auto i = mContainer[key];
@@ -26,6 +26,8 @@ class ArcaContainer {
     private:
         std::filesystem::path mPath;
         std::map<std::string, std::any> mContainer;
+        bool Load(const nlohmann::json& fs);
+        nlohmann::json Save();
 };
 
 #endif

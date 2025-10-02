@@ -16,7 +16,6 @@
 
 
 int main(void) {
-
     // PREPARE ARCA INSTANCE
     Arca::InitArcaInstance("RenderLamp");
 
@@ -42,9 +41,9 @@ int main(void) {
     }
 
     ArcaContainer config {R"(C:\Project)", "Config"};
-    config.AddPair("IntValue", int(1));
-    config.AddPair("FloatValue", float(2.0));
-    config.AddPair("StringtValue", std::string("Test"));
+
+
+    config.Unpack();
 
     int i = config.GetValue<int>("IntValue");
     float f = config.GetValue<float>("FloatValue");
@@ -52,8 +51,6 @@ int main(void) {
 
     std::cout << i << std::endl << f << std::endl << s << std::endl;
 
-
-   
 
     // START APPLICATION
     Application& render_lamp_app = Application::GetInstance();
