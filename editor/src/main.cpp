@@ -12,7 +12,9 @@
 #include "Application.hpp"
 #include "Arca.hpp"
 #include "ArcaAsset.hpp"
+#include "ArcaModule.hpp"
 #include "ArcaContainer.hpp"
+
 
 
 int main(void) {
@@ -39,9 +41,31 @@ int main(void) {
         }
     }
 
+    ArcaModule module {R"(C:\Project\Editor.json)"};
+    std::cout << module.GetAsset("EGY") << std::endl;
+    std::shared_ptr<ArcaContainer> arc = module.GetContainer("Config2");
+    std::cout << arc->GetValue<std::string>("StringValue") << std::endl;
 
 
+    /*
+    ArcaContainer cr { R"(C:\Project)", "Config2" };
+    cr.AddPair("StringValue", std::string("Pina"));
+    cr.AddPair("Pina", 1);
+    cr.Dispatch();
 
+    ArcaContainer cr2 { R"(C:\Project)", "Config3" };
+    cr2.AddPair("StringValue", std::string("Pina2"));
+    cr2.AddPair("Pina", 2);
+
+    ArcaModule module {R"(C:\Project)", "Editor" };
+    module.AddAsset("EGY", R"(C:\Project\test.json)");
+    module.AddAsset("KETTŐ", R"(C:\Project\output.ppm)");
+
+    module.AddContainer(cr);
+    module.AddContainer(cr2);
+
+    module.Serialize();
+    */
 
     // START APPLICATION
     Application& render_lamp_app = Application::GetInstance();

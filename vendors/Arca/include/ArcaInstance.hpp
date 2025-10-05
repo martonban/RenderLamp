@@ -4,9 +4,10 @@
 #include <string>
 #include <memory>
 #include <filesystem>
+#include <nlohmann/json.hpp>
 
 #include "ArcaIO.hpp"
-
+#include "ArcaModule.hpp"
 
 class ArcaInstance {
     public:
@@ -29,7 +30,8 @@ class ArcaInstance {
         void ArcaTest();
 
         // ArcaModule Functions
-        void CreateModule(const std::filesystem::path& moduleName);
+        void CreateModule(const std::string& moduleName);
+        void CreateModule(const std::filesystem::path& fullFilePath, const std::string& name);
 
         // ArcaIO Functions
         bool IsFileExists(const std::filesystem::path& fullFilePath);
@@ -47,6 +49,7 @@ class ArcaInstance {
 
 
         std::vector<std::filesystem::path> mModulePathContainer;
+        std::map<std::string, std::unique_ptr<ArcaModule>> mModuleMap;
         
         ArcaIO mArcaIO;
 

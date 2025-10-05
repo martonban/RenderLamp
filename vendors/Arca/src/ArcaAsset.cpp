@@ -9,6 +9,10 @@ ArcaAsset::ArcaAsset(const std::filesystem::path& path, const std::string& fileN
     mPath = PathBuilder(path, fileName, extension);
 }
 
+std::filesystem::path ArcaAsset::GetAsset() {
+    return mPath;
+}
+
 void ArcaAsset::AddSingleStreamAndDispatch(std::ostringstream& stream) {
     std::ofstream ofs(mPath);
     if (!ofs) {

@@ -88,8 +88,10 @@ void ArcaInstance::ArcaTest() {
     }
 }
 
-void ArcaInstance::CreateModule(const std::filesystem::path& path) {
-    mModulePathContainer.push_back(path);
+void ArcaInstance::CreateModule(const std::string& moduleName) {
+    std::filesystem::path p = mInstanceFolderPath / moduleName;
+    //ArcaModule 
+    mModulePathContainer.push_back(p);
 }
 
 

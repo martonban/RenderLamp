@@ -89,12 +89,22 @@ namespace Arca {
     //                                  ARCA Module
     //----------------------------------------------------------------------------- 
     /**
-     * @brief Check if this file exist on your system or not
-     * @param fullFilePath an std::string for the file path 
+     * @brief Create an Arca Module for the deveoper's modules
+     * @param name Name of the module
      * @return True if exists, False if not
     */
-    inline void CreateModule(const std::filesystem::path& moduleName) {
-        return ArcaInstance::GetInstance().CreateModule(moduleName);
+    inline void CreateModule(const std::string& name) {
+        return ArcaInstance::GetInstance().CreateModule(name);
+    }
+
+    /**
+     * @brief Create an Arca Module - For user generated projects
+     * @param name Name of the module
+     * @param fullFilePath an std::filesystem::path absolute  
+     * @return 
+    */
+    inline void CreateModule(const std::filesystem::path& fullFilePath, const std::string& name) {
+        return ArcaInstance::GetInstance().CreateModule(fullFilePath, name);
     }
 
     //-----------------------------------------------------------------------------

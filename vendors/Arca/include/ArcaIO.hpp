@@ -10,14 +10,11 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-#include <sys/stat.h>
 
 
 #include <string>
 #include <map>
 
-#include <nlohmann/json.hpp>
-using json = nlohmann::json;
 
 
 class ArcaIO {

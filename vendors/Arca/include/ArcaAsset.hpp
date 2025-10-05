@@ -12,10 +12,12 @@ class ArcaAsset {
         ArcaAsset(const std::filesystem::path& path);
         ArcaAsset(const std::filesystem::path& path, const std::string& fileName, const std::string& extension);
 
+        // GET ASSET
+        std::filesystem::path GetAsset();
+
         // Stream Based output asset
         void AddSingleStreamAndDispatch(std::ostringstream& stream);
 
-        // Arca Config  
 
     private:
         std::filesystem::path PathBuilder(const std::filesystem::path& path, const std::string& fileName, const std::string& extension);
