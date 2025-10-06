@@ -2,7 +2,6 @@
 
 ArcaModule::ArcaModule(const std::filesystem::path& path, const std::string& name) {
     mModuleName = name;
-
     // Create Folder for the module 
     if(io.CreateFolder(path, name)) {
         std::cout << "Everything is cool!" << std::endl;
@@ -62,6 +61,11 @@ std::filesystem::path ArcaModule::GetFilePath() {
     return mPath;
 }
 
+std::string ArcaModule::GetName() {
+    return mModuleName;
+}
+
+
 void ArcaModule::AddAsset(const std::string& key, const std::filesystem::path& path) {
     mAssetMap[key] = path;
 }
@@ -74,6 +78,13 @@ bool ArcaModule::AddContainer(ArcaContainer& container) {
     mContainerVector.push_back(container.GetPath());
     std::string name = container.GetName();
     mContainerMap[name] = std::make_shared<ArcaContainer>(container);
+    return true;
+}
+
+bool ArcaModule::CreateNewContainer(std::string& name) {
+    ArcaContainer ctr { mPath.parent_path(), name };
+    mContainerVector.push_back(ctr.GetPath());
+    mContainerMap[name] = std::make_shared<ArcaContainer>(ctr);
     return true;
 }
 
@@ -90,18 +101,20 @@ std::shared_ptr<ArcaContainer> ArcaModule::GetContainer(const std::string& key) 
 
 
 std::filesystem::path ArcaModule::PathBuilder(const std::filesystem::path& path, const std::string& name) {
-    return path / (name + ".json");
+    return path / name / (name + ".json");
 }
 
 
 nlohmann::json ArcaModule::Save() {
     nlohmann::json json;
 
+    json["ModuleName"] = mModuleName;
+
     nlohmann::json containerPaths = nlohmann::json::array();
     for (const auto& path : mContainerVector) {
         containerPaths.push_back(path.string());
     }
-    json["ModulePaths"] = containerPaths;
+    json["ContainerPaths"] = containerPaths;
 
     nlohmann::json assets = nlohmann::json::object();
     for (const auto& [key, path] : mAssetMap) {
@@ -117,12 +130,21 @@ bool ArcaModule::Load(const nlohmann::json& fs) {
         return false;
     }
 
-    if (!fs.contains("ModulePaths") || !fs["ModulePaths"].is_array()) {
+        if (fs.contains("ModuleName")) {
+        if (!fs["ModuleName"].is_string()) {
+            return false;
+        }
+        mModuleName = fs["ModuleName"].get<std::string>();
+    } else {
+        mModuleName = mPath.stem().string();
+    }
+
+    if (!fs.contains("ContainerPaths") || !fs["ContainerPaths"].is_array()) {
         return false;
     }
 
     mContainerVector.clear();
-    for (const auto& pathJson : fs["ModulePaths"]) {
+    for (const auto& pathJson : fs["ContainerPaths"]) {
         if (!pathJson.is_string()) {
             return false;
         }

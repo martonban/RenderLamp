@@ -49,7 +49,8 @@ namespace Arca {
      * @return
     */
     inline bool BuildArcaInstance() {
-        return false;
+        ArcaInstance::GetInstance().BuildArcaInstance();
+        return true;
     }
 
     /**
@@ -107,6 +108,10 @@ namespace Arca {
         return ArcaInstance::GetInstance().CreateModule(fullFilePath, name);
     }
 
+    inline std::shared_ptr<ArcaModule> GetArcaModule(const std::string& key) {
+        return ArcaInstance::GetInstance().GetModule(key);
+    }
+    
     //-----------------------------------------------------------------------------
     //                               SIMPLE I/O UTILS  
     //-----------------------------------------------------------------------------    

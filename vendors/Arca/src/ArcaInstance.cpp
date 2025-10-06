@@ -19,6 +19,14 @@ void ArcaInstance::AddCreator(const std::string& creatorName) {
     mApplicationCreator = creatorName;
 }
 
+void ArcaInstance::BuildArcaInstance() {
+    for(const auto& path : mModulePathContainer) {
+        ArcaModule module {path};
+        auto m = std::make_shared<ArcaModule>(module);
+        std::string key = m->GetName();
+        mModuleMap[key] = m;
+    }
+}
 
 bool ArcaInstance::InstanceSerialize() {
     nlohmann::json instanceJson = Save();
@@ -40,6 +48,7 @@ bool ArcaInstance::InstanceDeserialize() {
         Load(instanceJson);
         return true;
     } else {
+        std::cout << mInstanceFilePath << std::endl;
         std::cout << "Instance can't be deserialized" << std::endl;
         return false;
     }
@@ -88,10 +97,28 @@ void ArcaInstance::ArcaTest() {
     }
 }
 
+void ArcaInstance::CreateModule(ArcaModule& module) {
+    std::string key = module.GetName();
+    mModuleMap[key] = std::make_shared<ArcaModule>(module);
+}
+
 void ArcaInstance::CreateModule(const std::string& moduleName) {
-    std::filesystem::path p = mInstanceFolderPath / moduleName;
-    //ArcaModule 
-    mModulePathContainer.push_back(p);
+    // Create Module Instance 
+    ArcaModule module { mInstanceFilePath.parent_path(), moduleName };
+    mModulePathContainer.push_back(module.GetFilePath());
+    mModuleMap[moduleName] = std::make_shared<ArcaModule>(module);
+}
+
+void ArcaInstance::CreateModule(const std::filesystem::path& fullFilePath, const std::string& name) {
+    ArcaModule module { fullFilePath, name };
+    mModulePathContainer.push_back(module.GetFilePath());
+    mModuleMap[name] = std::make_shared<ArcaModule>(module);
+}
+
+
+
+std::shared_ptr<ArcaModule> ArcaInstance::GetModule(const std::string& name) {
+    return mModuleMap[name];
 }
 
 

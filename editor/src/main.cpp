@@ -23,17 +23,14 @@ int main(void) {
 
     // BUILDING ARCA INSTANCE
     if(Arca::FetchArcaInstance()) {
-        // Arca::BuildArcaInstance();
-        Arca::ArcaTest();
-        std::cout << "Arca instance has been de-serialized!" << std::endl;
-        
+        Arca::BuildArcaInstance();
+        std::cout << "Arca instance has been de-serialized and build!" << std::endl;
     } else {
         Arca::CreateArcaInstance();
         
         Arca::AddCreator("Márton Bán");
-        
-        Arca::CreateModule(R"(C:\Project)");
-        Arca::CreateModule(R"(C:\Project\Games)");
+
+        Arca::CreateModule("Editor");
 
         // Build the instance
         if(Arca::ReleaseArcaInstance()) {
@@ -41,11 +38,42 @@ int main(void) {
         }
     }
 
+    // ------------------------------------------------------------
+    //                        RELASE MODE
+    // ------------------------------------------------------------
+
+    /*
+    std::shared_ptr<ArcaModule> editorModule = Arca::GetArcaModule("Editor");
+    std::string config1Name = "EditorConfig";
+    editorModule->CreateNewContainer(config1Name);
+    editorModule->GetContainer(config1Name)->AddPair("WindowWidth", 1800);
+    editorModule->GetContainer(config1Name)->AddPair("WindowHeight", 900);
+    editorModule->GetContainer(config1Name)->AddPair("WindowName", std::string("RenderLamp Edtior"));
+    editorModule->GetContainer(config1Name)->Dispatch();
+    editorModule->Serialize();
+    */
+
+    
+    
+    std::shared_ptr<ArcaModule> editorModule = Arca::GetArcaModule("Editor");
+    std::string config1Name = "EditorConfig";
+    int h = editorModule->GetContainer(config1Name)->GetValue<int>("WindowHeight");
+    std::cout << "------------------------" << std::endl;
+    std::cout << h << std::endl;
+    std::cout << "------------------------" << std::endl;
+    editorModule->GetContainer(config1Name)->AddPair("Pina", std::string("Pina"));
+    editorModule->GetContainer(config1Name)->Dispatch();
+
+    
+    
+
+
+    /*
     ArcaModule module {R"(C:\Project\Editor.json)"};
     std::cout << module.GetAsset("EGY") << std::endl;
     std::shared_ptr<ArcaContainer> arc = module.GetContainer("Config2");
     std::cout << arc->GetValue<std::string>("StringValue") << std::endl;
-
+    */
 
     /*
     ArcaContainer cr { R"(C:\Project)", "Config2" };

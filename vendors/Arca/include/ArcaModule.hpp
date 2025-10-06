@@ -23,11 +23,13 @@ class ArcaModule {
 
         std::filesystem::path GetPath();
         std::filesystem::path GetFilePath();
+        std::string GetName();
 
         void AddAsset(const std::string& key, const std::filesystem::path& path);
         std::filesystem::path GetAsset(const std::string& key);
 
         bool AddContainer(ArcaContainer& container);
+        bool CreateNewContainer(std::string& name);
         std::shared_ptr<ArcaContainer> GetContainer(const std::string& key);
         
 

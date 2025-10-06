@@ -20,6 +20,7 @@ class ArcaInstance {
         void StartArcaInstance(const std::string& applicationName);
         void CreateArcaInstance();
         void AddCreator(const std::string& creatorName);
+        void BuildArcaInstance();
 
         bool InstanceSerialize();
         bool InstanceDeserialize();
@@ -30,8 +31,11 @@ class ArcaInstance {
         void ArcaTest();
 
         // ArcaModule Functions
+        void CreateModule(ArcaModule& module);
         void CreateModule(const std::string& moduleName);
         void CreateModule(const std::filesystem::path& fullFilePath, const std::string& name);
+        std::shared_ptr<ArcaModule> GetModule(const std::string& name);
+
 
         // ArcaIO Functions
         bool IsFileExists(const std::filesystem::path& fullFilePath);
@@ -49,7 +53,7 @@ class ArcaInstance {
 
 
         std::vector<std::filesystem::path> mModulePathContainer;
-        std::map<std::string, std::unique_ptr<ArcaModule>> mModuleMap;
+        std::map<std::string, std::shared_ptr<ArcaModule>> mModuleMap;
         
         ArcaIO mArcaIO;
 
