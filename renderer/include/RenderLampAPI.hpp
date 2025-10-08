@@ -7,12 +7,17 @@
 #include "Arca.hpp"
 
 namespace RenderLamp {
+    //-----------------------------------------------------------------------------------
+    //                              BUZZ RENDERER
+    //-----------------------------------------------------------------------------------    
     /**
-     * @brief Initialize the renderer with specific settings
+     * @brief Initialize Buzz Renderer
      * @param renderConfigPath A .json filepath 
      * @return True if initialization succeeded
     */
-    bool InitRenderer(const std::string& renderConfigPath);
+    inline bool InitBuzzRendererInstance(const std::string& renderConfigPath) {
+        return true;
+    }
 
 }
 

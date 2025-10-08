@@ -1,9 +1,0 @@
-#ifndef RENDER_CONFIG_ENUMS_HPP
-#define RENDER_CONFIG_ENUMS_HPP
-
-enum RenderEngine {
-    BUZZ_RENDERER,
-    POWDER_RENDERER
-};
-
-#endif
