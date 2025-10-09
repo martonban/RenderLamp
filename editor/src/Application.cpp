@@ -1,11 +1,16 @@
 #include "Application.hpp"
 
 void Application::Init() {
+    BuildSystem& build = BuildSystem::GetInstance();
+    build.AddEditorDefaultConfig();
 }
 
 void Application::Start() {
-    Window editorWindow = Window(1800, 900);
-    RenderingSystem renderer = RenderingSystem{ 1800, 900 };
+    std::shared_ptr<ArcaContainer> editorDefaultValues = Arca::GetArcaModule("Editor")->GetContainer("EditorConfig");
+    int height = editorDefaultValues->GetValue<int>("WindowWidth");
+    int width = editorDefaultValues->GetValue<int>("WindowHeight");
+    Window editorWindow = Window(height, width);
+    RenderingSystem renderer = RenderingSystem{ height, width };
     editorWindow.AttachRenderer(renderer);
     editorWindow.Start();
 }

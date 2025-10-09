@@ -12,6 +12,7 @@
 #include <string>
 #include <fstream>
 #include <filesystem>
+#include <memory> 
 
 #include "ArcaInstance.hpp"
 

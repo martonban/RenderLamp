@@ -1,22 +1,20 @@
 #ifndef RENDER_LAMP_API_HPP
 #define RENDER_LAMP_API_HPP
 
-#include <string>
-
-#include "nlohmann/json.hpp"
 #include "Arca.hpp"
+#include "BuzzRenderer.hpp"
 
 namespace RenderLamp {
     //-----------------------------------------------------------------------------------
     //                              BUZZ RENDERER
     //-----------------------------------------------------------------------------------    
     /**
-     * @brief Initialize Buzz Renderer
-     * @param renderConfigPath A .json filepath 
+     * @brief Initialize BuzzRenderer
+     * @param container
      * @return True if initialization succeeded
     */
-    inline bool InitBuzzRendererInstance(const std::string& renderConfigPath) {
-        return true;
+    inline void InitBuzzRendererInstance(const ArcaContainer& container) {
+        BuzzRenderer::GetInstance().StartInstance(container);
     }
 
 }

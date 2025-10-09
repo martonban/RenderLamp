@@ -14,6 +14,8 @@
 #include <iostream>
 
 #include "RenderingSystem.hpp"
+#include "Arca.hpp"
+#include "BuildSystem.hpp"
 #include "Window.hpp"
 
 

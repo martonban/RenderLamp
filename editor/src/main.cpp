@@ -10,12 +10,8 @@
 //------------------------------------------------------------------------------------------------
 
 #include "Application.hpp"
+#include "BuildSystem.hpp"
 #include "Arca.hpp"
-#include "ArcaAsset.hpp"
-#include "ArcaModule.hpp"
-#include "ArcaContainer.hpp"
-
-
 
 int main(void) {
     // PREPARE ARCA INSTANCE
@@ -26,44 +22,11 @@ int main(void) {
         Arca::BuildArcaInstance();
         std::cout << "Arca instance has been de-serialized and build!" << std::endl;
     } else {
-        Arca::CreateArcaInstance();
-        
-        Arca::AddCreator("Márton Bán");
-
-        Arca::CreateModule("Editor");
-
-        // Build the instance
-        if(Arca::ReleaseArcaInstance()) {
-            std::cout << "Arca Instance has been created!" << std::endl;
-        }
+        BuildSystem& build = BuildSystem::GetInstance();
+        build.ReleaseMode();
+        build.ModuleBuild();
+        build.Release();
     }
-
-    // ------------------------------------------------------------
-    //                        RELASE MODE
-    // ------------------------------------------------------------
-
-    /*
-    std::shared_ptr<ArcaModule> editorModule = Arca::GetArcaModule("Editor");
-    std::string config1Name = "EditorConfig";
-    editorModule->CreateNewContainer(config1Name);
-    editorModule->GetContainer(config1Name)->AddPair("WindowWidth", 1800);
-    editorModule->GetContainer(config1Name)->AddPair("WindowHeight", 900);
-    editorModule->GetContainer(config1Name)->AddPair("WindowName", std::string("RenderLamp Edtior"));
-    editorModule->GetContainer(config1Name)->Dispatch();
-    editorModule->Serialize();
-    */
-
-    
-    
-    std::shared_ptr<ArcaModule> editorModule = Arca::GetArcaModule("Editor");
-    std::string config1Name = "EditorConfig";
-    int h = editorModule->GetContainer(config1Name)->GetValue<int>("WindowHeight");
-    std::cout << "------------------------" << std::endl;
-    std::cout << h << std::endl;
-    std::cout << "------------------------" << std::endl;
-    editorModule->GetContainer(config1Name)->AddPair("Pina", std::string("Pina"));
-    editorModule->GetContainer(config1Name)->Dispatch();
-
 
 
     // START APPLICATION
