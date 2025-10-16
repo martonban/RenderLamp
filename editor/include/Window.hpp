@@ -20,7 +20,7 @@
 
 #include <iostream>
 #include "raylib.h"
-#include "RenderingSystem.hpp"
+#include "systems/RenderingSystem.hpp"
 
 class Window {
     public:

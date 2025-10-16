@@ -4,7 +4,7 @@
 #include "raylib.h"
 #include "raymath.h"
 
-#include "Component.hpp"
+#include "ecs/Component.hpp"
 
 
 

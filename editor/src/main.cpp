@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------------------------
 
 #include "Application.hpp"
-#include "BuildSystem.hpp"
+#include "systems/BuildSystem.hpp"
 #include "Arca.hpp"
 
 int main(void) {

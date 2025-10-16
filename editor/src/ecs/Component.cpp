@@ -1,4 +1,4 @@
-#include "Component.hpp"
+#include "ecs/Component.hpp"
 
 void Component::RenderUpdate() {
     // Default empty implementation

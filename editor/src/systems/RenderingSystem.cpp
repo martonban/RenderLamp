@@ -1,4 +1,5 @@
-#include "RenderingSystem.hpp"
+#include "systems/RenderingSystem.hpp"
+
 RenderingSystem::RenderingSystem(const int& framebufferWidth, const int& framebufferHeight) : mFramebufferWidth(framebufferWidth), mFramebufferHeight(framebufferHeight) {
     // Camera
     mCamera.position = { 10.0f, 10.0f, 10.0f }; 

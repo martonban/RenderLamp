@@ -1,4 +1,4 @@
-#include "SphereMeshComponent.hpp"
+#include "components/SphereMeshComponent.hpp"
 
 SphereMeshComponent::SphereMeshComponent(Vector3 pos, float r) : mPos{pos}, mRadius{r} {}
 
