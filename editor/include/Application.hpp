@@ -13,7 +13,7 @@
 
 #include <iostream>
 
-#include "systems/RenderingSystem.hpp"
+#include "systems/RealTimeRenderingSystem.hpp"
 #include "Arca.hpp"
 #include "systems/BuildSystem.hpp"
 #include "Window.hpp"

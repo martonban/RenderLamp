@@ -14,14 +14,14 @@
 //  the ray tracing backend.
 //------------------------------------------------------------------------------------------------
 
-#ifndef RENDERING_SYSTEM_HPP
-#define RENDERING_SYSTEM_HPP
+#ifndef REAL_TIME_RENDERING_SYSTEM_HPP
+#define REAL_TIME_RENDERING_SYSTEM_HPP
 
 #include "raylib.h"
 
-class RenderingSystem {
+class RealTimeRenderingSystem {
 public: 
-    RenderingSystem(const int& framebufferWidth, const int& framebufferHeight);
+    RealTimeRenderingSystem(const int& framebufferWidth, const int& framebufferHeight);
     void RenderingAllocation();
     void Render();
     void DrawFramebuffer();

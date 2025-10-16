@@ -11,7 +11,7 @@ void Application::Start() {
     int height = editorDefaultValues->GetValue<int>("WindowWidth");
     int width = editorDefaultValues->GetValue<int>("WindowHeight");
     Window editorWindow = Window(height, width);
-    RenderingSystem renderer = RenderingSystem{ height, width };
+    RealTimeRenderingSystem renderer = RealTimeRenderingSystem{ height, width };
     editorWindow.AttachRenderer(renderer);
     editorWindow.Start();
 }

@@ -1,6 +1,7 @@
-#include "systems/RenderingSystem.hpp"
+#include "systems/RealTimeRenderingSystem.hpp"
 
-RenderingSystem::RenderingSystem(const int& framebufferWidth, const int& framebufferHeight) : mFramebufferWidth(framebufferWidth), mFramebufferHeight(framebufferHeight) {
+RealTimeRenderingSystem::RealTimeRenderingSystem(const int& framebufferWidth, const int& framebufferHeight) : 
+        mFramebufferWidth(framebufferWidth), mFramebufferHeight(framebufferHeight) {
     // Camera
     mCamera.position = { 10.0f, 10.0f, 10.0f }; 
     mCamera.target = { 0.0f, 0.0f, 0.0f };
@@ -9,12 +10,12 @@ RenderingSystem::RenderingSystem(const int& framebufferWidth, const int& framebu
     mCamera.projection = CAMERA_PERSPECTIVE;
 }
 
-void RenderingSystem::RenderingAllocation() {
+void RealTimeRenderingSystem::RenderingAllocation() {
     // FrameBuffer
     mRenderTarget = LoadRenderTexture(mFramebufferWidth, mFramebufferHeight);
 }
 
-void RenderingSystem::Render() {
+void RealTimeRenderingSystem::Render() {
     BeginTextureMode(mRenderTarget);
     ClearBackground(RAYWHITE);
         BeginMode3D(mCamera);
@@ -24,10 +25,10 @@ void RenderingSystem::Render() {
 	EndTextureMode();
 }
 
-void RenderingSystem::DestroyRenderer() {
+void RealTimeRenderingSystem::DestroyRenderer() {
     UnloadRenderTexture(mRenderTarget);
 }
 
-void RenderingSystem::DrawFramebuffer() {
+void RealTimeRenderingSystem::DrawFramebuffer() {
     DrawTextureRec(mRenderTarget.texture, Rectangle{0, 0, (float)mRenderTarget.texture.width, -(float)mRenderTarget.texture.height}, Vector2{0, 0}, WHITE);
 }

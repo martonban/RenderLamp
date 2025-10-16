@@ -1,7 +1,7 @@
 #include "Window.hpp"
 
 
-void Window::AttachRenderer(RenderingSystem& renderer) { 
+void Window::AttachRenderer(RealTimeRenderingSystem& renderer) { 
     mRenderer = &renderer;
 }
 void Window::Start() {  

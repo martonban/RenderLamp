@@ -5,14 +5,6 @@
 // The Window class is responsible for displaying the viewport and GUI to the user, as well as 
 //  handling all the mouse and keyboard inputs. 
 //
-//  Note: this project is follows  a tree-like structure. Thus the SceneManager component is
-//  initalized at this class, since both the rendering system and the ECS share the same hiearchy 
-//
-//  TODO: - RenderingSystem
-//        - SceneManager
-//        - GUI Layer
-//        - KeyListener
-//        - Mouse Listener
 //------------------------------------------------------------------------------------------------
 
 #ifndef WINDOW_HPP
@@ -20,7 +12,7 @@
 
 #include <iostream>
 #include "raylib.h"
-#include "systems/RenderingSystem.hpp"
+#include "systems/RealTimeRenderingSystem.hpp"
 
 class Window {
     public:
@@ -29,7 +21,7 @@ class Window {
             mWindowWidth = width;
         }
         void Start();
-        void AttachRenderer(RenderingSystem& renderer);
+        void AttachRenderer(RealTimeRenderingSystem& renderer);
     private:
         void WindowLoop();
         void Close();
@@ -37,7 +29,7 @@ class Window {
     private:
         int mWindowHeight;
         int mWindowWidth;
-        RenderingSystem* mRenderer = nullptr;
+        RealTimeRenderingSystem* mRenderer = nullptr;
 };
 
 #endif
