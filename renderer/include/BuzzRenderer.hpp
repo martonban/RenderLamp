@@ -10,7 +10,7 @@ class BuzzRenderer {
             static BuzzRenderer instance;
             return instance;
         }
-        void StartInstance(const ArcaContainer& container);
+        void StartInstance(const std::filesystem::path& tmpPath);
     protected:
         BuzzRenderer() = default;
     private:

@@ -13,8 +13,8 @@ namespace RenderLamp {
      * @param container
      * @return True if initialization succeeded
     */
-    inline void InitBuzzRendererInstance(const ArcaContainer& container) {
-        BuzzRenderer::GetInstance().StartInstance(container);
+    inline void InitBuzzRendererInstance(const std::filesystem::path& tmpPath) {
+        
     }
 
 }

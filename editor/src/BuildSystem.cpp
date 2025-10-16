@@ -34,7 +34,14 @@ void BuildSystem::AddRendererDefaultConfig() {
         std::shared_ptr<ArcaModule> rendererModule = Arca::GetArcaModule("Renderer");
         std::string configName = "DefaultBuzzRendererSettings";
         rendererModule->CreateNewContainer(configName);
-        
+        rendererModule->GetContainer(configName)->AddPair("TargetRenderWidth", 1920);
+        rendererModule->GetContainer(configName)->AddPair("TargetRenderHeight", 1080);
+        rendererModule->GetContainer(configName)->AddPair("CameraFOV", 90.0);
+        rendererModule->GetContainer(configName)->AddPair("FocalLength", 1.0);
+        rendererModule->GetContainer(configName)->AddPair("SamplePerPixel", 250);
+        rendererModule->GetContainer(configName)->AddPair("MaxDepth", 40);
+        rendererModule->GetContainer(configName)->Dispatch();
+        rendererModule->Serialize();
     }
 }
 

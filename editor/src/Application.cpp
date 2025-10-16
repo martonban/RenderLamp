@@ -3,6 +3,7 @@
 void Application::Init() {
     BuildSystem& build = BuildSystem::GetInstance();
     build.AddEditorDefaultConfig();
+    build.AddRendererDefaultConfig();
 }
 
 void Application::Start() {
