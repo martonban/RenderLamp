@@ -21,8 +21,8 @@ class Window {
             mWindowHeight = height;
             mWindowWidth = width;
         }
+        void Init();
         void Start();
-        void AttachRenderer(std::unique_ptr<RealTimeRenderingSystem> renderer);
     private:
         void WindowLoop();
         void Close();

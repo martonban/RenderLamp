@@ -1,9 +1,9 @@
 #include "Window.hpp"
 
-
-void Window::AttachRenderer(std::unique_ptr<RealTimeRenderingSystem> renderer) { 
-    mRenderer = std::move(renderer);
+void Window::Init() {
+    mRenderer = std::make_unique<RealTimeRenderingSystem>(mWindowWidth, mWindowHeight);
 }
+
 void Window::Start() {  
     SetTargetFPS(60);
     InitWindow(mWindowWidth, mWindowHeight, "RenderLamp Editor");
@@ -14,8 +14,8 @@ void Window::Start() {
 void Window::WindowLoop() {
     while (!WindowShouldClose()) {
         BeginDrawing();
-        mRenderer->Render();
-        mRenderer->DrawFramebuffer();
+            mRenderer->Render();
+            mRenderer->DrawFramebuffer();
         EndDrawing();
     }
     Close();
