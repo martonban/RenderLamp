@@ -1,8 +1,8 @@
 #include "Window.hpp"
 
 
-void Window::AttachRenderer(RealTimeRenderingSystem& renderer) { 
-    mRenderer = &renderer;
+void Window::AttachRenderer(std::unique_ptr<RealTimeRenderingSystem> renderer) { 
+    mRenderer = std::move(renderer);
 }
 void Window::Start() {  
     SetTargetFPS(60);

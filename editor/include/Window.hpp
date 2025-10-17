@@ -11,6 +11,7 @@
 #define WINDOW_HPP
 
 #include <iostream>
+#include <memory>
 #include "raylib.h"
 #include "systems/RealTimeRenderingSystem.hpp"
 
@@ -21,7 +22,7 @@ class Window {
             mWindowWidth = width;
         }
         void Start();
-        void AttachRenderer(RealTimeRenderingSystem& renderer);
+        void AttachRenderer(std::unique_ptr<RealTimeRenderingSystem> renderer);
     private:
         void WindowLoop();
         void Close();
@@ -29,7 +30,7 @@ class Window {
     private:
         int mWindowHeight;
         int mWindowWidth;
-        RealTimeRenderingSystem* mRenderer = nullptr;
+        std::unique_ptr<RealTimeRenderingSystem> mRenderer;
 };
 
 #endif

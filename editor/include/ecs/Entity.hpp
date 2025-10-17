@@ -9,11 +9,8 @@
 
 class Entity {
 public:
-    void AddComponent(std::shared_ptr<Component> component);
-    void RemoveComponenet(uint64_t id);
-    void LogicUpdate();
-    void RenderUpdate();
-    virtual void RayTracerSerializer();
+    Entity();
+    ~Entity();
 private:
     std::vector<std::shared_ptr<Component>> mComponentList;
 };

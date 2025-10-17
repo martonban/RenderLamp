@@ -4,23 +4,24 @@
 //	
 //  Application is a singleton class responsible for initializing and start the key componetns of
 //  this project. 
-//
-//  TODO: Initialize Arca Global Instance 
 //------------------------------------------------------------------------------------------------
 
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
 #include <iostream>
+#include <memory>
+
+#include "Arca.hpp"
 
 #include "systems/RealTimeRenderingSystem.hpp"
-#include "Arca.hpp"
+#include "systems/SceneManagerSystem.hpp"
 #include "systems/BuildSystem.hpp"
+
 #include "Window.hpp"
 
 
 class Application {
-    // Functions
     public:
         void Init();
         void Start();
@@ -31,6 +32,9 @@ class Application {
     protected:
         Application() = default;
     private:
+        std::unique_ptr<Window> editorWindow;
+        std::unique_ptr<RealTimeRenderingSystem> renderer;
+        std::unique_ptr<SceneManagerSystem> ecsSystem;
 };
 
 #endif
