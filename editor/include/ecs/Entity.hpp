@@ -5,13 +5,17 @@
 #include <vector>
 #include <cstdint>
 
+#include "components/Transform3D.hpp"
 #include "Component.hpp"
 
 class Entity {
 public:
     Entity();
+    Entity(const Transform3D& transform);
+    void AddComponenet(const Component& component);
     ~Entity();
 private:
+
     std::vector<std::shared_ptr<Component>> mComponentList;
 };
 

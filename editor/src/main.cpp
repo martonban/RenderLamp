@@ -23,7 +23,7 @@ int main(void) {
         std::cout << "Arca instance has been de-serialized and build!" << std::endl;
     } else {
         BuildSystem& build = BuildSystem::GetInstance();
-        build.ReleaseMode();
+        build.ReleaseModeOn();
         build.ModuleBuild();
         build.Release();
     }

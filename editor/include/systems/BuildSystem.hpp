@@ -16,9 +16,13 @@ class BuildSystem {
 
         void AddEditorDefaultConfig();
         void AddRendererDefaultConfig();
+        void CreateProjectList();
 
-        void BuildMode();
-        void ReleaseMode();
+        void BuildModeOn();
+        void ReleaseModeOn();
+
+        bool GetBuildPipelineIsRunning();
+        bool GetReleasePipelineIsRunning();
     protected:
         BuildSystem() = default;
     private:

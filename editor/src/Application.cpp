@@ -4,6 +4,7 @@ void Application::Init() {
     BuildSystem& build = BuildSystem::GetInstance();
     build.AddEditorDefaultConfig();
     build.AddRendererDefaultConfig();
+    build.CreateProjectList();
 }
 
 void Application::Start() {

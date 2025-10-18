@@ -45,11 +45,27 @@ void BuildSystem::AddRendererDefaultConfig() {
     }
 }
 
+void BuildSystem::CreateProjectList() {
+    if(mReleasePipelineIsRunning) {
+        std::shared_ptr<ArcaModule> editorModule = Arca::GetArcaModule("Editor");
+        std::string fileName = "ProjectList";
+        editorModule->CreateNewContainer(fileName);
+        editorModule->Serialize();
+    }
+}
 
-void BuildSystem::BuildMode() {
+void BuildSystem::BuildModeOn() {
     mBuildPipelineIsRunning = true;
 }
 
-void BuildSystem::ReleaseMode() {
+void BuildSystem::ReleaseModeOn() {
     mReleasePipelineIsRunning = true;
+}
+
+
+bool BuildSystem::GetBuildPipelineIsRunning() {
+    return mBuildPipelineIsRunning;
+} 
+bool BuildSystem::GetReleasePipelineIsRunning() {
+    return mReleasePipelineIsRunning;
 }

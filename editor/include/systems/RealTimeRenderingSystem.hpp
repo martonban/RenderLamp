@@ -18,10 +18,11 @@
 #define REAL_TIME_RENDERING_SYSTEM_HPP
 
 #include "raylib.h"
+#include "SceneManagerSystem.hpp"
 
 class RealTimeRenderingSystem {
 public: 
-    RealTimeRenderingSystem(const int& framebufferWidth, const int& framebufferHeight);
+    RealTimeRenderingSystem(const int& framebufferWidth, const int& framebufferHeight, std::unique_ptr<SceneManagerSystem>);
     void RenderingAllocation();
     void Render();
     void DrawFramebuffer();
@@ -32,8 +33,8 @@ public:
 
     RenderTexture2D mRenderTarget = {0};
     Camera3D mCamera = {0};
-    // TODO: INIT RenderLamp ray tracing renderer
-    // TODO: Renderer will need ARCA  
+
+    std::unique_ptr<SceneManagerSystem> mSceneData;
 };
 
 
