@@ -13,8 +13,7 @@
 #include <iostream>
 #include <memory>
 #include "raylib.h"
-#include "systems/RealTimeRenderingSystem.hpp"
-#include "systems/SceneManagerSystem.hpp"
+#include "ecs/Scene.hpp"
 #include "systems/ProjectManagerSystem.hpp"
 
 class Window {
@@ -28,12 +27,10 @@ class Window {
     private:
         void MainLoop();
         void Close();
-
     private:
         int mWindowHeight;
         int mWindowWidth;
-        std::unique_ptr<RealTimeRenderingSystem> mRenderer;
-        std::unique_ptr<SceneManagerSystem> mSceneManager;
+        std::unique_ptr<Scene> mCurrentScene;
 };
 
 #endif

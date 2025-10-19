@@ -1,6 +1,6 @@
 #include "systems/RealTimeRenderingSystem.hpp"
 
-RealTimeRenderingSystem::RealTimeRenderingSystem(const int& framebufferWidth, const int& framebufferHeight, std::unique_ptr<SceneManagerSystem>) : 
+RealTimeRenderingSystem::RealTimeRenderingSystem(const int& framebufferWidth, const int& framebufferHeight) : 
         mFramebufferWidth(framebufferWidth), mFramebufferHeight(framebufferHeight) {
     // Camera
     mCamera.position = { 10.0f, 10.0f, 10.0f }; 

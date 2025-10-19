@@ -22,7 +22,7 @@
 
 class RealTimeRenderingSystem {
 public: 
-    RealTimeRenderingSystem(const int& framebufferWidth, const int& framebufferHeight, std::unique_ptr<SceneManagerSystem>);
+    RealTimeRenderingSystem(const int& framebufferWidth, const int& framebufferHeight);
     void RenderingAllocation();
     void Render();
     void DrawFramebuffer();
@@ -33,8 +33,6 @@ public:
 
     RenderTexture2D mRenderTarget = {0};
     Camera3D mCamera = {0};
-
-    std::unique_ptr<SceneManagerSystem> mSceneData;
 };
 
 

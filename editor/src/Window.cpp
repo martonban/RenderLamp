@@ -2,29 +2,26 @@
 
 void Window::Init() {
     ProjectManagerSystem::GetInstance().StartSystem();
-    mSceneManager = std::make_unique<SceneManagerSystem>();
-    mRenderer = std::make_unique<RealTimeRenderingSystem>(mWindowWidth, mWindowHeight, std::move(mSceneManager));
-
+    mCurrentScene = std::make_unique<Scene>(mWindowWidth, mWindowHeight);
 }
 
 void Window::Start() {  
     SetTargetFPS(60);
     InitWindow(mWindowWidth, mWindowHeight, "RenderLamp Editor");
-    mRenderer->RenderingAllocation();
+    mCurrentScene->Start();
     MainLoop();
 }
 
 void Window::MainLoop() {
     while (!WindowShouldClose()) {
         BeginDrawing();
-            mRenderer->Render();
-            mRenderer->DrawFramebuffer();
+            mCurrentScene->Update();
         EndDrawing();
     }
     Close();
 }
 
 void Window::Close() {
-    mRenderer->DestroyRenderer();
+    mCurrentScene->Destroy();
     CloseWindow();
 }

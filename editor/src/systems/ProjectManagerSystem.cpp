@@ -2,6 +2,13 @@
 
 void ProjectManagerSystem::StartSystem() {
     // Get Arca Container
-    projectList = Arca::GetArcaModule("Editor")->GetContainer("ProjectList");
+    mProjectList = Arca::GetArcaModule("Editor")->GetContainer("ProjectList");
+
+}
+
+void ProjectManagerSystem::CreateProject(const std::string& name, std::filesystem::path& path) {
+    // Meta Data
+    mProjectList->AddPair(name, path);
+    mProjectList->Dispatch();
 }
 
