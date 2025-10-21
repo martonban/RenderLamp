@@ -2,7 +2,7 @@
 
 void Window::Init() {
     ProjectManagerSystem::GetInstance().StartSystem();
-    mCurrentScene = std::make_unique<Scene>(mWindowWidth, mWindowHeight);
+    mCurrentScene = ProjectManagerSystem::GetInstance().LoadDefaultScene();
 }
 
 void Window::Start() {  

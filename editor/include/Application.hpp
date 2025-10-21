@@ -34,7 +34,6 @@ class Application {
     private:
         std::unique_ptr<Window> editorWindow;
         std::unique_ptr<RealTimeRenderingSystem> renderer;
-        std::unique_ptr<SceneManagerSystem> ecsSystem;
 };
 
 #endif
