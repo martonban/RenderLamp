@@ -3,8 +3,11 @@
 
 #include <memory>
 #include <cstdint>
+#include <vector>
 
 #include "systems/RealTimeRenderingSystem.hpp"
+#include "ecs/Component.hpp"
+#include "ecs/Entity.hpp"
 
 class Scene {
 public:
@@ -15,8 +18,8 @@ public:
 private:
     std::unique_ptr<RealTimeRenderingSystem> mRenderer;
     
-    std::vector<std::shared_ptr<Entity>> mEntityList;
-    std::vector<std::shared_ptr<Component>> mComponentList;
+    std::map<uint64_t, std::shared_ptr<Entity>> mEntityList;
+    std::map<uint64_t, std::shared_ptr<Component>> mComponentList;
 };
 
 #endif

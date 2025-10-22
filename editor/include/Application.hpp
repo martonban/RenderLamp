@@ -15,7 +15,6 @@
 #include "Arca.hpp"
 
 #include "systems/RealTimeRenderingSystem.hpp"
-#include "systems/SceneManagerSystem.hpp"
 #include "systems/BuildSystem.hpp"
 
 #include "Window.hpp"

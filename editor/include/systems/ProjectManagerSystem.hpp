@@ -3,6 +3,7 @@
 
 #include "Arca.hpp"
 #include "ecs/Scene.hpp"
+#include "systems/builders/SceneBuilder.hpp"
 
 #include <memory>
 
@@ -19,7 +20,7 @@ class ProjectManagerSystem {
         ProjectManagerSystem() = default;
     private:
         std::shared_ptr<ArcaContainer> mProjectList;
-        std::unique_ptr<SceneManagerSystem> mSceneManagerSystem;
+        std::unique_ptr<SceneBuilder> mSceneBuilder;
         ProjectManagerSystem(const ProjectManagerSystem&) = delete;
         ProjectManagerSystem& operator=(const ProjectManagerSystem&) = delete;
 };

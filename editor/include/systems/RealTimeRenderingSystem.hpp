@@ -18,7 +18,7 @@
 #define REAL_TIME_RENDERING_SYSTEM_HPP
 
 #include "raylib.h"
-#include "SceneManagerSystem.hpp"
+#include "components/SphereRenderComponent.hpp"
 
 class RealTimeRenderingSystem {
 public: 
@@ -30,7 +30,7 @@ public:
 public:
     const int mFramebufferWidth;
     const int mFramebufferHeight;
-
+    SphereRenderComponent sp = SphereRenderComponent {Vector3{0.0, 0.0, 0.0}, 1.5, 1};
     RenderTexture2D mRenderTarget = {0};
     Camera3D mCamera = {0};
 };

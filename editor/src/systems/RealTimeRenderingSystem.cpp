@@ -1,4 +1,5 @@
 #include "systems/RealTimeRenderingSystem.hpp"
+#include <fstream>
 
 RealTimeRenderingSystem::RealTimeRenderingSystem(const int& framebufferWidth, const int& framebufferHeight) : 
         mFramebufferWidth(framebufferWidth), mFramebufferHeight(framebufferHeight) {
@@ -9,17 +10,25 @@ RealTimeRenderingSystem::RealTimeRenderingSystem(const int& framebufferWidth, co
     mCamera.fovy = 45.0f;
     mCamera.projection = CAMERA_PERSPECTIVE;
 }
-
 void RealTimeRenderingSystem::RenderingAllocation() {
     // FrameBuffer
     mRenderTarget = LoadRenderTexture(mFramebufferWidth, mFramebufferHeight);
+    sp.Start();
 }
+
 
 void RealTimeRenderingSystem::Render() {
     BeginTextureMode(mRenderTarget);
     ClearBackground(RAYWHITE);
         BeginMode3D(mCamera);
-            DrawCube({0.f, 0.f, 0.f}, 2.0f, 2.0f, 2.0f, RED);
+        if(IsKeyPressed(KEY_A)) {
+            nlohmann::json instanceJson = sp.ToSceneJson();
+            std::ofstream file("C:/Project/gg.json");
+            file << instanceJson.dump(4);
+            file.close();
+        }
+            //DrawCube({0.f, 0.f, 0.f}, 2.0f, 2.0f, 2.0f, RED);
+            sp.Tick();
             DrawGrid(10, 1.0f);
         EndMode3D();
 	EndTextureMode();
