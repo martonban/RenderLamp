@@ -30,7 +30,7 @@ class Window {
     private:
         int mWindowHeight;
         int mWindowWidth;
-        std::unique_ptr<Scene> mCurrentScene;
+        Scene* mCurrentScene = nullptr;
 };
 
 #endif

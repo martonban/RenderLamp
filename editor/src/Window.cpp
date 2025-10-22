@@ -3,7 +3,7 @@
 void Window::Init() {
     SceneManagerSystem::GetInstance().StartSystem();
     //ProjectManagerSystem::GetInstance().LoadDefualtProject();
-    mCurrentScene = SceneManagerSystem::GetInstance().GetCurrentScene();
+    mCurrentScene = &SceneManagerSystem::GetInstance().GetCurrentScene();
 }
 
 void Window::Start() {  

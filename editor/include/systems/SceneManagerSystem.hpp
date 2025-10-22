@@ -14,11 +14,12 @@ class SceneManagerSystem {
         }
         void StartSystem();
         void CreateProject(const std::string projectName, const std::filesystem::path& projectPath, const Scene& scn);
-        std::unique_ptr<Scene> GetCurrentScene();
+        Scene& GetCurrentScene();
 
     protected:
         SceneManagerSystem() = default;
     private:
+        std::unique_ptr<Scene> mCurrentScene;
         std::shared_ptr<ArcaContainer> mProjectList;
 
         void SaveProjectMetaData(const std::string& name, std::filesystem::path& path);
