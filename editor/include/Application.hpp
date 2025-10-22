@@ -14,7 +14,6 @@
 
 #include "Arca.hpp"
 
-#include "systems/RealTimeRenderingSystem.hpp"
 #include "systems/BuildSystem.hpp"
 
 #include "Window.hpp"
@@ -32,7 +31,6 @@ class Application {
         Application() = default;
     private:
         std::unique_ptr<Window> editorWindow;
-        std::unique_ptr<RealTimeRenderingSystem> renderer;
 };
 
 #endif

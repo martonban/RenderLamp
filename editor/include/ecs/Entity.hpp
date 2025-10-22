@@ -14,7 +14,8 @@ public:
     Entity(const Transform3D& transform);
     ~Entity();
 private:
-
+    uint64_t id;
+    std::vector<uint64_t> mCompoenentIdVector;
     
 };
 

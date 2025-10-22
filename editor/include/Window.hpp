@@ -14,7 +14,7 @@
 #include <memory>
 #include "raylib.h"
 #include "ecs/Scene.hpp"
-#include "systems/ProjectManagerSystem.hpp"
+#include "systems/SceneManagerSystem.hpp"
 
 class Window {
     public:

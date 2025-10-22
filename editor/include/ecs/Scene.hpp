@@ -15,6 +15,8 @@ public:
     void Start();
     void Update();
     void Destroy();
+
+    void AddCoponent(const Component& component);
 private:
     std::unique_ptr<RealTimeRenderingSystem> mRenderer;
     

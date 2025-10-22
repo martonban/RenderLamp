@@ -1,9 +1,9 @@
 #include "Window.hpp"
 
 void Window::Init() {
-    ProjectManagerSystem::GetInstance().StartSystem();
+    SceneManagerSystem::GetInstance().StartSystem();
     //ProjectManagerSystem::GetInstance().LoadDefualtProject();
-    mCurrentScene = ProjectManagerSystem::GetInstance().GetCurrentScene();
+    mCurrentScene = SceneManagerSystem::GetInstance().GetCurrentScene();
 }
 
 void Window::Start() {  
