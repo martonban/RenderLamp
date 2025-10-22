@@ -2,7 +2,8 @@
 
 void Window::Init() {
     ProjectManagerSystem::GetInstance().StartSystem();
-    mCurrentScene = ProjectManagerSystem::GetInstance().LoadDefaultScene();
+    //ProjectManagerSystem::GetInstance().LoadDefualtProject();
+    mCurrentScene = ProjectManagerSystem::GetInstance().GetCurrentScene();
 }
 
 void Window::Start() {  

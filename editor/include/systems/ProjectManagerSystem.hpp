@@ -14,7 +14,7 @@ class ProjectManagerSystem {
             return instance;
         }
         void StartSystem();
-        std::unique_ptr<Scene> LoadDefaultScene();
+        std::unique_ptr<Scene> GetCurrentScene();
         void CreateProject(const std::string& name, std::filesystem::path& path);
     protected:
         ProjectManagerSystem() = default;

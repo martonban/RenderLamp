@@ -5,7 +5,7 @@ void ProjectManagerSystem::StartSystem() {
     mProjectList = Arca::GetArcaModule("Editor")->GetContainer("ProjectList");
 }
 
-std::unique_ptr<Scene> ProjectManagerSystem::LoadDefaultScene() {
+std::unique_ptr<Scene> ProjectManagerSystem::GetCurrentScene() {
     int width = Arca::GetArcaModule("Editor")->GetContainer("EditorConfig")->GetValue<int>("WindowWidth");
     int height = Arca::GetArcaModule("Editor")->GetContainer("EditorConfig")->GetValue<int>("WindowHeight");
     return std::make_unique<Scene>(width, height);

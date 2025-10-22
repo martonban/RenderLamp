@@ -5,6 +5,7 @@ void Application::Init() {
     build.AddEditorDefaultConfig();
     build.AddRendererDefaultConfig();
     build.CreateProjectList();
+    //build.CreateDefaultProject();
 }
 
 void Application::Start() {

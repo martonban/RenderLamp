@@ -17,6 +17,7 @@ class BuildSystem {
         void AddEditorDefaultConfig();
         void AddRendererDefaultConfig();
         void CreateProjectList();
+        void CreateDefaultProject();
 
         void BuildModeOn();
         void ReleaseModeOn();
