@@ -22,7 +22,7 @@ void RealTimeRenderingSystem::Render() {
     ClearBackground(RAYWHITE);
         BeginMode3D(mCamera);
         if(IsKeyPressed(KEY_A)) {
-            nlohmann::json instanceJson = sp.ToSceneJson();
+            nlohmann::json instanceJson = sp.ToRendererJson();
             std::ofstream file("C:/Project/gg.json");
             file << instanceJson.dump(4);
             file.close();
