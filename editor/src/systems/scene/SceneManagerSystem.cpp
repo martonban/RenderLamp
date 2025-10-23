@@ -1,8 +1,7 @@
-#include "systems/SceneManagerSystem.hpp"
+#include "systems/scene/SceneManagerSystem.hpp"
 
 void SceneManagerSystem::StartSystem() {
     // Get Arca Container
-    mProjectList = Arca::GetArcaModule("Editor")->GetContainer("ProjectList");
     int width = Arca::GetArcaModule("Editor")->GetContainer("EditorConfig")->GetValue<int>("WindowWidth");
     int height = Arca::GetArcaModule("Editor")->GetContainer("EditorConfig")->GetValue<int>("WindowHeight");
     mCurrentScene = std::make_unique<Scene>(width, height);

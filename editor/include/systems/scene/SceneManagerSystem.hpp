@@ -2,7 +2,7 @@
 #define SCENE_MANAGER_SYSTEM_HPP
 
 #include "Arca.hpp"
-#include "ecs/Scene.hpp"
+#include "systems/scene/Scene.hpp"
 
 #include <memory>
 

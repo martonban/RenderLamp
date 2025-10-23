@@ -1,4 +1,4 @@
-#include "ecs/Scene.hpp"
+#include "systems/scene/Scene.hpp"
 
 Scene::Scene(const int& width, const int& height) {
     mRenderer = std::make_unique<RealTimeRenderingSystem>(width, height);

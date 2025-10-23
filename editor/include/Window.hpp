@@ -13,8 +13,8 @@
 #include <iostream>
 #include <memory>
 #include "raylib.h"
-#include "ecs/Scene.hpp"
-#include "systems/SceneManagerSystem.hpp"
+#include "systems/scene/Scene.hpp"
+#include "systems/scene/SceneManagerSystem.hpp"
 
 class Window {
     public:
