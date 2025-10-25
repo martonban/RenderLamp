@@ -9,6 +9,7 @@ RealTimeRenderingSystem::RealTimeRenderingSystem(const int& framebufferWidth, co
     mCamera.up = { 0.0f, 1.0f, 0.0f };
     mCamera.fovy = 45.0f;
     mCamera.projection = CAMERA_PERSPECTIVE;
+
 }
 void RealTimeRenderingSystem::RenderingAllocation() {
     // FrameBuffer

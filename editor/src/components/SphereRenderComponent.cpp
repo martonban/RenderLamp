@@ -6,6 +6,11 @@ SphereRenderComponent::SphereRenderComponent(const Vector3& pos, const float& ra
     mId = id;
 } 
 
+SphereRenderComponent::SphereRenderComponent(const nlohmann::json& jsonObject) {
+    
+}
+
+
 void SphereRenderComponent::Start() {
     mColor = RED;
 }

@@ -9,6 +9,7 @@
 class SphereRenderComponent : public Component {
     public:
         SphereRenderComponent(const Vector3& pos, const float& radius, const uint64_t& id);
+        SphereRenderComponent(const nlohmann::json& jsonObject);
         ~SphereRenderComponent() override = default;
         void Start() override;
         void Tick() override;

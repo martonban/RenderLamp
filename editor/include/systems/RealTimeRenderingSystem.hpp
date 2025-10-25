@@ -33,6 +33,7 @@ public:
     SphereRenderComponent sp = SphereRenderComponent {Vector3{0.0, 0.0, 0.0}, 1.5, 1};
     RenderTexture2D mRenderTarget = {0};
     Camera3D mCamera = {0};
+
 };
 
 

@@ -12,9 +12,13 @@
 
 #include <iostream>
 #include <memory>
+
 #include "raylib.h"
 #include "systems/scene/Scene.hpp"
 #include "systems/scene/SceneManagerSystem.hpp"
+#include "ecs/Entity.hpp"
+#include "ecs/Component.hpp"
+
 
 class Window {
     public:

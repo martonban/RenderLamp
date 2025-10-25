@@ -4,24 +4,34 @@
 #include <memory>
 #include <cstdint>
 #include <vector>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
 
 #include "systems/RealTimeRenderingSystem.hpp"
 #include "ecs/Component.hpp"
 #include "ecs/Entity.hpp"
 
 class Scene {
-public:
-    Scene(const int& width, const int& height);
-    void Start();
-    void Update();
-    void Destroy();
+    public:
+        Scene(const int& width, const int& height);
+   
+        void Start();
+        void Update();
+        void Destroy();
 
-    void AddCoponent(const Component& component);
-private:
-    std::unique_ptr<RealTimeRenderingSystem> mRenderer;
+        void AddEntity(std::shared_ptr<Entity> newComponent);
+
+
+        bool Serialize(const std::filesystem::path& outPath) const;
+        nlohmann::json SceneToJson() const;
+        
+        bool Deserialize(const std::filesystem::path& outPath);
+        void JsonToScene(const nlohmann::json& sceneJson);
     
-    std::map<uint64_t, std::shared_ptr<Entity>> mEntityList;
-    std::map<uint64_t, std::shared_ptr<Component>> mComponentList;
+    private:
+        std::vector<std::shared_ptr<Entity>> mEntityVector;
+        std::unique_ptr<RealTimeRenderingSystem> mRenderer;
 };
 
 #endif

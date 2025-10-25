@@ -7,6 +7,7 @@
 class Component {
     public:
         Component() = default;
+        Component(const nlohmann::json& jsonObject);
         virtual ~Component() = default;
         virtual void Start() = 0;
         virtual void Tick() = 0;

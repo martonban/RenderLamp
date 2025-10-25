@@ -6,17 +6,40 @@
 #include <cstdint>
 
 #include "components/Transform3D.hpp"
+#include "ecs/Component.hpp"
 
 
 class Entity {
-public:
-    Entity();
-    Entity(const Transform3D& transform);
-    ~Entity();
-private:
-    uint64_t id;
-    std::vector<uint64_t> mCompoenentIdVector;
+    public:
+        Entity(const uint64_t& id, const Transform3D& transform);
+        Entity(const nlohmann::json& entityJson);
+        ~Entity();
+
+        
+        void Start();
+        void Tick();
+        void Destroy();
+
+        
+        void AddComponent(std::shared_ptr<Component> newComponent);
+
+        template<typename T>
+        T* GetComponent();
+
+        template<typename T>
+        T* GetComponent(const uint64_t& id);
+        
+
+        nlohmann::json Serializer();
+        void Deserializer(const nlohmann::json& entityJson);
     
+        uint64_t GetId();
+        Transform3D& GetTransform();
+
+    private:
+        uint64_t mId;
+        Transform3D mTransform;
+        std::vector<std::shared_ptr<Component>> mComponenets;
 };
 
 #endif
