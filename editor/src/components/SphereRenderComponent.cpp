@@ -6,8 +6,20 @@ SphereRenderComponent::SphereRenderComponent(const Vector3& pos, const float& ra
     mId = id;
 } 
 
-SphereRenderComponent::SphereRenderComponent(const nlohmann::json& jsonObject) {
-    
+SphereRenderComponent::SphereRenderComponent(const uint64_t& id, const nlohmann::json& jsonObject) {
+    mId = id;
+
+    mPos = Vector3{
+        jsonObject["Position"]["x"],
+        jsonObject["Position"]["y"], 
+        jsonObject["Position"]["z"]
+    };
+
+    mRadius = jsonObject["Radius"];
+
+    std::cout << "-----------------------------------------------------";
+    std::cout << id << "\n" << mPos.x << "\n" << mRadius << std::endl;
+    std::cout << "-----------------------------------------------------";
 }
 
 

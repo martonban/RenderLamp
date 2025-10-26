@@ -1,5 +1,6 @@
 #include "ecs/Entity.hpp"
 
+
 //------------------------------------------------------------------------------
 //                              CONSTRUCTORS
 //------------------------------------------------------------------------------
@@ -9,7 +10,7 @@ Entity::Entity(const uint64_t& id, const Transform3D& transform) {
 }
 
 Entity::Entity(const nlohmann::json& entityJson) {
-
+    Deserializer(entityJson);
 }
 
 Entity::~Entity() {
@@ -68,7 +69,7 @@ T* Entity::GetComponent(const uint64_t& id) {
 
 
 //------------------------------------------------------------------------------
-//                         COMPONENT HANDLER
+//                                SERIALIZERS
 //------------------------------------------------------------------------------
 nlohmann::json Entity::Serializer() {
     nlohmann::json entityJson;
@@ -141,11 +142,27 @@ void Entity::Deserializer(const nlohmann::json& entityJson) {
     const auto compsIt = entityJson.find("components");
     if (compsIt != entityJson.end() && compsIt->is_object()) {
         for (auto it = compsIt->begin(); it != compsIt->end(); ++it) {
-            const std::string type = it.key();
+            const std::string idStr = it.key();
             const nlohmann::json& data = it.value();
+            mComponenets.push_back(ComponentBuilder(idStr, data));
         }
     }
 }
+
+std::shared_ptr<Component> Entity::ComponentBuilder(const std::string idStr, const nlohmann::json& data) {
+    uint64_t id = static_cast<uint64_t>(std::hash<std::string>{}(idStr));
+
+    std::string type = data["ComponentType"];
+
+    // GOD I HATE THIS SHIT...... (I learned it from Pirate Software :D)
+    // TO-DO: Make it better
+    if (type == "SphereRender") {
+        return std::make_shared<SphereRenderComponent>(id, data);
+    } else {
+        return nullptr;
+    }
+}
+
 
 
 //------------------------------------------------------------------------------

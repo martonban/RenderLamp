@@ -4,9 +4,14 @@
 #include <memory>
 #include <vector>
 #include <cstdint>
+#include <functional>
+
+#include "raylib.h"
 
 #include "components/Transform3D.hpp"
 #include "ecs/Component.hpp"
+
+#include "components/SphereRenderComponent.hpp"
 
 
 class Entity {
@@ -40,6 +45,9 @@ class Entity {
         uint64_t mId;
         Transform3D mTransform;
         std::vector<std::shared_ptr<Component>> mComponenets;
+
+        std::shared_ptr<Component> ComponentBuilder(const std::string type, const nlohmann::json& data);
+        
 };
 
 #endif

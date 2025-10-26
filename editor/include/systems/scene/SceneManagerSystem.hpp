@@ -14,6 +14,7 @@ class SceneManagerSystem {
         }
         void StartSystem();
         void CreateProject(const std::string projectName, const std::filesystem::path& projectPath, const Scene& scn);
+        void DeserializeSceneFromJson(const std::filesystem::path& scenePath);
         Scene& GetCurrentScene();
 
     protected:

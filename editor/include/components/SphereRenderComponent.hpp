@@ -2,14 +2,14 @@
 #define SPHERE_RENDER_COMPONENT_HPP
 
 #include "raylib.h"
-#include "raymath.h"
 
 #include "ecs/Component.hpp"
+#include <iostream>
 
 class SphereRenderComponent : public Component {
     public:
         SphereRenderComponent(const Vector3& pos, const float& radius, const uint64_t& id);
-        SphereRenderComponent(const nlohmann::json& jsonObject);
+        SphereRenderComponent(const uint64_t& id, const nlohmann::json& jsonObject);
         ~SphereRenderComponent() override = default;
         void Start() override;
         void Tick() override;

@@ -11,6 +11,11 @@ void SceneManagerSystem::CreateProject(const std::string projectName, const std:
 
 }
 
+void SceneManagerSystem::DeserializeSceneFromJson(const std::filesystem::path& scenePath) {
+    mCurrentScene->Deserialize(scenePath);
+}
+
+
 Scene& SceneManagerSystem::GetCurrentScene() {
     return *mCurrentScene;
 }
