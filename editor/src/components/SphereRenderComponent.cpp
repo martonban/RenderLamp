@@ -1,12 +1,12 @@
 #include "components/SphereRenderComponent.hpp"
 
-SphereRenderComponent::SphereRenderComponent(const Vector3& pos, const float& radius, const int& id) {
+SphereRenderComponent::SphereRenderComponent(const Vector3& pos, const float& radius, const uint64_t& id) {
     mPos = pos;
     mRadius = radius;
     mId = id;
 } 
 
-SphereRenderComponent::SphereRenderComponent(const int& id, const nlohmann::json& jsonObject) {
+SphereRenderComponent::SphereRenderComponent(const uint64_t& id, const nlohmann::json& jsonObject) {
     mId = id;
 
     mPos = Vector3{
@@ -17,9 +17,9 @@ SphereRenderComponent::SphereRenderComponent(const int& id, const nlohmann::json
 
     mRadius = jsonObject["Radius"];
 
-    std::cout << "-----------------------------------------------------" << std::endl;
+    std::cout << "-----------------------------------------------------";
     std::cout << id << "\n" << mPos.x << "\n" << mRadius << std::endl;
-    std::cout << "-----------------------------------------------------" << std::endl;
+    std::cout << "-----------------------------------------------------";
 }
 
 
@@ -66,6 +66,6 @@ nlohmann::json SphereRenderComponent::ToRendererJson(){
 }
 
 
-int SphereRenderComponent::GetID() {
+uint64_t SphereRenderComponent::GetID() {
     return mId;
 }

@@ -16,7 +16,7 @@
 
 class Entity {
     public:
-        Entity(const int& id, const Transform3D& transform);
+        Entity(const uint64_t& id, const Transform3D& transform);
         Entity(const nlohmann::json& entityJson);
         ~Entity();
 
@@ -32,17 +32,17 @@ class Entity {
         T* GetComponent();
 
         template<typename T>
-        T* GetComponent(const int& id);
+        T* GetComponent(const uint64_t& id);
         
 
         nlohmann::json Serializer();
         void Deserializer(const nlohmann::json& entityJson);
     
-        int GetId();
+        uint64_t GetId();
         Transform3D& GetTransform();
 
     private:
-        int mId;
+        uint64_t mId;
         Transform3D mTransform;
         std::vector<std::unique_ptr<Component>> mComponenets;
 
