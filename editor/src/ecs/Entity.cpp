@@ -4,7 +4,7 @@
 //------------------------------------------------------------------------------
 //                              CONSTRUCTORS
 //------------------------------------------------------------------------------
-Entity::Entity(const uint64_t& id, const Transform3D& transform) {
+Entity::Entity(const int& id, const Transform3D& transform) {
     mId = id;
     mTransform = transform;
 }
@@ -56,7 +56,7 @@ T* Entity::GetComponent() {
 }
 
 template<typename T>
-T* Entity::GetComponent(const uint64_t& id) {
+T* Entity::GetComponent(const int& id) {
     for(auto& c : mComponenets) {
         if(auto p = dynamic_cast<T*>(c.get())) {
             if (p->GetId() == id) {
@@ -113,7 +113,7 @@ void Entity::Deserializer(const nlohmann::json& entityJson) {
         throw std::runtime_error("Entity deserialization failed: JSON is not an object.");
     }
 
-    mId = entityJson.value("id", static_cast<uint64_t>(0));
+    mId = entityJson.value("id", static_cast<int>(0));
 
     const auto posIt = entityJson.find("TransformPosition");
     if (posIt != entityJson.end() && posIt->is_object()) {
@@ -150,8 +150,7 @@ void Entity::Deserializer(const nlohmann::json& entityJson) {
 }
 
 std::unique_ptr<Component> Entity::ComponentBuilder(const std::string idStr, const nlohmann::json& data) {
-    uint64_t id = static_cast<uint64_t>(std::hash<std::string>{}(idStr));
-
+    int id = static_cast<int>(std::hash<std::string>{}(idStr));
     std::string type = data["ComponentType"];
 
     // GOD I HATE THIS SHIT...... (I learned it from Pirate Software :D)

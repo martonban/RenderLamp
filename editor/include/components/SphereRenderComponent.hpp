@@ -8,16 +8,16 @@
 
 class SphereRenderComponent : public Component {
     public:
-        SphereRenderComponent(const Vector3& pos, const float& radius, const uint64_t& id);
-        SphereRenderComponent(const uint64_t& id, const nlohmann::json& jsonObject);
+        SphereRenderComponent(const Vector3& pos, const float& radius, const int& id);
+        SphereRenderComponent(const int& id, const nlohmann::json& jsonObject);
         ~SphereRenderComponent() override = default;
         void Start() override;
         void Tick() override;
-        uint64_t GetID() override;
+        int GetID() override;
         nlohmann::json ToSceneJson() override;
         nlohmann::json ToRendererJson() override;
     private:
-        uint64_t mId;
+        int mId;
         const std::string mComponenetType = "SphereRender";
         Vector3 mPos;
         float mRadius;
