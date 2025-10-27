@@ -26,7 +26,7 @@ class Entity {
         void Destroy();
 
         
-        void AddComponent(std::shared_ptr<Component> newComponent);
+        void AddComponent(std::unique_ptr<Component> newComponent);
 
         template<typename T>
         T* GetComponent();
@@ -44,9 +44,9 @@ class Entity {
     private:
         uint64_t mId;
         Transform3D mTransform;
-        std::vector<std::shared_ptr<Component>> mComponenets;
+        std::vector<std::unique_ptr<Component>> mComponenets;
 
-        std::shared_ptr<Component> ComponentBuilder(const std::string type, const nlohmann::json& data);
+        std::unique_ptr<Component> ComponentBuilder(const std::string type, const nlohmann::json& data);
         
 };
 

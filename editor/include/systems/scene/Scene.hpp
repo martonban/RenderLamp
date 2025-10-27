@@ -20,7 +20,7 @@ class Scene {
         void Update();
         void Destroy();
 
-        void AddEntity(std::shared_ptr<Entity> newComponent);
+        void AddEntity(std::unique_ptr<Entity> newComponent);
 
 
         bool Serialize(const std::filesystem::path& outPath) const;
@@ -30,7 +30,7 @@ class Scene {
         void JsonToScene(const nlohmann::json& sceneJson);
     
     private:
-        std::vector<std::shared_ptr<Entity>> mEntityVector;
+        std::vector<std::unique_ptr<Entity>> mEntityVector;
         std::unique_ptr<RealTimeRenderingSystem> mRenderer;
 };
 

@@ -41,7 +41,7 @@ void Entity::Destroy() {
 //------------------------------------------------------------------------------
 //                         COMPONENT HANDLER
 //------------------------------------------------------------------------------
-void Entity::AddComponent(std::shared_ptr<Component> newComponent) {
+void Entity::AddComponent(std::unique_ptr<Component> newComponent) {
     mComponenets.push_back(std::move(newComponent));
 }
 
@@ -149,7 +149,7 @@ void Entity::Deserializer(const nlohmann::json& entityJson) {
     }
 }
 
-std::shared_ptr<Component> Entity::ComponentBuilder(const std::string idStr, const nlohmann::json& data) {
+std::unique_ptr<Component> Entity::ComponentBuilder(const std::string idStr, const nlohmann::json& data) {
     uint64_t id = static_cast<uint64_t>(std::hash<std::string>{}(idStr));
 
     std::string type = data["ComponentType"];
@@ -157,7 +157,7 @@ std::shared_ptr<Component> Entity::ComponentBuilder(const std::string idStr, con
     // GOD I HATE THIS SHIT...... (I learned it from Pirate Software :D)
     // TO-DO: Make it better
     if (type == "SphereRender") {
-        return std::make_shared<SphereRenderComponent>(id, data);
+        return std::make_unique<SphereRenderComponent>(id, data);
     } else {
         return nullptr;
     }

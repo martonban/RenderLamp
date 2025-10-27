@@ -38,7 +38,7 @@ void Scene::Destroy() {
 //------------------------------------------------------------------------------
 //                              Entity Handlers
 //------------------------------------------------------------------------------
-void Scene::AddEntity(std::shared_ptr<Entity> newComponent) {
+void Scene::AddEntity(std::unique_ptr<Entity> newComponent) {
     mEntityVector.push_back(std::move(newComponent));
 }
 
@@ -112,7 +112,7 @@ void Scene::JsonToScene(const nlohmann::json& sceneJson) {
         }
 
         try {
-            mEntityVector.push_back(std::move(std::make_shared<Entity>(entityJson)));
+            mEntityVector.push_back(std::move(std::make_unique<Entity>(entityJson)));
         } catch (const std::exception& e) {
             std::cerr << "Scene Deserilaizer. Issue has been accured " << e.what() << std::endl;
         }
