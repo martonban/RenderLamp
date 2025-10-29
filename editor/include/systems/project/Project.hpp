@@ -4,12 +4,9 @@
 #include <string>
 #include <filesystem>
 
+#include "Arca.hpp"
 
 class Project {
-    public:
-        Project(const std::string& name, const std::filesystem::path& path);
-    private:
-        std::filesystem::path mPath;
 };
 
 #endif

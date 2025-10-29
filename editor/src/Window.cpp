@@ -19,9 +19,11 @@ void Window::Init() {
     //mCurrentScene->AddEntity(std::move(ent2));
 }
 
-void Window::Start() {  
+void Window::Start() {
+    // Image image;
     SetTargetFPS(60);
     InitWindow(mWindowWidth, mWindowHeight, "RenderLamp Editor");
+    // SetWindowIcon(image);
     mCurrentScene->Start();
     MainLoop();
 }

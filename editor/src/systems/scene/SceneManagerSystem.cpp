@@ -7,10 +7,6 @@ void SceneManagerSystem::StartSystem() {
     mCurrentScene = std::make_unique<Scene>(width, height);
 }
 
-void SceneManagerSystem::CreateProject(const std::string projectName, const std::filesystem::path& projectPath, const Scene& scn) {
-
-}
-
 void SceneManagerSystem::DeserializeSceneFromJson(const std::filesystem::path& scenePath) {
     mCurrentScene->Deserialize(scenePath);
 }
