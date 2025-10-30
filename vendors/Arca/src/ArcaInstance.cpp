@@ -97,6 +97,10 @@ void ArcaInstance::ArcaTest() {
     }
 }
 
+inline std::filesystem::path GetArcaInstanceFolderPath() {
+    return ArcaInstance::GetInstance().GetArcaInstanceFolderPath();
+}
+
 void ArcaInstance::CreateModule(ArcaModule& module) {
     std::string key = module.GetName();
     mModuleMap[key] = std::make_shared<ArcaModule>(module);

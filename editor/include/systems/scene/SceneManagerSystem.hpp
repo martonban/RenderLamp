@@ -3,6 +3,8 @@
 
 #include "Arca.hpp"
 #include "systems/scene/Scene.hpp"
+#include "systems/project/ProjectManagerSystem.hpp"
+#include "systems/project/Project.hpp"
 
 #include <memory>
 
@@ -20,9 +22,7 @@ class SceneManagerSystem {
         SceneManagerSystem() = default;
     private:
         std::unique_ptr<Scene> mCurrentScene;
-        std::shared_ptr<ArcaContainer> mProjectList;
-
-        void SaveProjectMetaData(const std::string& name, std::filesystem::path& path);
+        std::unique_ptr<ProjectManagerSystem> mProjectManager;
 
         SceneManagerSystem(const SceneManagerSystem&) = delete;
         SceneManagerSystem& operator=(const SceneManagerSystem&) = delete;

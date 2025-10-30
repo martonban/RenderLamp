@@ -19,12 +19,19 @@ void BuildSystem::Release() {
 void BuildSystem::AddEditorDefaultConfig() {
     if(mReleasePipelineIsRunning) {
         std::shared_ptr<ArcaModule> editorModule = Arca::GetArcaModule("Editor");
-        std::string config1Name = "EditorConfig";
-        editorModule->CreateNewContainer(config1Name);
-        editorModule->GetContainer(config1Name)->AddPair("WindowWidth", 1800);
-        editorModule->GetContainer(config1Name)->AddPair("WindowHeight", 900);
-        editorModule->GetContainer(config1Name)->AddPair("WindowName", std::string("RenderLamp Edtior"));
-        editorModule->GetContainer(config1Name)->Dispatch();
+        std::string editorConfigFileName = "EditorConfig";
+        editorModule->CreateNewContainer(editorConfigFileName);
+        editorModule->GetContainer(editorConfigFileName)->AddPair("WindowWidth", 1800);
+        editorModule->GetContainer(editorConfigFileName)->AddPair("WindowHeight", 900);
+        editorModule->GetContainer(editorConfigFileName)->AddPair("WindowName", std::string("RenderLamp Edtior"));
+        editorModule->GetContainer(editorConfigFileName)->Dispatch();
+
+        // TO-DO: Build a defeault Project
+
+        std::string projectListFileName = "ProjectList";
+        editorModule->CreateNewContainer(projectListFileName);
+        editorModule->GetContainer(projectListFileName)->Dispatch();
+        
         editorModule->Serialize();
     }
 }
@@ -45,14 +52,25 @@ void BuildSystem::AddRendererDefaultConfig() {
     }
 }
 
-void BuildSystem::CreateProjectList() {
-    if(mReleasePipelineIsRunning) {
+void BuildSystem::CreateDefaultScene() {
+    if (mReleasePipelineIsRunning) {
+        // Default Scene Creation
+        Scene defaultScene = Scene{1800, 900};
+        Transform3D trs = Transform3D { Vector3{0.0, 0.0, 0.0} };
+        auto ent1 = std::make_unique<Entity>(1, trs);
+        SphereRenderComponent sp = SphereRenderComponent{ Vector3{0.0f, 0.0f, 0.0f}, 1.5f, 1 };
+        ent1->AddComponent(std::make_unique<SphereRenderComponent>(sp));
+        defaultScene.AddEntity(std::move(ent1));
+        
+        // Get Path to serialize
         std::shared_ptr<ArcaModule> editorModule = Arca::GetArcaModule("Editor");
-        std::string fileName = "ProjectList";
-        editorModule->CreateNewContainer(fileName);
-        editorModule->Serialize();
+        std::filesystem::path pathToDefaultScene = editorModule->GetPath() / "DefaultScene.json";
+
+        // Serialize
+        defaultScene.Serialize(pathToDefaultScene);
     }
 }
+
 
 void BuildSystem::BuildModeOn() {
     mBuildPipelineIsRunning = true;

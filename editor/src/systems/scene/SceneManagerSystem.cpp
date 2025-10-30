@@ -1,10 +1,16 @@
 #include "systems/scene/SceneManagerSystem.hpp"
 
 void SceneManagerSystem::StartSystem() {
-    // Get Arca Container
+    // Get config data 
     int width = Arca::GetArcaModule("Editor")->GetContainer("EditorConfig")->GetValue<int>("WindowWidth");
     int height = Arca::GetArcaModule("Editor")->GetContainer("EditorConfig")->GetValue<int>("WindowHeight");
+    std::filesystem::path path = Arca::GetArcaModule("Editor")->GetPath() / "DefaultScene.json";
+    
+    // Load Default Project
     mCurrentScene = std::make_unique<Scene>(width, height);
+    mCurrentScene->Deserialize(path);
+
+    mProjectManager = std::make_unique<ProjectManagerSystem>("ProjectList");
 }
 
 void SceneManagerSystem::DeserializeSceneFromJson(const std::filesystem::path& scenePath) {
@@ -15,10 +21,3 @@ void SceneManagerSystem::DeserializeSceneFromJson(const std::filesystem::path& s
 Scene& SceneManagerSystem::GetCurrentScene() {
     return *mCurrentScene;
 }
-
-void SceneManagerSystem::SaveProjectMetaData(const std::string& name, std::filesystem::path& path) {
-    // Meta Data
-    mProjectList->AddPair(name, path);
-    mProjectList->Dispatch();
-}
-

@@ -60,7 +60,7 @@ namespace Arca {
      * @return void
     */
     inline void CreateArcaInstance() {
-        ArcaInstance::GetInstance().CreateArcaInstance();
+        return ArcaInstance::GetInstance().CreateArcaInstance();
     }
     
     /**
@@ -86,6 +86,9 @@ namespace Arca {
         ArcaInstance::GetInstance().ArcaTest();
     }
 
+    inline std::filesystem::path GetArcaInstanceFolderPath() {
+        return ArcaInstance::GetInstance().GetArcaInstanceFolderPath();
+    }
 
     //-----------------------------------------------------------------------------
     //                                  ARCA Module

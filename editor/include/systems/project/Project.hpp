@@ -5,6 +5,7 @@
 #include <filesystem>
 
 #include "Arca.hpp"
+#include "systems/scene/Scene.hpp"
 
 class Project {
 };

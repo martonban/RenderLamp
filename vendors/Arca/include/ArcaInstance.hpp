@@ -29,6 +29,7 @@ class ArcaInstance {
         void Load(const nlohmann::json& json);
 
         void ArcaTest();
+        std::filesystem::path GetArcaInstanceFolderPath();
 
         // ArcaModule Functions
         void CreateModule(ArcaModule& module);

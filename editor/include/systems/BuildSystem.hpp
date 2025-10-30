@@ -2,6 +2,11 @@
 #define BUILD_SYSTEM_HPP
 
 #include "Arca.hpp"
+#include "systems/scene/Scene.hpp"
+#include "ecs/Entity.hpp"
+#include "ecs/Component.hpp"
+#include "components/SphereRenderComponent.hpp"
+
 
 class BuildSystem {
     public:
@@ -16,8 +21,7 @@ class BuildSystem {
 
         void AddEditorDefaultConfig();
         void AddRendererDefaultConfig();
-        void CreateProjectList();
-        void CreateDefaultProject();
+        void CreateDefaultScene();
 
         void BuildModeOn();
         void ReleaseModeOn();

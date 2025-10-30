@@ -22,6 +22,10 @@ Entity::~Entity() {
 //                         ENTITY LIFE TIME FUNCTIONS
 //------------------------------------------------------------------------------
 void Entity::Start() {
+    std::cout << "--------------------ETITY CREATED--------------------" << std::endl;
+    std::cout << mId << std::endl;
+    std::cout << "-----------------------------------------------------" << std::endl;
+
     for(auto& c : mComponenets) {
         c->Start();
     }

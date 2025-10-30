@@ -16,15 +16,14 @@ SphereRenderComponent::SphereRenderComponent(const uint64_t& id, const nlohmann:
     };
 
     mRadius = jsonObject["Radius"];
-
-    std::cout << "-----------------------------------------------------";
-    std::cout << id << "\n" << mPos.x << "\n" << mRadius << std::endl;
-    std::cout << "-----------------------------------------------------";
 }
 
 
 void SphereRenderComponent::Start() {
     mColor = RED;
+    std::cout << "---------------SPHERE RENDER COMPONENT---------------" << std::endl;
+    std::cout << mId << "\n" << mPos.x << "\n" << mRadius << std::endl;
+    std::cout << "-----------------------------------------------------" << std::endl;
 }
 
 void SphereRenderComponent::Tick() {
