@@ -28,10 +28,13 @@ void Scene::Update() {
 }
 
 void Scene::Destroy() {
-    mRenderer->DestroyRenderer();
     for(auto& e : mEntityVector) {
         e->Destroy();
     }
+    
+    mEntityVector.clear();
+    mRenderer->DestroyRenderer();
+
 }
 
 

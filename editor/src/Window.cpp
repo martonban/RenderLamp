@@ -16,6 +16,14 @@ void Window::Start() {
 
 void Window::MainLoop() {
     while (!WindowShouldClose()) {
+        // Load Project
+        if(IsKeyPressed(KEY_R)) {
+            mCurrentScene -> Destroy();
+            SceneManagerSystem::GetInstance().LoadSceneFromProject("SecondProject");
+            mCurrentScene = &SceneManagerSystem::GetInstance().GetCurrentScene();
+            mCurrentScene -> Start();
+        }
+
         BeginDrawing();
             mCurrentScene->Update();
         EndDrawing();

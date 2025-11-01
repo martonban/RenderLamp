@@ -117,6 +117,7 @@ void Entity::Deserializer(const nlohmann::json& entityJson) {
         throw std::runtime_error("Entity deserialization failed: JSON is not an object.");
     }
 
+
     mId = entityJson.value("id", static_cast<uint64_t>(0));
 
     const auto posIt = entityJson.find("TransformPosition");
@@ -145,6 +146,7 @@ void Entity::Deserializer(const nlohmann::json& entityJson) {
 
     const auto compsIt = entityJson.find("components");
     if (compsIt != entityJson.end() && compsIt->is_object()) {
+        mComponenets.clear();
         for (auto it = compsIt->begin(); it != compsIt->end(); ++it) {
             const std::string idStr = it.key();
             const nlohmann::json& data = it.value();

@@ -21,13 +21,11 @@ SphereRenderComponent::SphereRenderComponent(const uint64_t& id, const nlohmann:
 
 void SphereRenderComponent::Start() {
     mColor = RED;
-    std::cout << "---------------SPHERE RENDER COMPONENT---------------" << std::endl;
-    std::cout << mId << "\n" << mPos.x << "\n" << mRadius << std::endl;
-    std::cout << "-----------------------------------------------------" << std::endl;
 }
 
 void SphereRenderComponent::Tick() {
     DrawSphere(mPos, mRadius, mColor);
+    std::cout << mRadius << std::endl; 
 }
 
 nlohmann::json SphereRenderComponent::ToSceneJson(){
