@@ -1,4 +1,4 @@
-#include "systems/scene/Scene.hpp"
+#include "systems/scene/models/Scene.hpp"
 
 //------------------------------------------------------------------------------
 //                              CONSTRUCTORS

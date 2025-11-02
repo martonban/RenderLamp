@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <nlohmann/json.hpp>
 
+
 class Component {
     public:
         Component() = default;
@@ -11,6 +12,7 @@ class Component {
         virtual ~Component() = default;
         virtual void Start() = 0;
         virtual void Tick() = 0;
+        virtual void Destroy() = 0;
         virtual nlohmann::json ToSceneJson() = 0;
         virtual nlohmann::json ToRendererJson() { return nlohmann::json::object(); };
         virtual uint64_t GetID() = 0;

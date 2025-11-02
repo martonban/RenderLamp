@@ -1,4 +1,4 @@
-#include "ecs/Entity.hpp"
+#include "systems/scene/models/Entity.hpp"
 
 
 //------------------------------------------------------------------------------
@@ -38,6 +38,9 @@ void Entity::Tick() {
 }
 
 void Entity::Destroy() {
+    for(auto& c : mComponenets) {
+        c->Destroy();
+    } 
     mComponenets.clear();
 }
 

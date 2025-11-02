@@ -9,8 +9,8 @@
 #include <iostream>
 
 #include "systems/RealTimeRenderingSystem.hpp"
-#include "ecs/Component.hpp"
-#include "ecs/Entity.hpp"
+#include "systems/scene/models/Component.hpp"
+#include "systems/scene/models/Entity.hpp"
 
 class Scene {
     public:

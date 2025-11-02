@@ -2,9 +2,9 @@
 #define BUILD_SYSTEM_HPP
 
 #include "Arca.hpp"
-#include "systems/scene/Scene.hpp"
-#include "ecs/Entity.hpp"
-#include "ecs/Component.hpp"
+#include "systems/scene/models/Scene.hpp"
+#include "systems/scene/models/Entity.hpp"
+#include "systems/scene/models/Component.hpp"
 #include "components/SphereRenderComponent.hpp"
 
 

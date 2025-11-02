@@ -9,7 +9,7 @@
 #include "raylib.h"
 
 #include "components/Transform3D.hpp"
-#include "ecs/Component.hpp"
+#include "systems/scene/models/Component.hpp"
 
 #include "components/SphereRenderComponent.hpp"
 

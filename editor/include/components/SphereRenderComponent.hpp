@@ -3,8 +3,12 @@
 
 #include "raylib.h"
 
-#include "ecs/Component.hpp"
 #include <iostream>
+#include <memory>
+
+#include "systems/scene/models/Component.hpp"
+#include "systems/scene/models/Entity.hpp"
+#include "components/Transform3D.hpp"
 
 class SphereRenderComponent : public Component {
     public:
@@ -13,6 +17,7 @@ class SphereRenderComponent : public Component {
         ~SphereRenderComponent() override = default;
         void Start() override;
         void Tick() override;
+        void Destroy() override;
         uint64_t GetID() override;
         nlohmann::json ToSceneJson() override;
         nlohmann::json ToRendererJson() override;

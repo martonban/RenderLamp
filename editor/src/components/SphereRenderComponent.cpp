@@ -23,6 +23,10 @@ void SphereRenderComponent::Start() {
     mColor = RED;
 }
 
+void SphereRenderComponent::Destroy() {
+
+}
+
 void SphereRenderComponent::Tick() {
     DrawSphere(mPos, mRadius, mColor);
     std::cout << mRadius << std::endl; 

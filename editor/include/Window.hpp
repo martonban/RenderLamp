@@ -14,10 +14,10 @@
 #include <memory>
 
 #include "raylib.h"
-#include "systems/scene/Scene.hpp"
+#include "systems/scene/models/Scene.hpp"
 #include "systems/scene/SceneManagerSystem.hpp"
-#include "ecs/Entity.hpp"
-#include "ecs/Component.hpp"
+#include "systems/scene/models/Entity.hpp"
+#include "systems/scene/models/Component.hpp"
 
 
 class Window {

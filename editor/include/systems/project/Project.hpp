@@ -5,7 +5,7 @@
 #include <filesystem>
 
 #include "Arca.hpp"
-#include "systems/scene/Scene.hpp"
+#include "systems/scene/models/Scene.hpp"
 
 class Project {
     public:
