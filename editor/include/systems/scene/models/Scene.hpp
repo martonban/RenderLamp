@@ -1,12 +1,12 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
-#include <memory>
-#include <cstdint>
-#include <vector>
 #include <filesystem>
-#include <fstream>
 #include <iostream>
+#include <fstream>
+#include <cstdint>
+#include <memory>
+#include <vector>
 
 #include "systems/RealTimeRenderingSystem.hpp"
 #include "systems/scene/models/Component.hpp"
