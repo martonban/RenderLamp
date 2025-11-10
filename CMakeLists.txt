@@ -39,9 +39,8 @@ FetchContent_MakeAvailable(glm)
 # Enable testing
 enable_testing()
 
-add_subdirectory(editor)
-add_subdirectory(renderer)
-add_subdirectory(vendors/Arca)
+add_subdirectory(application/editor)
+add_subdirectory(core/BuzzRenderer)
+add_subdirectory(core/Arca)
 add_subdirectory(vendors/rlImGui)
 add_subdirectory(vendors/imgui)
-add_subdirectory(tests)
