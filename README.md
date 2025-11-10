@@ -1,11 +1,14 @@
 # [WIP] RenderLamp 
-⚠️ WARNING! This project is not yet finished. The descriptions and code found here are not complete.
+⚠️ WARNING! This project is not yet finished. The descriptions and code are not complete.
 
 ## What RenderLamp is
-RenderLamp is a 3D DCC software developed in C++. Its main purpose is to allow users to create various scenes and render them using a chosen render engine. It is an ongoing project through which I aim to further develop my skills in both graphics and software development.
+RenderLamp is a 3D DCC tool developed in C++. RenderLamp is an animation and rendering application designed for creating 3D illustrations, scenes, and short films. It is currently under development and in a highly experimental phase, but it will eventually serve as the foundation for the RenderArc framework.
 
-## Structure
-RenderLamp consists of three main components, each reflecting my expertise in a specific area. The **Editor**, which interacts with the user, demonstrates my proficiency in real-time rendering. The **Renderer**, responsible for rendering the scenes created in the editor, highlights my skills in offline rendering. Finally, **Arca**, my file management library, showcases my abilities in API design and low-level C++ programming.
+## Core Libaries
+ - Arca - A libary responsible for asset management and application state tracking
+ - Buzz Renderer - A Ray Tracing Libary
+ - Marathon - Building System
+ - 
 
 ## Dependencies
 - Used CMAKE and MSVC for building the project.
@@ -21,7 +24,6 @@ RenderLamp consists of three main components, each reflecting my expertise in a 
 This version of RenderLamp you can use the Buzz Renderer. Coming Soon...
 
 ## Build the Project
-⚠️ WARNING! The software currently depends on manually placed AppData files. I'm working on a solution for this
 1. **Clone the Repository**:
     ```sh
     git clone https://github.com/martonban/RenderLamp.git
@@ -42,13 +44,6 @@ This version of RenderLamp you can use the Buzz Renderer. Coming Soon...
     ```sh
     ./build/editor/Debug/RenderLamp
     ```
-## Tests Arca
-cmake --build build --target arca_tests
-
-
-cd build
-ctest --test-dir tests/Arca -V
-
 
 # Resources/Credits
 In the following section, I would like to clarify the guidelines I followed during the project and give proper credit to everyone who contributed to its creation. First and foremost, I would like to express my gratitude to my university advisor, Dr. Péter Mileff, for his guidance and valuable advice throughout this journey. Additionally, I would like to thank Levente Fazekas for contributing to my C++ knowledge through his university course. <br>
