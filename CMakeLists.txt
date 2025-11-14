@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(RenderLamp)
+project(RenderArc)
 
 
 include(FetchContent)
@@ -39,7 +39,8 @@ FetchContent_MakeAvailable(glm)
 # Enable testing
 enable_testing()
 
-add_subdirectory(application/editor)
+add_subdirectory(applications/renderlamp)
+add_subdirectory(applications/zone)
 add_subdirectory(core/BuzzRenderer)
 add_subdirectory(core/Arca)
 add_subdirectory(vendors/rlImGui)
