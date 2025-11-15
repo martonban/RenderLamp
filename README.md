@@ -7,8 +7,8 @@ RenderLamp is a 3D DCC tool developed in C++. RenderLamp is an animation and ren
 ## Core Libaries
  - Arca - A libary responsible for asset management and application state tracking
  - Buzz Renderer - A Ray Tracing Libary
- - Marathon - Runtime and Building System
- - 
+ - Marathon - Simple Building System
+ - Stage - ECS System
 
 ## Dependencies
 - Used CMAKE and MSVC for building the project.
