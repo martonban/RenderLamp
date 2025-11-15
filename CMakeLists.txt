@@ -40,7 +40,7 @@ FetchContent_MakeAvailable(glm)
 enable_testing()
 
 add_subdirectory(applications/renderlamp)
-add_subdirectory(applications/zone)
+add_subdirectory(applications/game)
 add_subdirectory(core/BuzzRenderer)
 add_subdirectory(core/Arca)
 add_subdirectory(vendors/rlImGui)
