@@ -39,22 +39,6 @@ bool ArcaInstance::InstanceSerialize() {
     return true;
 }
 
-bool ArcaInstance::InstanceDeserialize() {
-    std::ifstream file(mInstanceFilePath);
-    if(file.is_open()) {
-        nlohmann::json instanceJson;
-        file >> instanceJson;
-        file.close();
-        Load(instanceJson);
-        return true;
-    } else {
-        std::cout << mInstanceFilePath << std::endl;
-        std::cout << "Instance can't be deserialized" << std::endl;
-        return false;
-    }
-
-}
-
 nlohmann::json ArcaInstance::Save() {
     nlohmann::json json;
     json["ApplicationName"] = mApplicationName;
@@ -70,23 +54,50 @@ nlohmann::json ArcaInstance::Save() {
     return json;
 }
 
-void ArcaInstance::Load(const nlohmann::json& json) {
-    if(json.contains("ApplicationName")) {
-        mApplicationName = json["ApplicationName"];
+bool ArcaInstance::InstanceDeserialize() {
+    std::ifstream file(mInstanceFilePath);
+    if(file.is_open()) {
+        nlohmann::json instanceJson;
+        file >> instanceJson;
+        file.close();
+        
+        if(Load(instanceJson)) {
+            return true;
+        } else {
+            std::cerr << "Error::ArcaInstance.cpp: mModulePathContainer issue is accured during the deserialization" << std::endl;
+            return false;
+        }
+    
+    } else {
+        std::clog<< "Warnirng::ArcaInstance.cpp: " << mInstanceFilePath << " is not exists, please create Instance from scratch, or give a valid file" <<  std::endl;
+        return false;
     }
 
-    if(json.contains("ApplicationCreator")) {
-        mApplicationCreator = json["ApplicationCreator"];
+}
+
+bool ArcaInstance::Load(const nlohmann::json& json) {
+    if(const auto it = json.find("ApplicationName"); it != json.end() && it->is_string()) {
+        mApplicationName = it->get<std::string>();
+    }
+
+    if(const auto it = json.find("ApplicationCreator"); it != json.end() && it->is_string()) {
+        mApplicationCreator = it->get<std::string>();
     }
 
     if (json.contains("ModulePaths")) {
         mModulePathContainer.clear(); // Clear existing paths
         for (const auto& path : json["ModulePaths"]) {
             if (path.is_string()) {
-                mModulePathContainer.push_back(std::filesystem::path(path.get<std::string>()));
+                try {
+                    mModulePathContainer.emplace_back(std::filesystem::path(path.get<std::string>()));
+                } catch(const std::exception& e) {
+                    std::cerr << "Error::ArcaInstance" << e.what() << std::endl;
+                }
+                
             }
         }
     }
+    return true;
 }
 
 void ArcaInstance::ArcaTest() {

@@ -23,10 +23,12 @@ class ArcaInstance {
         void BuildArcaInstance();
 
         bool InstanceSerialize();
-        bool InstanceDeserialize();
-
         nlohmann::json Save();
-        void Load(const nlohmann::json& json);
+
+        bool InstanceDeserialize();
+        bool Load(const nlohmann::json& json);
+
+
 
         void ArcaTest();
         std::filesystem::path GetArcaInstanceFolderPath();
@@ -35,6 +37,7 @@ class ArcaInstance {
         void CreateModule(ArcaModule& module);
         void CreateModule(const std::string& moduleName);
         void CreateModule(const std::filesystem::path& fullFilePath, const std::string& name);
+        
         std::shared_ptr<ArcaModule> GetModule(const std::string& name);
 
 

@@ -2,9 +2,8 @@
 //                                          RenderLamp
 //                                      Márton Bán (C) 2024
 //	
-//  RenderLamp is a 3D DCC tool featuring a CPU-based ray tracer. The software consists of three 
-//  main components: the DCC tool itself, and a rendering library and project management library 
-//  collectively named as Arca (root/vendors/Arca).
+//  RenderLamp is a 3D DCC tool featuring a CPU-based ray tracer. The software is based on the
+//  RenderArc framework, using core libaries.
 //
 //  This is the application's entry point.
 //------------------------------------------------------------------------------------------------
@@ -18,7 +17,7 @@ int main(void) {
     Arca::InitArcaInstance("RenderLamp");
 
     // BUILDING ARCA INSTANCE
-    if(Arca::FetchArcaInstance()) {
+    if(Arca::FetchArcaInstanceData()) {
         Arca::BuildArcaInstance();
         std::cout << "Arca instance has been de-serialized and build!" << std::endl;
     } else {

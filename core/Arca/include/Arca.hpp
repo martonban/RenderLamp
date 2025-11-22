@@ -2,8 +2,7 @@
 //                                              Arca
 //                                       Márton Bán (C) 2025
 //	
-//  Arca is a "I hate to develop this every time" libary. Handling application data, user data, 
-//  assets, files, and errors
+//  Arca is a Application State Manger System
 //------------------------------------------------------------------------------------------------
 
 #ifndef ARCA_HPP
@@ -21,13 +20,11 @@ namespace Arca {
     //                                  ARCA INSTANCE 
     //-----------------------------------------------------------------------------
     /**
-     * @brief Initializes and starts the Arca Libary with the specified application name.
-     * 
-     * This function serves as a convenient wrapper for the singleton ArcaInstance's
-     * StartArcaInstance method. It initializes the Arca Libary for the application.
-     * 
+     * @brief Create the singleton Arca instance class
+     * @details This function builds the path to the ArcaInstance.json file. After calling it, 
+     * you should attempt to load all existing data or create a new Arca instance from scratch.
      * @param applicationName The name of the application to be used within Arca
-     * @return void
+     * @return No return value
      */
     inline void InitArcaInstance(const std::string& applicationName) {
         ArcaInstance::GetInstance().StartArcaInstance(applicationName);
@@ -35,12 +32,11 @@ namespace Arca {
 
     /**
      * @brief This function will going to fetch all data from the instance serialzation file.
-     * 
-     * Note: This function is not going to merit a fully functional Arca Instance! If you need this use Arca::Build();
-     * @param 
+     * @details With this function the libary will deserialize all the data.
+     * @warning Modules and other instances will not be live. This function just fetch the relative paths to those, you have to build them spereatly 
      * @return A bool value based on the file existance.
     */
-    inline bool FetchArcaInstance() {
+    inline bool FetchArcaInstanceData() {
         return ArcaInstance::GetInstance().InstanceDeserialize();
     }
    
