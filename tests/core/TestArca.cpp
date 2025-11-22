@@ -125,9 +125,3 @@ TEST_F(ArcaTest, ArcaContainerCanDispatch) {
     // Note: Without knowing the exact implementation, we just verify it returns
     EXPECT_TRUE(result || !result); // Always passes, just tests no crash
 }
-
-// Main function for running tests
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}

@@ -89,9 +89,3 @@ TEST_F(BuzzRendererTest, MatrixIdentity) {
     EXPECT_FLOAT_EQ(identity[3][3], 1.0f);
     EXPECT_FLOAT_EQ(identity[0][1], 0.0f);
 }
-
-// Main function for running tests
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
