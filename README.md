@@ -1,10 +1,10 @@
 # [WIP] RenderArc
 ## What RenderArc is
-RenderArc is a development platform designed for creating real-time 3D applications. It is built around a set of modular core libraries that can be used both within this repository and in external projects. In addition, this monorepo includes several executable utility tools that support and streamline development on the RenderArc platform. RenderArc is far from complete, it is an evolving system that will continue to grow over time
+RenderArc is a development platform designed for creating real-time 3D applications. It is built around a set of modular core libraries that can be used both within this repository and in external projects. In addition, this monorepo includes several executable utility tools that support and streamline development on the RenderArc platform. RenderArc is far from complete, it is an evolving system that will continue to grow over time.
 
 # Applications
 ## RenderLamp 
-RenderLamp is a 3D DCC tool developed in C++. RenderLamp is an animation and rendering application designed for creating 3D illustrations, scenes, and short films. It is currently under development and in a highly experimental phase..
+RenderLamp is a 3D DCC tool developed in C++. RenderLamp is an animation and rendering application designed for creating 3D illustrations, scenes, and short films. It is currently under development and in a highly experimental phase.
 
 # Core Libaries
  - Arca - Application management libary
@@ -23,12 +23,12 @@ RenderLamp is a 3D DCC tool developed in C++. RenderLamp is an animation and ren
 ## Build the Project
 1. **Clone the Repository**:
     ```sh
-    git clone https://github.com/martonban/RenderLamp.git
+    git clone https://github.com/martonban/RenderArc.git
     cd RenderLamp
     ```
 
 2. **Install Dependencies**:
-    Ensure you have CMake and a compatible C++ compiler (MSVC) installed on your system.
+    Ensure you have CMake and a compatible C++ compiler (MinGW) installed on your system.
 
 3. **Build the Project**:
     ```sh
@@ -36,10 +36,10 @@ RenderLamp is a 3D DCC tool developed in C++. RenderLamp is an animation and ren
     cmake --build build
     ```
 
-4. **Run the Application**:
+4. **Run RenderLamp**:
     After building, you can run the application from the build directory:
     ```sh
-    ./build/editor/Debug/RenderLamp
+    ./build/applications/RenderLamp
     ```
 
 # Resources/Credits
