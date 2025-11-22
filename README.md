@@ -1,13 +1,14 @@
-# [WIP] RenderLamp 
-⚠️ WARNING! This project is not yet finished. The descriptions and code are not complete.
+# [WIP] RenderArc
+## What RenderArc is
+RenderArc is a development platform designed for creating real-time 3D applications. It is built around a set of modular core libraries that can be used both within this repository and in external projects. In addition, this monorepo includes several executable utility tools that support and streamline development on the RenderArc platform. RenderArc is far from complete, it is an evolving system that will continue to grow over time
 
-## What RenderLamp is
-RenderLamp is a 3D DCC tool developed in C++. RenderLamp is an animation and rendering application designed for creating 3D illustrations, scenes, and short films. It is currently under development and in a highly experimental phase, but it will eventually serve as the foundation for the RenderArc framework.
+# Applications
+## RenderLamp 
+RenderLamp is a 3D DCC tool developed in C++. RenderLamp is an animation and rendering application designed for creating 3D illustrations, scenes, and short films. It is currently under development and in a highly experimental phase..
 
-## Core Libaries
- - Arca - A libary responsible for asset management and application state tracking
- - Buzz Renderer - A Ray Tracing Libary
- - Stage - ECS System
+# Core Libaries
+ - Arca - Application management libary
+ - Buzz Renderer - A Ray-Tracer
 
 ## Dependencies
 - Used CMAKE and MSVC for building the project.
@@ -18,9 +19,6 @@ RenderLamp is a 3D DCC tool developed in C++. RenderLamp is an animation and ren
 - [GoogleTest](https://github.com/google/googletest)
 - [GLM](https://github.com/g-truc/glm)
 
-
-## Renderer - Buzz Renderer
-This version of RenderLamp you can use the Buzz Renderer. Coming Soon...
 
 ## Build the Project
 1. **Clone the Repository**:
