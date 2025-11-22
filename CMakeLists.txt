@@ -45,3 +45,6 @@ add_subdirectory(core/BuzzRenderer)
 add_subdirectory(core/Arca)
 add_subdirectory(vendors/rlImGui)
 add_subdirectory(vendors/imgui)
+
+# Add tests
+add_subdirectory(tests)
