@@ -39,8 +39,9 @@ FetchContent_MakeAvailable(glm)
 # Enable testing
 enable_testing()
 
-add_subdirectory(applications/renderlamp)
-add_subdirectory(applications/game)
+add_subdirectory(applications/Renderlamp)
+add_subdirectory(applications/Zone)
+add_subdirectory(utils/tools/RenderCLI)
 add_subdirectory(core/BuzzRenderer)
 add_subdirectory(core/Arca)
 add_subdirectory(vendors/rlImGui)
