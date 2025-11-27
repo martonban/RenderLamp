@@ -1,9 +1,9 @@
 #include "RenderingServer.hpp"
 
 void RenderingServer::Init() {
-    mPrinter = std::make_unique<Printer>();
+    mUserInterface = std::make_unique<UserInterface>();
 }
 
 void RenderingServer::Start() {
-   mPrinter->PrintWelcome();
+    mUserInterface -> Start();
 }

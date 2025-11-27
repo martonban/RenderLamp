@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "interface/Printer.hpp"
+#include "interface/UserInterface.hpp"
 
 class RenderingServer {
     public:
@@ -16,8 +16,7 @@ class RenderingServer {
     protected:
         RenderingServer() = default;
     private:
-        std::unique_ptr<Printer> mPrinter;
-        
+        std::unique_ptr<UserInterface> mUserInterface;
 };
 
 #endif
