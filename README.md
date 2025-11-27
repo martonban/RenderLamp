@@ -6,6 +6,9 @@ RenderArc is a development platform designed for creating real-time 3D applicati
 ## RenderLamp 
 RenderLamp is a 3D DCC tool developed in C++. RenderLamp is an animation and rendering application designed for creating 3D illustrations, scenes, and short films. It is currently under development and in a highly experimental phase.
 
+## BuzzRenderer
+A CPU based ray tracing engine.
+
 # Core Libaries
  - Arca - Application management libary
  - Buzz Renderer - A Ray-Tracer
