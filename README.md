@@ -11,7 +11,6 @@ A CPU based ray tracing engine.
 
 # Core Libaries
  - Arca - Application management libary
- - Buzz Renderer - A Ray-Tracer
 
 ## Dependencies
 - Used CMAKE and MSVC for building the project.
