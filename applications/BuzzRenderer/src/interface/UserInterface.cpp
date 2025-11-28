@@ -6,4 +6,12 @@ UserInterface::UserInterface() {
 
 void UserInterface::Start() {
     mPrinter -> PrintWelcome();
+    ApplicationLoop();
+}
+
+void UserInterface::ApplicationLoop() {
+    mPrinter -> PrintMenu();
+    //while (mApplicationRunabality) {
+     //  
+    //}
 }

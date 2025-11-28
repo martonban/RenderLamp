@@ -10,7 +10,10 @@ class UserInterface {
         UserInterface();
         void Start();
     private:
+        void ApplicationLoop();
         std::unique_ptr<Printer> mPrinter;
+
+        bool mApplicationRunabality = true;
 };
 
 

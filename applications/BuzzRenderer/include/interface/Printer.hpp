@@ -7,6 +7,7 @@
 class Printer {
     public:
         void PrintWelcome();
+        void PrintMenu();
 };
 
 #endif
