@@ -3,7 +3,12 @@ project(RenderLamp)
 
 include(FetchContent)
 
-
+# Arca Dependencies
+FetchContent_Declare(
+	Arca
+	URL https://github.com/martonban/Arca/archive/refs/tags/v.0.0.1-not-stable.tar.gz
+)
+FetchContent_MakeAvailable(Arca)
 
 # Json Dependencies
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
