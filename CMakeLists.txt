@@ -6,7 +6,7 @@ include(FetchContent)
 # Arca Dependencies
 FetchContent_Declare(
 	Arca
-	URL https://github.com/martonban/Arca/archive/refs/tags/v.0.0.1-not-stable.tar.gz
+	URL https://github.com/martonban/Arca/archive/refs/tags/v0.0.1-alpha.tar.gz
 )
 FetchContent_MakeAvailable(Arca)
 
