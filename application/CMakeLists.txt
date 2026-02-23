@@ -11,4 +11,4 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
 endif()
 
 
-target_link_libraries(BuzzRendererKernel PRIVATE Arca  nlohmann_json::nlohmann_json glm::glm)
+target_link_libraries(BuzzRendererKernel PRIVATE Arca nlohmann_json::nlohmann_json glm::glm)

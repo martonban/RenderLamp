@@ -34,4 +34,4 @@ FetchContent_MakeAvailable(glm)
 enable_testing()
 
 
-add_subdirectory(renderer)
+add_subdirectory(application)
