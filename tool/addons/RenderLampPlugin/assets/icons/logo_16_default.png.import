@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by8cxhwnuplsv"
-path="res://.godot/imported/logo_16_white.png-1c070846c73352058d10decbd17cee29.ctex"
+uid="uid://rdexrox46ccx"
+path="res://.godot/imported/logo_16_default.png-65092757ce9e3ddaef6117b3d1f53050.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/RenderLampPlugin/icons/logo_16_white.png"
-dest_files=["res://.godot/imported/logo_16_white.png-1c070846c73352058d10decbd17cee29.ctex"]
+source_file="res://addons/RenderLampPlugin/assets/icons/logo_16_default.png"
+dest_files=["res://.godot/imported/logo_16_default.png-65092757ce9e3ddaef6117b3d1f53050.ctex"]
 
 [params]
 
