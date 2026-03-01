@@ -1,11 +1,13 @@
 @tool
 extends EditorPlugin
 
-
+# Editor Elements
 var render_button
 var render_lamp_menu_bar
 
+# RenderLamp Serialization 
 var window : Window
+var gui_serialization := preload("uid://ixgi0wh4w6cq")
 
 func _enable_plugin() -> void:
 	# Add autoloads here.
@@ -50,7 +52,18 @@ func _exit_tree() -> void:
 
 func _open_render_lamp_serialiazation_window():
 	window = Window.new()
-	EditorInterface.popup_dialog(window, Rect2(Vector2(100, 100), Vector2(500, 500)))
+	window.title = "RenderLamp Serialization"
+	
+	window.wrap_controls = true
+	var gui_scene = gui_serialization.instantiate()
+	if gui_scene is Control:
+		gui_scene.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	
+	window.add_child(gui_scene)
+	EditorInterface.popup_dialog(window, Rect2(Vector2(100, 100), Vector2(500, 800)))
+
+	
+	# Connect Signals
 	
 	window.close_requested.connect(func(): 
 		window.queue_free()
