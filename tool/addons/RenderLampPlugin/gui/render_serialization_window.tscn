@@ -8,11 +8,10 @@ outline_size = 3
 
 [node name="Control" type="Control" unique_id=44460606]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -652.0
-offset_bottom = -48.0
+anchor_right = 0.43400002
+anchor_bottom = 0.92600006
+offset_right = 0.031982422
+offset_bottom = -0.048034668
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -58,21 +57,13 @@ offset_bottom = 79.0
 text = "Session Path:"
 
 [node name="SessionPathTextEdit" type="TextEdit" parent="Panel" unique_id=1761021177]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 24.0
 offset_top = 80.0
 offset_right = 416.0
 offset_bottom = 112.0
 placeholder_text = "C:/Projects/Render
-"
-
-[node name="SessionPathButton" type="Button" parent="Panel" unique_id=276381057]
-layout_mode = 0
-offset_left = 424.0
-offset_top = 80.0
-offset_right = 480.0
-offset_bottom = 111.0
-text = "Path
 "
 
 [node name="RenderEngineText" type="Label" parent="Panel" unique_id=1967691195]
