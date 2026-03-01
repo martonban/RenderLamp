@@ -60,7 +60,7 @@ func _open_render_lamp_serialiazation_window():
 		gui_scene.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	
 	window.add_child(gui_scene)
-	EditorInterface.popup_dialog(window, Rect2(Vector2(100, 100), Vector2(500, 600)))
+	EditorInterface.popup_dialog(window, Rect2(Vector2(200, 200), Vector2(500, 600)))
 
 	
 	# Connect Signals

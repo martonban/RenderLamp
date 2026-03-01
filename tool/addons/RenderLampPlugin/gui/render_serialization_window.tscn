@@ -61,16 +61,16 @@ text = "Session Path:"
 layout_mode = 0
 offset_left = 24.0
 offset_top = 80.0
-offset_right = 320.0
+offset_right = 416.0
 offset_bottom = 112.0
 placeholder_text = "C:/Projects/Render
 "
 
 [node name="SessionPathButton" type="Button" parent="Panel" unique_id=276381057]
 layout_mode = 0
-offset_left = 328.0
+offset_left = 424.0
 offset_top = 80.0
-offset_right = 384.0
+offset_right = 480.0
 offset_bottom = 111.0
 text = "Path
 "
@@ -92,7 +92,7 @@ offset_bottom = 175.0
 item_count = 2
 popup/item_0/text = "Powder Renderer"
 popup/item_0/id = 0
-popup/item_1/text = "RenderLamp"
+popup/item_1/text = "RenderArc Advanced Renderer"
 popup/item_1/id = 1
 popup/item_1/disabled = true
 
