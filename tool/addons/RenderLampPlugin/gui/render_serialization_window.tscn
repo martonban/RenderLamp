@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://ixgi0wh4w6cq"]
 
+[ext_resource type="Script" uid="uid://c3iitywr3ms2a" path="res://addons/RenderLampPlugin/scripts/gui/render_serialization_script.gd" id="1_5ktvv"]
+
 [sub_resource type="Theme" id="Theme_xfjxd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xfjxd"]
@@ -14,6 +16,7 @@ offset_right = 0.031982422
 offset_bottom = -0.048034668
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5ktvv")
 
 [node name="Panel" type="Panel" parent="." unique_id=92600751]
 layout_mode = 1
@@ -122,18 +125,15 @@ offset_left = 24.0
 offset_top = 272.0
 offset_right = 321.0
 offset_bottom = 303.0
-item_count = 4
+item_count = 3
 popup/item_0/text = "CPU Single Threaded"
 popup/item_0/id = 0
-popup/item_1/text = "CPU Multithread"
+popup/item_1/text = "CPU Advanced"
 popup/item_1/id = 1
 popup/item_1/disabled = true
-popup/item_2/text = "CPU Multithread (AVX)"
-popup/item_2/id = 2
+popup/item_2/text = "GPU "
+popup/item_2/id = 3
 popup/item_2/disabled = true
-popup/item_3/text = "GPU "
-popup/item_3/id = 3
-popup/item_3/disabled = true
 
 [node name="ResolutionText" type="Label" parent="Panel" unique_id=1381797287]
 layout_mode = 0

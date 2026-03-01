@@ -64,7 +64,6 @@ func _open_render_lamp_serialiazation_window():
 
 	
 	# Connect Signals
-	
 	window.close_requested.connect(func(): 
 		window.queue_free()
 	)
