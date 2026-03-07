@@ -1,4 +1,4 @@
-#include "ServerInstance.hpp"
+#include "server/ServerInstance.hpp"
 
 int main() {
     // Singleton Application

@@ -1,5 +1,7 @@
 #include "ServerInstance.hpp"
 
+ServerInstance::ServerInstance() {}
+
 void ServerInstance::Init() {
     Arca::InitArcaInstance("RenderLamp");
     if(Arca::FetchArcaInstanceData()) {
@@ -18,8 +20,6 @@ void ServerInstance::Init() {
 void ServerInstance::Start() {
 
 }
-
-ServerInstance::ServerInstance() {}
 
 ServerInstance* ServerInstance::mServerInstance = nullptr;
 
