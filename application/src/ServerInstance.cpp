@@ -1,9 +1,31 @@
 #include "ServerInstance.hpp"
 
 void ServerInstance::Init() {
-    mUserInterface = std::make_unique<UserInterface>();
+    Arca::InitArcaInstance("RenderLamp");
+    if(Arca::FetchArcaInstanceData()) {
+        Arca::BuildArcaInstance();
+        std::cout << "Arca instance has been de-serialized and build!" << std::endl;
+    } else {
+        Arca::CreateArcaInstance();
+        Arca::AddCreator("Márton Bán");
+        Arca::CreateModule("Projects");
+        if(Arca::ReleaseArcaInstance()) {
+            std::cout << "Arca Instance has been created!" << std::endl;
+        }
+    }
 }
 
 void ServerInstance::Start() {
-    mUserInterface -> Start();
+
+}
+
+ServerInstance::ServerInstance() {}
+
+ServerInstance* ServerInstance::mServerInstance = nullptr;
+
+ServerInstance* ServerInstance::GetInstance() {
+    if(mServerInstance == nullptr) {
+        mServerInstance = new ServerInstance();
+    }
+    return mServerInstance;
 }

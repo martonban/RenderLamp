@@ -1,22 +1,24 @@
 #ifndef SERVER_INSTANCE_HPP
 #define SERVER_INSTANCE_HPP
 
-#include <memory>
-
-#include "interface/UserInterface.hpp"
+#include "Arca.hpp"
 
 class ServerInstance {
-    public:
+    public: 
+        ServerInstance(ServerInstance& instance) = delete;
+        void operator= (const ServerInstance &) = delete;
+        static ServerInstance* GetInstance();
+
         void Init();
         void Start();
-        static ServerInstance& GetInstance() {
-            static ServerInstance instance;
-            return instance;
-        }
+
     protected:
-        ServerInstance() = default;
-    private:
-        std::unique_ptr<UserInterface> mUserInterface;
+        ServerInstance();
+        static ServerInstance* mServerInstance;
+        //std::uniqie<CliInterface> mCliInterface; 
 };
+
+
+
 
 #endif
