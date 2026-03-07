@@ -53,35 +53,35 @@ label_settings = SubResource("LabelSettings_xfjxd")
 
 [node name="SessionPathText" type="Label" parent="Panel" unique_id=2119152610]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 8.0
 offset_top = 56.0
-offset_right = 119.0
+offset_right = 111.0
 offset_bottom = 79.0
 text = "Session Path:"
 
 [node name="SessionPathTextEdit" type="TextEdit" parent="Panel" unique_id=1761021177]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 24.0
+offset_left = 16.0
 offset_top = 80.0
-offset_right = 416.0
+offset_right = 408.0
 offset_bottom = 112.0
 placeholder_text = "C:/Projects/Render
 "
 
 [node name="RenderEngineText" type="Label" parent="Panel" unique_id=1967691195]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 8.0
 offset_top = 120.0
-offset_right = 145.0
+offset_right = 148.0
 offset_bottom = 143.0
 text = "Rendering Engine:"
 
 [node name="RenderEngineOptionButton" type="OptionButton" parent="Panel" unique_id=1787160227]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 16.0
 offset_top = 144.0
-offset_right = 321.0
+offset_right = 313.0
 offset_bottom = 175.0
 item_count = 2
 popup/item_0/text = "Powder Renderer"
@@ -92,17 +92,17 @@ popup/item_1/disabled = true
 
 [node name="LightSimText" type="Label" parent="Panel" unique_id=1367447052]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 8.0
 offset_top = 184.0
-offset_right = 214.0
+offset_right = 206.0
 offset_bottom = 207.0
 text = "Lighting Simulation Mode"
 
 [node name="LightSimOptionButton" type="OptionButton" parent="Panel" unique_id=1750558563]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 16.0
 offset_top = 208.0
-offset_right = 321.0
+offset_right = 313.0
 offset_bottom = 239.0
 item_count = 2
 popup/item_0/text = "Ray Tracing"
@@ -113,17 +113,17 @@ popup/item_1/disabled = true
 
 [node name="DeviceText" type="Label" parent="Panel" unique_id=1673302644]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 8.0
 offset_top = 248.0
-offset_right = 145.0
+offset_right = 137.0
 offset_bottom = 271.0
 text = "Device:"
 
 [node name="DeviceOptionButton" type="OptionButton" parent="Panel" unique_id=1890702687]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 16.0
 offset_top = 272.0
-offset_right = 321.0
+offset_right = 313.0
 offset_bottom = 303.0
 item_count = 3
 popup/item_0/text = "CPU Single Threaded"
@@ -137,43 +137,43 @@ popup/item_2/disabled = true
 
 [node name="ResolutionText" type="Label" parent="Panel" unique_id=1381797287]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 8.0
 offset_top = 312.0
-offset_right = 119.0
+offset_right = 111.0
 offset_bottom = 335.0
 text = "Resolution:"
 
 [node name="ResulutionWidth" type="TextEdit" parent="Panel" unique_id=552861741]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 16.0
 offset_top = 336.0
-offset_right = 86.0
+offset_right = 78.0
 offset_bottom = 368.0
 placeholder_text = "Width 
 "
 
 [node name="ResolutionHeight" type="TextEdit" parent="Panel" unique_id=985056802]
 layout_mode = 0
-offset_left = 88.0
+offset_left = 80.0
 offset_top = 336.0
-offset_right = 155.0
+offset_right = 147.0
 offset_bottom = 368.0
 placeholder_text = "Height
 "
 
 [node name="SamplePerPixelText" type="Label" parent="Panel" unique_id=1229796009]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 8.0
 offset_top = 384.0
-offset_right = 157.0
+offset_right = 149.0
 offset_bottom = 407.0
 text = "Samples Per Pixel:"
 
 [node name="SamplePerPixelSpinBox" type="SpinBox" parent="Panel" unique_id=505040890]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 16.0
 offset_top = 408.0
-offset_right = 122.0
+offset_right = 114.0
 offset_bottom = 439.0
 min_value = 1.0
 max_value = 1000.0
@@ -181,17 +181,17 @@ value = 100.0
 
 [node name="DepthText" type="Label" parent="Panel" unique_id=2105221116]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 8.0
 offset_top = 448.0
-offset_right = 145.0
+offset_right = 137.0
 offset_bottom = 471.0
 text = "Max Depth:"
 
 [node name="DepthSpinBox" type="SpinBox" parent="Panel" unique_id=1286861734]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 16.0
 offset_top = 472.0
-offset_right = 122.0
+offset_right = 114.0
 offset_bottom = 503.0
 min_value = 1.0
 value = 20.0
