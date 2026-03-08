@@ -1,7 +1,11 @@
 #ifndef SERVER_INSTANCE_HPP
 #define SERVER_INSTANCE_HPP
 
+#include <memory>
+
 #include "Arca.hpp"
+
+#include "app/CliInterface.hpp"
 
 class ServerInstance {
     public: 
@@ -15,7 +19,7 @@ class ServerInstance {
     protected:
         ServerInstance();
         static ServerInstance* mServerInstance;
-        //std::uniqie<CliInterface> mCliInterface; 
+        std::unique_ptr<CliInterface> mCliInterface; 
 };
 
 
