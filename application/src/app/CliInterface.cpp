@@ -11,7 +11,6 @@ CliInterface::CliInterface(const CliViewMode& mode) {
     case SERVER_VIEW:
         // TO-DO Implement this case
         // StartServerListener();
-        // StartServerView();
         break;
     default:
         break;
@@ -20,11 +19,8 @@ CliInterface::CliInterface(const CliViewMode& mode) {
 
 void CliInterface::StartAppViewLoop() {
     auto printer = std::make_unique<PrinterSystem>(mViewMode);
-    std::string inputBuffer;
+    printer -> PrintWelcomeScreen();
     while(mAppStatus) {
-        printer->PrintCurrentState();
-        std::cin >> inputBuffer;
-        printer->WaitForUserInput(inputBuffer);
-        inputBuffer.clear(); 
+        printer->PrinterSystemController(mAppStatus);
     }
 }

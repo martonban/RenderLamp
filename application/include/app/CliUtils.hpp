@@ -8,8 +8,6 @@ enum CliViewMode {
 enum CliAppScenes {
     WELCOME_SCREEN,
     MAIN_MENU,
-    ADD_PROJECTS,
-    SELECT_PROJECT,
-    EXIT_APP,
-    RENDERING_PROCESS    
+    RENDERING_PROGRESS_SCENE,
+    EXIT_SCENE 
 };

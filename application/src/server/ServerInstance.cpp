@@ -19,6 +19,7 @@ void ServerInstance::Init() {
 
 void ServerInstance::Start() {
     mCliInterface = std::make_unique<CliInterface>(CLI_APP_VIEW);
+    
 }
 
 ServerInstance* ServerInstance::mServerInstance = nullptr;
