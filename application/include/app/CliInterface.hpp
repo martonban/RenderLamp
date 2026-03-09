@@ -10,8 +10,13 @@
 class CliInterface {
     public:
         CliInterface(const CliViewMode& mode);
+        std::weak_ptr<PrinterSystem> GetPrinter() const noexcept;
+        void Run();
+        
     private:
         void StartAppViewLoop();
+
+        std::shared_ptr<PrinterSystem> mPrinter; 
         CliViewMode mViewMode;
         bool mAppStatus = false;
 };

@@ -2,9 +2,9 @@
 RenderLamp is a DCC tool with a CPU ray tracer engine
 
 # Sources:
-Application:
+RenderLamp Application:
 - https://refactoring.guru/design-patterns/singleton/cpp/example
-- 
+- https://refactoring.guru/design-patterns/observer/cpp/example
 
 Rendering System:
 - https://raytracing.github.io/books/RayTracingInOneWeekend.html

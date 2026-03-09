@@ -2,7 +2,11 @@
 
 CliInterface::CliInterface(const CliViewMode& mode) {
     mViewMode = mode;
-    switch (mode)
+    mPrinter = std::make_shared<PrinterSystem>(mode);
+}
+
+void CliInterface::Run() {
+    switch (mViewMode)
     {
     case CLI_APP_VIEW:
         mAppStatus = true;
@@ -17,10 +21,13 @@ CliInterface::CliInterface(const CliViewMode& mode) {
     }
 }
 
+std::weak_ptr<PrinterSystem> CliInterface::GetPrinter() const noexcept {
+    return mPrinter;
+}
+
 void CliInterface::StartAppViewLoop() {
-    auto printer = std::make_unique<PrinterSystem>(mViewMode);
-    printer -> PrintWelcomeScreen();
+    mPrinter -> PrintWelcomeScreen();
     while(mAppStatus) {
-        printer->PrinterSystemController(mAppStatus);
+        mPrinter->PrinterSystemController(mAppStatus);
     }
 }

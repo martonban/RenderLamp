@@ -1,11 +1,39 @@
 #include "app/PrinterSystem.hpp"
 
-#include <cmath>
-#include <iomanip>
-
 PrinterSystem::PrinterSystem(const CliViewMode& mode) {
     mViewMode = mode;
     mCurrentScene = MAIN_MENU;
+}
+
+void PrinterSystem::Attach(std::weak_ptr<IObserver> observer) {
+    mObserverVector.push_back(observer);
+}
+
+void PrinterSystem::Detach(std::weak_ptr<IObserver> observer) {
+    auto it = mObserverVector.begin();
+    while (it != mObserverVector.end()) {
+        if (!it->expired() && !observer.expired()) {
+            auto sp1 = it->lock();
+            auto sp2 = observer.lock();
+            if (sp1 && sp2 && sp1.get() == sp2.get()) {
+                it = mObserverVector.erase(it);
+                continue;
+            }
+        }
+        ++it;
+    }
+}
+
+void PrinterSystem::Notify() {
+    auto it = mObserverVector.begin();
+    while (it != mObserverVector.end()) {
+        if (auto observer = it->lock()) {
+            observer->Update(mServerRequest);
+            ++it;
+        } else {
+            it = mObserverVector.erase(it);
+        }
+    }
 }
 
 void PrinterSystem::PrinterSystemController(bool& appStatus) {
@@ -16,6 +44,8 @@ void PrinterSystem::PrinterSystemController(bool& appStatus) {
         MainMenuHandler();
         break;
     case RENDERING_PROGRESS_SCENE:
+        mServerRequest.type = 1;
+        Notify();
         ProgressBarHandler();
         break;
     case EXIT_SCENE:

@@ -19,7 +19,9 @@ void ServerInstance::Init() {
 
 void ServerInstance::Start() {
     mCliInterface = std::make_unique<CliInterface>(CLI_APP_VIEW);
-    
+    mServer = std::make_shared<Server>(mCliInterface->GetPrinter());
+    mServer->Subscribe();
+    mCliInterface->Run();
 }
 
 ServerInstance* ServerInstance::mServerInstance = nullptr;

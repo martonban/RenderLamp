@@ -6,6 +6,7 @@
 #include "Arca.hpp"
 
 #include "app/CliInterface.hpp"
+#include "server/Server.hpp"
 
 class ServerInstance {
     public: 
@@ -19,7 +20,8 @@ class ServerInstance {
     protected:
         ServerInstance();
         static ServerInstance* mServerInstance;
-        std::unique_ptr<CliInterface> mCliInterface; 
+        std::unique_ptr<CliInterface> mCliInterface;
+        std::shared_ptr<Server> mServer;
 };
 
 
