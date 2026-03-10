@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dtyh78wdl1ckw"]
+
+[node name="RenderLampTools" type="Control" unique_id=51053614]
+layout_mode = 3
+anchor_right = 0.326
+anchor_bottom = 1.0
+offset_right = 0.44799805
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=284140107]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=1255292192]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Toolbar"

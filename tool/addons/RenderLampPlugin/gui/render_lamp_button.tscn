@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cy0sy7m4q2hrb"]
+
+[sub_resource type="Theme" id="Theme_fmcwk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ehcpn"]
+font_size = 25
+outline_size = 3
+
+[node name="RenderLampButton" type="Control" unique_id=1881851525]
+layout_mode = 3
+anchor_right = 0.38200003
+anchor_bottom = 0.98800004
+offset_right = 7.935974
+offset_bottom = 7.776001
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=2122752969]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.012
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -7.776
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_fmcwk")
+
+[node name="SaveButton" type="Button" parent="Panel" unique_id=1721009805]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -132.0
+offset_top = -48.0
+offset_right = -15.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Serialize"
+
+[node name="Title" type="Label" parent="Panel" unique_id=1276115656]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 8.0
+offset_right = 304.0
+offset_bottom = 43.0
+text = "RenderLamp"
+label_settings = SubResource("LabelSettings_ehcpn")
