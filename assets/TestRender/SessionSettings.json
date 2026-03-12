@@ -1,0 +1,10 @@
+{
+	"Depth": 50,
+	"Device": 0,
+	"Mode": 0,
+	"RenderEngine": 0,
+	"Samples": 500,
+	"SessionName": "TestRender",
+	"TargetHeight": 1080,
+	"TargetWidth": 1920
+}
