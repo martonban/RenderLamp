@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dduym7e3tbyb6"]
+
+[ext_resource type="Script" uid="uid://brq1j483uy277" path="res://addons/RenderLampPlugin/scripts/systems/uber_scene_script.gd" id="1_tr1a5"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ia72g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut3yh"]
+albedo_color = Color(0.23106942, 0.371215, 0.5843193, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_q02mk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2b4w"]
+albedo_color = Color(0.8875942, 0.43646848, 0.7389182, 1)
+
+[node name="Render" type="Node3D" unique_id=1777651953 node_paths=PackedStringArray("node_array", "camera")]
+script = ExtResource("1_tr1a5")
+node_array = [NodePath("MeshInstance3D"), NodePath("MeshInstance3D2")]
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=871851425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0038019419, 0.5076376, 1.8481979)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1445141586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73412824, 0.37036753, 0.4011209)
+mesh = SubResource("SphereMesh_ia72g")
+surface_material_override/0 = SubResource("StandardMaterial3D_ut3yh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=548016099]
+transform = Transform3D(0.9999784, -0.005960006, 0.0027580403, 0.005948519, 0.99997365, 0.004154618, -0.0027827288, -0.0041381223, 0.9999876, -0.58774996, 0.3976481, -0.3910036)
+mesh = SubResource("SphereMesh_q02mk")
+surface_material_override/0 = SubResource("StandardMaterial3D_k2b4w")
