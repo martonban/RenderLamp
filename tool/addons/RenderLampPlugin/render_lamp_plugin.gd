@@ -38,9 +38,9 @@ func _enter_tree() -> void:
 	add_control_to_container(CONTAINER_TOOLBAR, render_button)
 	
 	# RenderLamp Toolbox
-	toolbox_scene = gui_toolbox.instantiate()
-	toolbox_scene.name = "RenderLamp"
-	add_control_to_dock(DOCK_SLOT_LEFT_BR, toolbox_scene)
+	#toolbox_scene = gui_toolbox.instantiate()
+	#toolbox_scene.name = "RenderLamp"
+	#add_control_to_dock(DOCK_SLOT_LEFT_BR, toolbox_scene)
 
 	render_button.pressed.connect(_open_render_lamp_serialiazation_window)
 	
@@ -54,8 +54,8 @@ func _exit_tree() -> void:
 	remove_control_from_container(CONTAINER_TOOLBAR, render_button)
 	render_button.queue_free()
 	
-	remove_control_from_docks(toolbox_scene)
-	toolbox_scene.queue_free()
+	#remove_control_from_docks(toolbox_scene)
+	#toolbox_scene.queue_free()
 
 
 func _open_render_lamp_serialiazation_window():
