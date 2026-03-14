@@ -16,4 +16,6 @@ func _deserilaize():
 	var index = scene_list.get_selected()
 	var scene = load("res://RenderLamp/" + scene_list.get_item_text(index))
 	var instance: Node3D = scene.instantiate()
-	instance.test()
+	add_child(instance)
+	instance.serialize()
+	instance.queue_free()
