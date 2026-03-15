@@ -1,0 +1,72 @@
+{
+	"camera": {
+		"fov": 75.0,
+		"position": {
+			"x": -0.00380194187164307,
+			"y": 0.507637619972229,
+			"z": 2.73592591285706
+		}
+	},
+	"objects": [
+		{
+			"material": {
+				"color": {
+					"b": 149,
+					"g": 94,
+					"r": 58
+				},
+				"metallic": 0.0,
+				"roughness": 1.0
+			},
+			"name": "MeshInstance3D",
+			"transform": {
+				"position": {
+					"x": 0.73412823677063,
+					"y": 0.370367527008057,
+					"z": 0.401120901107788
+				},
+				"rotation": {
+					"x": 0.0,
+					"y": 0.0,
+					"z": 0.0
+				},
+				"scale": {
+					"x": 1.0,
+					"y": 1.0,
+					"z": 1.0
+				}
+			},
+			"type": "SphereMesh"
+		},
+		{
+			"material": {
+				"color": {
+					"b": 212,
+					"g": 81,
+					"r": 222
+				},
+				"metallic": 1.0,
+				"roughness": 1.0
+			},
+			"name": "MeshInstance3D2",
+			"transform": {
+				"position": {
+					"x": -0.58774995803833,
+					"y": 0.397648096084595,
+					"z": -0.391003608703613
+				},
+				"rotation": {
+					"x": 0.0,
+					"y": 0.0,
+					"z": 0.0
+				},
+				"scale": {
+					"x": 1.0,
+					"y": 1.0,
+					"z": 1.0
+				}
+			},
+			"type": "SphereMesh"
+		}
+	]
+}
