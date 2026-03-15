@@ -5,10 +5,6 @@ Server::Server(std::weak_ptr<PrinterSystem> printer) {
 }
 
 void Server::Start() {
-    Arca::CreateModule("Server");
-    if(Arca::ReleaseArcaInstance()) {
-        std::cout << "Arca Instance has been created!" << std::endl;
-    }
 }
 
 void Server::Subscribe() {
@@ -31,9 +27,14 @@ void Server::Update(const ServerRequest& request) {
     }
 }
 
-
 void Server::AddNewProject(const std::filesystem::path& path) {
-    std::cout << "PINA" << std::endl;
+    std::string name = path.filename().string();
+    std::shared_ptr<ArcaModule> projectModule = Arca::GetArcaModule("ProjectLists");
+    std::string projectListConfigFileName = "RenderProjects";
+    projectModule->CreateNewContainer(projectListConfigFileName);
+    projectModule->GetContainer(projectListConfigFileName)->AddPair(name, path);
+    projectModule->GetContainer(projectListConfigFileName)->Dispatch();
+    projectModule->Serialize();
 }
 
 void Server::StartSession() {

@@ -10,6 +10,7 @@ void ServerInstance::Init() {
     } else {
         Arca::CreateArcaInstance();
         Arca::AddCreator("Márton Bán");
+        Arca::CreateModule("ProjectLists");
         if(Arca::ReleaseArcaInstance()) {
             std::cout << "Arca Instance has been created!" << std::endl;
         }

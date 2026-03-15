@@ -23,8 +23,4 @@ class ServerInstance {
         std::unique_ptr<CliInterface> mCliInterface;
         std::shared_ptr<Server> mServer;
 };
-
-
-
-
 #endif
