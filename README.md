@@ -1,10 +1,14 @@
 # RenderLamp
-RenderLamp is a DCC tool with a CPU ray tracer engine
-
-# Editor
-RenderLamp
+RenderLamp is a CPU ray tracer engine with a DCC tool.
 
 # Rendering Engines
+
+
+# Editor
+RenderLamp is shiped with a Godot Plugin 
+
+
+
 
 # Sources:
 RenderLamp Application:
