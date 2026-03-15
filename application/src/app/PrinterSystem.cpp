@@ -5,6 +5,34 @@ PrinterSystem::PrinterSystem(const CliViewMode& mode) {
     mCurrentScene = MAIN_MENU;
 }
 
+void PrinterSystem::PrinterSystemController(bool& appStatus) {
+    switch (mCurrentScene)
+    {
+    case MAIN_MENU:
+        PrintMainMenu();
+        MainMenuHandler();
+        break;
+    case ADD_NEW_PROJECT_SCENE:
+        AddNewProjectHandler();
+        Notify();
+        break;
+    case RENDERING_PROGRESS_SCENE:
+        mServerRequest.type = RUN_TEST_RENDER;
+        Notify();
+        ProgressBarHandler();
+        break;
+    case EXIT_SCENE:
+        appStatus = false;
+        break;
+    default:
+        break;
+    }
+}
+
+
+//----------------------------------------------------------------------------------------
+//                                    OBSERVER SYSTEM
+//----------------------------------------------------------------------------------------
 void PrinterSystem::Attach(std::weak_ptr<IObserver> observer) {
     mObserverVector.push_back(observer);
 }
@@ -36,26 +64,9 @@ void PrinterSystem::Notify() {
     }
 }
 
-void PrinterSystem::PrinterSystemController(bool& appStatus) {
-    switch (mCurrentScene)
-    {
-    case MAIN_MENU:
-        PrintMainMenu();
-        MainMenuHandler();
-        break;
-    case RENDERING_PROGRESS_SCENE:
-        mServerRequest.type = 1;
-        Notify();
-        ProgressBarHandler();
-        break;
-    case EXIT_SCENE:
-        appStatus = false;
-        break;
-    default:
-        break;
-    }
-}
-
+//----------------------------------------------------------------------------------------
+//                                    MAIN MENU
+//----------------------------------------------------------------------------------------
 void PrinterSystem::PrintWelcomeScreen() {
     std::cout << "\n \n" << std::endl;
 
@@ -88,8 +99,10 @@ void PrinterSystem::MainMenuHandler() {
         {
         case 1:
             s2 = true;
+            mCurrentScene = ADD_NEW_PROJECT_SCENE;
             break;
         case 2:
+            mCurrentScene = LIST_ALL_PROJECTS;
             s2 = true;
             break;
         case 3:
@@ -115,13 +128,61 @@ void PrinterSystem::PrintMainMenu() {
     std::cout << "Main Menu" << std::endl;
     std::cout << "--------------------------------------------------------------------------------------" << std::endl;
     std::cout << "1 - Add New Project" << std::endl;
-    std::cout << "2 - Load Project" << std::endl;
+    std::cout << "2 - Render Project" << std::endl;
     std::cout << "3 - Render Test Scene" << std::endl; 
     std::cout << "4 - Exit" << std::endl;
     std::cout << "--------------------------------------------------------------------------------------" << std::endl;
 }
 
+//----------------------------------------------------------------------------------------
+//                                   ADD NEW PROJECT
+//----------------------------------------------------------------------------------------
+void PrinterSystem::AddNewProjectHandler() {
+    bool validPath = false;
+    while(!validPath) {
+        std::string path;
+        std::cout << "> ";
+        std::getline(std::cin, path);
+        path = CleanPath(path);  
+        if(PathValidator(path)) {
+            mServerRequest = ServerRequest{ ADD_NEW_PROJECT, path };
+            validPath = true;
+        } else {
+            PrintErrosMessage(3, "This project is not exists!");
+        }
+    } 
+    std::cout << "Project is successfully added!" << std::endl;
+    mCurrentScene = MAIN_MENU;
+}
 
+bool PrinterSystem::PathValidator(const std::string& path) {
+    std::filesystem::path testPath = path;
+    if(std::filesystem::exists(testPath) && std::filesystem::exists(testPath / "Scene.json") 
+            && std::filesystem::exists(testPath / "SessionSettings.json")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+std::string PrinterSystem::CleanPath(const std::string& path) {
+    std::string cleaned = path;
+    cleaned.erase(cleaned.begin(), std::find_if(cleaned.begin(), cleaned.end(), [](unsigned char ch) { return !std::isspace(ch); }));
+    cleaned.erase(std::find_if(cleaned.rbegin(), cleaned.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), cleaned.end());
+    return cleaned;
+}
+
+
+
+
+//----------------------------------------------------------------------------------------
+//                                    LIST ALL PROJECT
+//----------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------
+//                                    TEST RENDER
+//----------------------------------------------------------------------------------------
 void PrinterSystem::ProgressBarHandler() {
     constexpr int totalSteps = 300;
     int lastBucket = -1;
@@ -169,6 +230,9 @@ void PrinterSystem::PrintRenderProgressBar(const int& x) {
               << std::setw(3) << (clampedX * 5) << "%" << std::flush;
 }
 
+//----------------------------------------------------------------------------------------
+//                                      LOGGER
+//----------------------------------------------------------------------------------------
 void PrinterSystem::PrintErrosMessage(const int& logLevel, const std::string& msg) {
     switch (logLevel)
     {

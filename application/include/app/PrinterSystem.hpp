@@ -7,6 +7,8 @@
 #include <vector>
 #include <cmath>
 #include <iomanip>
+#include <algorithm>
+#include <cctype>
 
 #include "CliUtils.hpp"
 #include "interfaces/ISubject.hpp"
@@ -32,6 +34,10 @@ class PrinterSystem : public ISubject {
 
         void MainMenuHandler();
         void PrintMainMenu();
+
+        void AddNewProjectHandler();
+        bool PathValidator(const std::string& path);
+        std::string CleanPath(const std::string& path);
 
         void ProgressBarHandler();
         void PrintRenderProgressBar(const int& x);

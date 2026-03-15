@@ -10,7 +10,6 @@ void ServerInstance::Init() {
     } else {
         Arca::CreateArcaInstance();
         Arca::AddCreator("Márton Bán");
-        Arca::CreateModule("Projects");
         if(Arca::ReleaseArcaInstance()) {
             std::cout << "Arca Instance has been created!" << std::endl;
         }
@@ -22,6 +21,7 @@ void ServerInstance::Start() {
     mServer = std::make_shared<Server>(mCliInterface->GetPrinter());
     mServer->Subscribe();
     mCliInterface->Run();
+    mServer->Start();
 }
 
 ServerInstance* ServerInstance::mServerInstance = nullptr;
