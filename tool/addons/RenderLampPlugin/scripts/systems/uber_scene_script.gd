@@ -40,6 +40,7 @@ func serialize():
 
 		var node_data: Dictionary = {
 			"name": n.name,
+			"type": n.mesh.get_class(),
 			"transform": {
 				"position": {
 					"x": world_pos.x,
