@@ -139,6 +139,8 @@ void PrinterSystem::PrintMainMenu() {
 //----------------------------------------------------------------------------------------
 void PrinterSystem::AddNewProjectHandler() {
     bool validPath = false;
+    std::cout << "Add new project:" << std::endl;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     while(!validPath) {
         std::string path;
         std::cout << "> ";
@@ -171,9 +173,6 @@ std::string PrinterSystem::CleanPath(const std::string& path) {
     cleaned.erase(std::find_if(cleaned.rbegin(), cleaned.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), cleaned.end());
     return cleaned;
 }
-
-
-
 
 //----------------------------------------------------------------------------------------
 //                                    LIST ALL PROJECT
