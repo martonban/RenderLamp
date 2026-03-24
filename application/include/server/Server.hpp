@@ -16,9 +16,9 @@ class Server : public IObserver, public std::enable_shared_from_this<Server> {
         void Update(const ServerRequest& request) override;
 
     private:
-        void AddNewProject(const std::filesystem::path& path);
+        void AddNewProject(const std::filesystem::path& inputPath);
 
-
+        std::shared_ptr<Arca::Module> mArcaModule;
         std::weak_ptr<PrinterSystem> mPrinterPtr;
 
         void StartSession();

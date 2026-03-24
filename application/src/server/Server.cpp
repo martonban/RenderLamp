@@ -1,6 +1,10 @@
 #include "server/Server.hpp"
 
 Server::Server(std::weak_ptr<PrinterSystem> printer) {
+    Arca::ModuleConfig config = Arca::GetModule("Server");
+    mArcaModule = std::make_shared<Arca::Module>(config);
+    mArcaModule->AddAccessPoint("TestRender", std::filesystem::absolute("./assets/TestRender"));
+    mArcaModule->Save();
     mPrinterPtr = printer;
 }
 
@@ -27,14 +31,12 @@ void Server::Update(const ServerRequest& request) {
     }
 }
 
-void Server::AddNewProject(const std::filesystem::path& path) {
-    std::string name = path.filename().string();
-    std::shared_ptr<ArcaModule> projectModule = Arca::GetArcaModule("ProjectLists");
-    std::string projectListConfigFileName = "RenderProjects";
-    projectModule->CreateNewContainer(projectListConfigFileName);
-    projectModule->GetContainer(projectListConfigFileName)->AddPair(name, path);
-    projectModule->GetContainer(projectListConfigFileName)->Dispatch();
-    projectModule->Serialize();
+void Server::AddNewProject(const std::filesystem::path& inputPath) {
+    std::string name = inputPath.filename().string();
+    std::filesystem::path path = std::filesystem::absolute(inputPath);
+
+    mArcaModule->AddAccessPoint(name, path);
+    mArcaModule->Save();
 }
 
 void Server::StartSession() {

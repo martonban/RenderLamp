@@ -4,16 +4,20 @@ ServerInstance::ServerInstance() {}
 
 void ServerInstance::Init() {
     Arca::InitArcaInstance("RenderLamp");
-    if(Arca::FetchArcaInstanceData()) {
-        Arca::BuildArcaInstance();
-        std::cout << "Arca instance has been de-serialized and build!" << std::endl;
-    } else {
-        Arca::CreateArcaInstance();
-        Arca::AddCreator("Márton Bán");
-        Arca::CreateModule("ProjectLists");
-        if(Arca::ReleaseArcaInstance()) {
-            std::cout << "Arca Instance has been created!" << std::endl;
-        }
+    if(Arca::IsArcaNew()) {
+        Arca::ApplicationMetaData metaData { "RenderLamp", "Marton Ban", "v0.1" };
+        Arca::AddMetaData(metaData);
+
+        Arca::ModuleConfig serverModuleConfig {
+            "Server",
+            std::filesystem::path {},
+            Arca::CORE_TYPE,
+            Arca::READY_FOR_PROCESSING
+        };
+
+        Arca::ProcessModuleConfig(serverModuleConfig);
+        Arca::AddModule(serverModuleConfig);
+        Arca::Build();
     }
 }
 
