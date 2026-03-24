@@ -17,7 +17,11 @@ class Server : public IObserver, public std::enable_shared_from_this<Server> {
 
     private:
         void AddNewProject(const std::filesystem::path& inputPath);
+        void ListAllProjects();
+        void StartRenderingPipeline(const std::filesystem::path& path);
 
+
+        std::vector<std::pair<std::string, std::filesystem::path>> mProjects;
         std::shared_ptr<Arca::Module> mArcaModule;
         std::weak_ptr<PrinterSystem> mPrinterPtr;
 

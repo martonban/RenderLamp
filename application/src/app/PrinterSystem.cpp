@@ -16,10 +16,8 @@ void PrinterSystem::PrinterSystemController(bool& appStatus) {
         AddNewProjectHandler();
         Notify();
         break;
-    case RENDERING_PROGRESS_SCENE:
-        mServerRequest.type = RUN_TEST_RENDER;
-        Notify();
-        ProgressBarHandler();
+    case RENDER_PROJECT_SCENE:
+        ListAllProjectHadler();
         break;
     case EXIT_SCENE:
         appStatus = false;
@@ -64,6 +62,11 @@ void PrinterSystem::Notify() {
     }
 }
 
+void PrinterSystem::SetProjectList(const std::vector<std::pair<std::string, std::filesystem::path>>& projects) {
+    mProjects = projects;
+}
+
+
 //----------------------------------------------------------------------------------------
 //                                    MAIN MENU
 //----------------------------------------------------------------------------------------
@@ -81,35 +84,31 @@ void PrinterSystem::PrintWelcomeScreen() {
 
 void PrinterSystem::MainMenuHandler() {
     bool validNumber = false;
-    int chossenMenuPoint = 0;
+    int chosenMenuPoint = 0;
     while (!validNumber) {
         bool s1, s2 = false;
         std::string input;
         std::cout << "> ";
         std::cin >> input;
         try {
-            chossenMenuPoint = std::stoi(input);
+            chosenMenuPoint = std::stoi(input);
             s1 = true;
         } catch (const std::invalid_argument& e) {
             s1 = false;
             PrintErrosMessage(3, "Not a number");
         }
 
-        switch (chossenMenuPoint)
+        switch (chosenMenuPoint)
         {
         case 1:
             s2 = true;
             mCurrentScene = ADD_NEW_PROJECT_SCENE;
             break;
         case 2:
-            mCurrentScene = LIST_ALL_PROJECTS;
+            mCurrentScene =  RENDER_PROJECT_SCENE;
             s2 = true;
             break;
         case 3:
-            s2 = true;
-            mCurrentScene = RENDERING_PROGRESS_SCENE;  
-            break;
-        case 4:
             s2 = true;
             mCurrentScene = EXIT_SCENE;
             break;
@@ -129,8 +128,7 @@ void PrinterSystem::PrintMainMenu() {
     std::cout << "--------------------------------------------------------------------------------------" << std::endl;
     std::cout << "1 - Add New Project" << std::endl;
     std::cout << "2 - Render Project" << std::endl;
-    std::cout << "3 - Render Test Scene" << std::endl; 
-    std::cout << "4 - Exit" << std::endl;
+    std::cout << "3 - Exit" << std::endl;
     std::cout << "--------------------------------------------------------------------------------------" << std::endl;
 }
 
@@ -145,7 +143,7 @@ void PrinterSystem::AddNewProjectHandler() {
         std::string path;
         std::cout << "> ";
         std::getline(std::cin, path);
-        path = CleanPath(path);  
+        path = CleanInput(path);  
         if(PathValidator(path)) {
             mServerRequest = ServerRequest{ ADD_NEW_PROJECT, path };
             validPath = true;
@@ -167,7 +165,7 @@ bool PrinterSystem::PathValidator(const std::string& path) {
     }
 }
 
-std::string PrinterSystem::CleanPath(const std::string& path) {
+std::string PrinterSystem::CleanInput(const std::string& path) {
     std::string cleaned = path;
     cleaned.erase(cleaned.begin(), std::find_if(cleaned.begin(), cleaned.end(), [](unsigned char ch) { return !std::isspace(ch); }));
     cleaned.erase(std::find_if(cleaned.rbegin(), cleaned.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), cleaned.end());
@@ -175,8 +173,47 @@ std::string PrinterSystem::CleanPath(const std::string& path) {
 }
 
 //----------------------------------------------------------------------------------------
-//                                    LIST ALL PROJECT
+//                                    RENDER PROJECT
 //----------------------------------------------------------------------------------------
+void PrinterSystem::ListAllProjectHadler() {
+    bool isValidProject = false;
+    int chosenProject;
+    std::cout << "Projects:" << std::endl;
+    mServerRequest = ServerRequest{ LOAD_ALL_PROJECTS, std::filesystem::path {} };
+    Notify();
+
+    for (size_t i = 0; i < mProjects.size(); ++i) {
+        std::cout << "[" << i + 1 << "] " << mProjects[i].first 
+                  << " - " << mProjects[i].second.string() << std::endl;
+    }
+    
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    while(!isValidProject) {
+        bool s1, s2 = false;
+        std::string index;
+        std::cout << "> ";
+        std::getline(std::cin, index);
+        index = CleanInput(index);
+        try {
+            chosenProject = std::stoi(index);
+            s1 = true;
+        } catch (const std::invalid_argument& e) {
+            s1 = false;
+            PrintErrosMessage(3, "Not a number");
+        }
+
+        if(chosenProject <= mProjects.size() && chosenProject > 0) {
+            s2 = true;
+        }
+        isValidProject = s1 && s2;
+    }
+
+    std::cout << chosenProject << std::endl;
+    mServerRequest = ServerRequest{ RENDER_PROJECT, mProjects[chosenProject - 1].second };
+    Notify();
+
+    mCurrentScene = MAIN_MENU;
+}
 
 
 //----------------------------------------------------------------------------------------

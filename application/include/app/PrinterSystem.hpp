@@ -23,8 +23,10 @@ class PrinterSystem : public ISubject {
         void Notify() override;
 
         void PrintWelcomeScreen();
+        void SetProjectList(const std::vector<std::pair<std::string, std::filesystem::path>>& projects);
     private:
         std::vector<std::weak_ptr<IObserver>> mObserverVector;
+        std::vector<std::pair<std::string, std::filesystem::path>> mProjects;
         ServerRequest mServerRequest {};
         CliAppScenes mCurrentScene;
         CliViewMode mViewMode;
@@ -37,7 +39,13 @@ class PrinterSystem : public ISubject {
 
         void AddNewProjectHandler();
         bool PathValidator(const std::string& path);
-        std::string CleanPath(const std::string& path);
+        std::string CleanInput(const std::string& path);
+
+        void ListAllProjectHadler();
+       
+
+        void RenderProjectHandler();
+
 
         void ProgressBarHandler();
         void PrintRenderProgressBar(const int& x);

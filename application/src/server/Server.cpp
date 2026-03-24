@@ -3,7 +3,7 @@
 Server::Server(std::weak_ptr<PrinterSystem> printer) {
     Arca::ModuleConfig config = Arca::GetModule("Server");
     mArcaModule = std::make_shared<Arca::Module>(config);
-    mArcaModule->AddAccessPoint("TestRender", std::filesystem::absolute("./assets/TestRender"));
+    mArcaModule->AddAccessPoint("TestRender", std::filesystem::absolute(R"(.\assets\TestRender)"));
     mArcaModule->Save();
     mPrinterPtr = printer;
 }
@@ -26,6 +26,12 @@ void Server::Update(const ServerRequest& request) {
     case ADD_NEW_PROJECT:
         AddNewProject(request.path);
         break;
+    case LOAD_ALL_PROJECTS:
+        ListAllProjects();
+        break;
+    case RENDER_PROJECT:
+        StartRenderingPipeline(request.path);
+        break;
     default:
         break;
     }
@@ -38,6 +44,19 @@ void Server::AddNewProject(const std::filesystem::path& inputPath) {
     mArcaModule->AddAccessPoint(name, path);
     mArcaModule->Save();
 }
+
+void Server::ListAllProjects() {
+    mProjects = mArcaModule->GetAllAccessPoint();
+
+    if(auto printer = mPrinterPtr.lock()) {
+        printer->SetProjectList(mProjects);
+    }
+}
+
+void Server::StartRenderingPipeline(const std::filesystem::path& path) {
+   std::cout << "Start Rendering......." << path << std::endl;
+}
+
 
 void Server::StartSession() {
     std::cout << "Session Started" << std::endl;

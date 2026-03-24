@@ -5,6 +5,7 @@
 enum ServerRequestTypes {
     ADD_NEW_PROJECT,
     LOAD_ALL_PROJECTS,
+    RENDER_PROJECT,
     RUN_TEST_RENDER
 };
 
