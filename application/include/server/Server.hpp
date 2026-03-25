@@ -7,6 +7,7 @@
 
 #include "interfaces/IObserver.hpp"
 #include "app/PrinterSystem.hpp"
+#include "session/Session.hpp"
 
 class Server : public IObserver, public std::enable_shared_from_this<Server> {
     public:
@@ -20,7 +21,7 @@ class Server : public IObserver, public std::enable_shared_from_this<Server> {
         void ListAllProjects();
         void StartRenderingPipeline(const std::filesystem::path& path);
 
-
+        std::unique_ptr<Session> mSession;
         std::vector<std::pair<std::string, std::filesystem::path>> mProjects;
         std::shared_ptr<Arca::Module> mArcaModule;
         std::weak_ptr<PrinterSystem> mPrinterPtr;

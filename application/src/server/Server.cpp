@@ -54,7 +54,10 @@ void Server::ListAllProjects() {
 }
 
 void Server::StartRenderingPipeline(const std::filesystem::path& path) {
-   std::cout << "Start Rendering......." << path << std::endl;
+    std::cout << "Start Rendering..." << path << std::endl;
+    mSession = std::make_unique<Session>(path);
+
+    std::cout << "Rendering is DONE" << std::endl;
 }
 
 
