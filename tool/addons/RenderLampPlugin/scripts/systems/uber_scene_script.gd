@@ -3,75 +3,15 @@ extends Node3D
 
 @export var node_array : Array[MeshInstance3D]
 @export var camera : Camera3D
+@export var animation_node : AnimationPlayer
 
 
 func serialize():
-	var camera_pos: Vector3 = camera.global_transform.origin
-	var camera_fov: float = camera.fov
-
-	var scene_data: Dictionary = {
-		"camera": {
-			"position": {
-				"x": camera_pos.x,
-				"y": camera_pos.y,
-				"z": camera_pos.z
-			},
-			"fov": camera_fov
-		},
-		"objects": []
-	}
-
-	for n in node_array:
-		if not n.is_inside_tree():
-			push_warning("Node is not inside tree yet: ", n.name)
-			continue
-		var world_pos: Vector3 = n.global_transform.origin
-		var world_rot: Vector3 = n.global_transform.basis.get_euler()
-		var world_scale: Vector3 = n.global_transform.basis.get_scale()
-
-		var material: StandardMaterial3D = n.get_active_material(0)
-		var color: Vector3i = Vector3i(
-			int(material.albedo_color.r * 255),
-			int(material.albedo_color.g * 255),
-			int(material.albedo_color.b * 255)
-		)
-		var metallic_value: float = material.metallic
-		var roughness_value: float = material.roughness
-
-		var node_data: Dictionary = {
-			"name": n.name,
-			"type": n.mesh.get_class(),
-			"transform": {
-				"position": {
-					"x": world_pos.x,
-					"y": world_pos.y,
-					"z": world_pos.z
-				},
-				"rotation": {
-					"x": world_rot.x,
-					"y": world_rot.y,
-					"z": world_rot.z
-				},
-				"scale": {
-					"x": world_scale.x,
-					"y": world_scale.y,
-					"z": world_scale.z
-				}
-			},
-			"material": {
-				"color": {
-					"r": color.x,
-					"g": color.y,
-					"b": color.z
-				},
-				"metallic": metallic_value,
-				"roughness": roughness_value
-			}
-		}
-
-		scene_data["objects"].append(node_data)
-
-	save_to_json(scene_data)
+	# Scene Serializazion
+	var scene := serilaize_scene()
+	var batches := serialize_animation()
+	
+	save_to_json(scene)
 
 
 func save_to_json(data: Dictionary) -> void:
@@ -133,3 +73,95 @@ func save_to_json(data: Dictionary) -> void:
 		print("Scene data saved to ", final_path)
 	else:
 		push_error("Failed to open file for writing: ", FileAccess.get_open_error())
+
+
+func serilaize_scene() -> Dictionary:
+	var camera_pos: Vector3 = camera.global_transform.origin
+	var camera_rot: Vector3 = camera.global_rotation_degrees 
+	var camera_fov: float = camera.fov
+
+	var scene_data: Dictionary = {
+		"camera": {
+			"position": {
+				"x": camera_pos.x,
+				"y": camera_pos.y,
+				"z": camera_pos.z
+			},
+			"rotation" : {
+				"x": camera_rot.x,
+				"y": camera_rot.y,
+				"z": camera_rot.z
+			},
+			"fov": camera_fov
+		},
+		"objects": []
+	}
+
+	for n in node_array:
+		if not n.is_inside_tree():
+			push_warning("Node is not inside tree yet: ", n.name)
+			continue
+		var world_pos: Vector3 = n.global_transform.origin
+		var world_rot: Vector3 = n.global_transform.basis.get_euler()
+		var world_scale: Vector3 = n.global_transform.basis.get_scale()
+
+		var material: StandardMaterial3D = n.get_active_material(0)
+		var color: Vector3i = Vector3i(
+			int(material.albedo_color.r * 255),
+			int(material.albedo_color.g * 255),
+			int(material.albedo_color.b * 255)
+		)
+		var metallic_value: float = material.metallic
+		var roughness_value: float = material.roughness
+		
+		var model_path: String = ""
+		if n.mesh != null and n.mesh.resource_path != "":
+			model_path = ProjectSettings.globalize_path(n.mesh.resource_path)
+		else:
+			model_path = ""
+
+		var node_data: Dictionary = {
+			"id": node_array.find(n),
+			"type": n.mesh.get_class(),
+			"model_path": model_path,
+			
+			"transform": {
+				"position": {
+					"x": world_pos.x,
+					"y": world_pos.y,
+					"z": world_pos.z
+				},
+				"rotation": {
+					"x": world_rot.x,
+					"y": world_rot.y,
+					"z": world_rot.z
+				},
+				"scale": {
+					"x": world_scale.x,
+					"y": world_scale.y,
+					"z": world_scale.z
+				}
+			},
+			"material": {
+				"color": {
+					"r": color.x,
+					"g": color.y,
+					"b": color.z
+				},
+				"metallic": metallic_value,
+				"roughness": roughness_value
+			}
+		}
+
+		scene_data["objects"].append(node_data)
+	return scene_data;
+
+
+func serialize_animation() -> Dictionary:
+	var result: Dictionary = {}
+	
+	
+
+
+	
+	return result

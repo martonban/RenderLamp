@@ -14,21 +14,53 @@ roughness = 0.45
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6l1g"]
 albedo_color = Color(0.90230614, 0.38538373, 0.78686625, 1)
 
-[node name="Node3D" type="Node3D" unique_id=406611426 node_paths=PackedStringArray("node_array", "camera")]
+[sub_resource type="Animation" id="Animation_o6l1g"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spehere1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.18244731, 0, 0)
+
+[sub_resource type="Animation" id="Animation_kgapf"]
+resource_name = "new_animation"
+length = 4.0333333
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spehere1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.18244731, 0, 0, 1, 1, 0.18244731, 0.5846106, 0, 2.0333333, 1, 0.182, 0, 0, 2.9666667, 1, 0.182, -0.585, 0, 4, 1, 0.182, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_66u7a"]
+_data = {
+&"RESET": SubResource("Animation_o6l1g"),
+&"new_animation": SubResource("Animation_kgapf")
+}
+
+[node name="Node3D" type="Node3D" unique_id=406611426 node_paths=PackedStringArray("node_array", "camera", "animation_node")]
 script = ExtResource("1_o6l1g")
 node_array = [NodePath("Spehere1"), NodePath("Sphere2")]
 camera = NodePath("Camera3D")
+animation_node = NodePath("AnimationPlayer")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1752729352]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49627602, 1.35716)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.336353, 1.35716)
 fov = 90.0
 
 [node name="Spehere1" type="MeshInstance3D" parent="." unique_id=246468291]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.565735, 0.115136206, 0.081730545)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18244731, 0, 0)
 mesh = SubResource("SphereMesh_kgapf")
 surface_material_override/0 = SubResource("StandardMaterial3D_66u7a")
 
 [node name="Sphere2" type="MeshInstance3D" parent="." unique_id=1195552330]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.53950953, 0.31821918, 0.3048085)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.60759836, 0.31821918, 0.3048085)
 mesh = SubResource("SphereMesh_o6l1g")
 surface_material_override/0 = SubResource("StandardMaterial3D_o6l1g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=954074879]
+libraries/ = SubResource("AnimationLibrary_66u7a")
