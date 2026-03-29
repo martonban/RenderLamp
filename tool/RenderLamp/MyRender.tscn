@@ -15,7 +15,7 @@ roughness = 0.45
 albedo_color = Color(0.90230614, 0.38538373, 0.78686625, 1)
 
 [sub_resource type="Animation" id="Animation_o6l1g"]
-length = 0.001
+length = 4.0
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
