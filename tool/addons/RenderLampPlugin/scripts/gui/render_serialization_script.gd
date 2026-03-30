@@ -11,6 +11,7 @@ extends Control
 @onready var resolution_height: TextEdit = $Panel/ResolutionHeight
 @onready var sample_per_pixel_spin_box: SpinBox = $Panel/SamplePerPixelSpinBox
 @onready var depth_spin_box: SpinBox = $Panel/DepthSpinBox
+@onready var frame_rate_spin_box: SpinBox = $Panel/FramerateSpinBox
 
 var dict_editor : Dictionary = {
 	"SessionPath" = "",
@@ -21,7 +22,8 @@ var dict_editor : Dictionary = {
 	"TargetWidth" = 0,
 	"TargetHeight" = 0,
 	"Samples" = 0,
-	"Depth" = 0
+	"Depth" = 0,
+	"FrameRate" = 0
 }
 
 func _ready():
@@ -37,7 +39,8 @@ func _on_serialization():
 		"TargetWidth" = int(resulution_width.text),
 		"TargetHeight" = int(resolution_height.text),
 		"Samples" = int(sample_per_pixel_spin_box.value),
-		"Depth" = int(depth_spin_box.value)
+		"Depth" = int(depth_spin_box.value),
+		"FrameRate" = int(frame_rate_spin_box.value)
 	}
 	
 	var dict_editor : Dictionary = {
@@ -49,7 +52,8 @@ func _on_serialization():
 		"TargetWidth" = int(resulution_width.text),
 		"TargetHeight" = int(resolution_height.text),
 		"Samples" = int(sample_per_pixel_spin_box.value),
-		"Depth" = int(depth_spin_box.value)
+		"Depth" = int(depth_spin_box.value),
+		"FrameRate" = int(frame_rate_spin_box.value)
 	}
 	
 	var full_path = session_path_text_edit.text + "\\SessionSettings.json"

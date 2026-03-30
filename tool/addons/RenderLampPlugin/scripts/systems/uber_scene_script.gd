@@ -57,7 +57,6 @@ func save_to_json(data: Dictionary, data_batches: Dictionary) -> void:
 		if data_settings.has(key):
 			dict_editor[key] = data_settings[key]
 
-	# A session_path kiszámítása a cikluson KÍVÜL kell legyen
 	var full_session_path: String = str(dict_editor["SessionPath"])
 	var suffix := "\\SessionSettings.json"
 
@@ -186,12 +185,9 @@ func serialize_animation() -> Dictionary:
 			"tracks": []
 		} 
 	
-		# HIBA 1: get_track_count egy függvény, zárójelek kellenek!
+
 		for track_idx in range(animation.get_track_count()):
 			var track_path: NodePath = animation.track_get_path(track_idx)
-			
-			# HIBA 2: A track path tartalmazhat property részt (pl. ":position"),
-			# azt le kell vágni, hogy a node-ot megtaláljuk
 			var node_path_str: String = str(track_path)
 			var colon_idx: int = node_path_str.find(":")
 			var pure_node_path: String = node_path_str
