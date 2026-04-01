@@ -2,10 +2,7 @@
 
 Session::Session(const std::filesystem::path& sessionPath) {
     if(DeserializeSession(sessionPath)) {
-        // Deserialze Session
-        
         PrintSessionSettings();
-        // Assembly Rendering Kernels
     }
 }
 
@@ -39,6 +36,7 @@ RenderLamp::SessionSettings Session::DeserilaizeSettings(const std::filesystem::
     settings.imageHeight = j["TargetHeight"];
     settings.samples = j["Samples"];
     settings.maxDepth = j["Depth"];
+    settings.frameRate = j["FrameRate"];
 
     return settings;
 } 
@@ -55,4 +53,5 @@ void Session::PrintSessionSettings() {
     std::cout << "Image Height: " << mSessionSettings.imageHeight << std::endl;
     std::cout << "Samples: " << mSessionSettings.samples << std::endl;
     std::cout << "Max Depth: " << mSessionSettings.maxDepth << std::endl;
+    std::cout << "Frame Rate:" << mSessionSettings.frameRate << std::endl;
 }

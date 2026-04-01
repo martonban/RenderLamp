@@ -30,5 +30,6 @@ namespace RenderLamp {
         int imageHeight;
         int samples;
         int maxDepth;
+        int frameRate;
     } SessionSettings;
 }
