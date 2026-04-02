@@ -14,6 +14,7 @@ RenderLamp is shiped with a Godot Plugin
 Rendering Engine:
 - https://www.edmundoptics.com/knowledge-center/application-notes/imaging/understanding-focal-length-and-field-of-view/?srsltid=AfmBOoq7gCYqPvU96fcvSEI9JV5yOPyjuOgsJ2qh7ncHgr9NlJu8HiAM
 - https://photo.stackexchange.com/questions/97213/finding-focal-length-from-image-size-and-fov
+- Tomas Möller and Ben Trumbore. 2005. Fast, minimum storage ray/triangle intersection. In ACM SIGGRAPH 2005 Courses (SIGGRAPH '05). Association for Computing Machinery, New York, NY, USA, 7–es. https://doi.org/10.1145/1198555.1198746
 
 
 RenderLamp Application:
