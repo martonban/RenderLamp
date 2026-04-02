@@ -5,7 +5,7 @@
 
 class HitRecord {
     public:
-        glm::dvec3 p;
+        glm::dvec3 hitPoint;
         glm::dvec3 normal;
         double t;
 };

@@ -1,5 +1,5 @@
 #include "session/Session.hpp"
-#include <glm/geometric.hpp>
+
 
 Session::Session(const std::filesystem::path& sessionPath) {
     if(DeserializeSession(sessionPath)) {
@@ -17,17 +17,16 @@ Session::Session(const std::filesystem::path& sessionPath) {
 
 
 void Session::StartRenderingPipeline() {
-    // TO-DO Serialize from Batch
-    int batchSum = 60;
+    int batchSum = 10;
     if(!Arca::ArcaIO::CreateFolder(mSessionPath, mSessionSettings.sessionName)) {
         std::cerr << "Output folder creation issue" << std::endl;
     }
 
     if(mSessionStatus == true) {
         InitProgressBar(batchSum);
-
         // Batch Loop
         for(int b = 0; b < batchSum; b++) {
+            // SceneDeserilize();
             std::string frameName = "frame_" + std::to_string(b) + ".ppm";
             std::ofstream file(mSessionPath / mSessionSettings.sessionName / frameName);
             // RenderLamp::PowderRenderer::VertexTransformStage(mScene, mBatch);
@@ -37,17 +36,25 @@ void Session::StartRenderingPipeline() {
             for (int j = 0; j < mSessionSettings.imageHeight; j++) {
                 for (int i = 0; i < mSessionSettings.imageWidth; i++) {
                     Ray ray = {};
+                    HitRecord hr = {};
+                    int ir, ig, ib;
                     RenderLamp::PowderRenderer::RayGenaration(ray, i, j, mCamera);
 
-                    glm::dvec3 dir = glm::normalize(ray.direction());
-                    double t = 0.5 * (dir.y + 1.0);
-                    auto r = (1.0 - t) * 1.0 + t * 0.5;
-                    auto g = (1.0 - t) * 1.0 + t * 0.7;
-                    auto b = (1.0 - t) * 1.0 + t * 1.0;
+                    if(mScene->Hit(ray, hr)) {
+                        ir = int(255.999);
+                        ig = int(0);
+                        ib = int(0); 
+                    } else {
+                        glm::dvec3 dir = glm::normalize(ray.direction());
+                        double t = 0.5 * (dir.y + 1.0);
+                        auto r = (1.0 - t) * 1.0 + t * 0.5;
+                        auto g = (1.0 - t) * 1.0 + t * 0.7;
+                        auto b = (1.0 - t) * 1.0 + t * 1.0;
 
-                    int ir = int(255.999 * r);
-                    int ig = int(255.999 * g);
-                    int ib = int(255.999 * b);
+                        ir = int(255.999 * r);
+                        ig = int(255.999 * g);
+                        ib = int(255.999 * b);
+                    }
 
                     file << ir << ' ' << ig << ' ' << ib << '\n';
                 }
@@ -108,7 +115,10 @@ bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
     mCamera = std::make_shared<RenderLamp::Camera>(DeserializeCamera(json));
     mCamera->Process(mSessionSettings);
     
-    // TO-DO deserilaize the scene itself
+    std::shared_ptr<Sphere> s1 = std::make_shared<Sphere>(glm::dvec3{0.18244731426239, 0.0, 0.0}, 0.5);
+    std::shared_ptr<Sphere> s2 = std::make_shared<Sphere>(glm::dvec3{-0.60759836435318, 0.318219184875488, 0.304808497428894}, 0.25);
+    mScene->AddGeometryToTheScene(s1);
+    mScene->AddGeometryToTheScene(s2);
     return true;
 }
 

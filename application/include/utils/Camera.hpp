@@ -1,7 +1,9 @@
 #ifndef CAMERA_HPP
 #define CAMERA_HPP
 
+#include <cmath>
 #include <glm/vec3.hpp>
+#include <glm/trigonometric.hpp>
 
 namespace RenderLamp {
     class Camera {
@@ -16,8 +18,8 @@ namespace RenderLamp {
                 viewportWidth =  viewportHeight * (double(settings.imageWidth) / settings.imageHeight);
 
                 // Focal Length calculation
-                focalLength = viewportHeight / (2 * tan(fov/2.0));
-                
+                focalLength =  (viewportHeight / 2.0) / std::tan(glm::radians(fov) / 2.0);
+                std::cout << focalLength << std::endl;
 
                 viewportU = { viewportWidth, 0.0, 0.0 };
                 viewportV = { 0.0, -viewportHeight , 0.0 };

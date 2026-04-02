@@ -6,6 +6,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <glm/geometric.hpp>
 
 #include <nlohmann/json.hpp>
 
@@ -13,6 +14,8 @@
 #include "scene/Scene.hpp"
 #include "session/SessionUtils.hpp"
 #include "utils/Camera.hpp"
+#include "scene/primitives/Geometry.hpp"
+#include "scene/primitives/Sphere.hpp"
 
 // Rendering Pipeline 
 #include "kernels/RayGenKernel.hpp"
@@ -24,7 +27,7 @@ class Session {
     private:
         bool mSessionStatus = false;
         std::filesystem::path mSessionPath;
-        std::shared_ptr<Scene> mScene;
+        std::shared_ptr<Scene> mScene = std::make_shared<Scene>();
         std::shared_ptr<RenderLamp::Camera> mCamera;
         RenderLamp::SessionSettings mSessionSettings;
 

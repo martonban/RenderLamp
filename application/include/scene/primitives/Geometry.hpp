@@ -6,7 +6,7 @@
 
 class Geometry {
     public:
-        virtual bool hit(const Ray& r, double tmin, double tmax, HitRecord& hitRecord) = 0;
+        virtual bool Hit(const Ray& r, const HitRecord& hitRecord) = 0;
 };
 
 #endif 

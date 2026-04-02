@@ -9,7 +9,7 @@
 namespace RenderLamp::PowderRenderer {
     inline void RayGenaration(Ray& ray, const int& i, const int& j, std::shared_ptr<RenderLamp::Camera> camera) {
         glm::dvec3 pixelSample = camera->startPixelCoord + double(i) * camera->pixelDeltaU + double(j) * camera->pixelDeltaV;
-        ray = Ray(camera->wordPos, pixelSample - camera->wordPos);
+        ray = Ray(camera->wordPos, glm::normalize(pixelSample - camera->wordPos));
     }
 }
 

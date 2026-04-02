@@ -2,15 +2,18 @@
 #define SCENE_HPP
 
 #include <vector>
+#include <memory>
 
 #include "scene/primitives/Geometry.hpp"
+#include "scene/primitives/Sphere.hpp"
 
 class Scene {
     public:
-        
+        Scene();
+        bool Hit(const Ray& r, const HitRecord& h);
+        void AddGeometryToTheScene(std::shared_ptr<Sphere> geometryPtr);
     private:
-
-        std::vector<Geometry> mGeometriries;
+        std::vector<std::shared_ptr<Sphere>> mGeometriries;
 };
 
 #endif
