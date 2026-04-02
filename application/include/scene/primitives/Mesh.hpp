@@ -1,7 +1,7 @@
 #ifndef MESH_HPP
 #define MESH_HPP
 
-#include "utils/Geometry.hpp"
+#include "scene/primitives/Geometry.hpp"
 
 class Mesh : public Geometry {};
 

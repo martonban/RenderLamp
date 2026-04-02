@@ -1,10 +1,64 @@
 #include "session/Session.hpp"
+#include <glm/geometric.hpp>
 
 Session::Session(const std::filesystem::path& sessionPath) {
     if(DeserializeSession(sessionPath)) {
-        PrintSessionSettings();
+        mSessionPath = sessionPath;
+        if(DeserializeScene(sessionPath / "Scene.json")) {
+            PrintCameraData();
+            mSessionStatus = true;
+        } else {
+            std::cerr << "Invalid Scene!" << std::endl;
+        }
+    } else {
+        std::cerr << "Invalid Session!" << std::endl;
     }
 }
+
+
+void Session::StartRenderingPipeline() {
+    // TO-DO Serialize from Batch
+    int batchSum = 60;
+    if(!Arca::ArcaIO::CreateFolder(mSessionPath, mSessionSettings.sessionName)) {
+        std::cerr << "Output folder creation issue" << std::endl;
+    }
+
+    if(mSessionStatus == true) {
+        InitProgressBar(batchSum);
+
+        // Batch Loop
+        for(int b = 0; b < batchSum; b++) {
+            std::string frameName = "frame_" + std::to_string(b) + ".ppm";
+            std::ofstream file(mSessionPath / mSessionSettings.sessionName / frameName);
+            // RenderLamp::PowderRenderer::VertexTransformStage(mScene, mBatch);
+            
+            file << "P3\n" << mSessionSettings.imageWidth << ' ' << mSessionSettings.imageHeight << "\n255\n"; 
+            // Frame Loop
+            for (int j = 0; j < mSessionSettings.imageHeight; j++) {
+                for (int i = 0; i < mSessionSettings.imageWidth; i++) {
+                    Ray ray = {};
+                    RenderLamp::PowderRenderer::RayGenaration(ray, i, j, mCamera);
+
+                    glm::dvec3 dir = glm::normalize(ray.direction());
+                    double t = 0.5 * (dir.y + 1.0);
+                    auto r = (1.0 - t) * 1.0 + t * 0.5;
+                    auto g = (1.0 - t) * 1.0 + t * 0.7;
+                    auto b = (1.0 - t) * 1.0 + t * 1.0;
+
+                    int ir = int(255.999 * r);
+                    int ig = int(255.999 * g);
+                    int ib = int(255.999 * b);
+
+                    file << ir << ' ' << ig << ' ' << ib << '\n';
+                }
+                UpdateProgressBar();
+            }
+        }
+        PrintRenderProgressBar(20);
+        std::cout << std::endl;
+    }
+}
+
 
 bool Session::DeserializeSession(const std::filesystem::path& sessionPath) {
     // File Existance Validation Stage
@@ -42,6 +96,43 @@ RenderLamp::SessionSettings Session::DeserilaizeSettings(const std::filesystem::
 } 
 
 
+bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
+    nlohmann::json json;
+    std::ifstream file(scenePath);
+    if(!file.is_open()) {
+        std::cerr << "Scene.json is not exist!" << std::endl;
+        return false;
+    }
+
+    file >> json;
+    mCamera = std::make_shared<RenderLamp::Camera>(DeserializeCamera(json));
+    mCamera->Process(mSessionSettings);
+    
+    // TO-DO deserilaize the scene itself
+    return true;
+}
+
+RenderLamp::Camera Session::DeserializeCamera(const nlohmann::json& jsonObject) {
+    if(jsonObject.contains("camera")) {
+        nlohmann::json camera_json = jsonObject["camera"];
+        nlohmann::json coords = camera_json["position"];
+
+        glm::dvec3 pos {0.0, 0.0, 0.0}; 
+        double fov = 0.0;
+
+        pos.x = coords["x"];
+        pos.y = coords["y"];
+        pos.z = coords["z"];
+    
+        fov = camera_json["fov"];
+
+        return RenderLamp::Camera {pos, fov};
+    } else {
+        std::cerr << "Camera is not exits in the scene" << std::endl;
+        return RenderLamp::Camera {{0.0, 0.0, 0.0}, 0.0}; 
+    }
+}
+
 void Session::PrintSessionSettings() {
     std::cout << "=== Session Settings ===" << std::endl;
     std::cout << "Session Name: " << mSessionSettings.sessionName << std::endl;
@@ -55,3 +146,42 @@ void Session::PrintSessionSettings() {
     std::cout << "Max Depth: " << mSessionSettings.maxDepth << std::endl;
     std::cout << "Frame Rate:" << mSessionSettings.frameRate << std::endl;
 }
+
+void Session::PrintCameraData() {
+    std::cout << "=== Camera Data ===" << std::endl;
+    std::cout << "Position X: " << mCamera->wordPos.x << std::endl;
+    std::cout << "Position Y: " << mCamera->wordPos.y << std::endl;
+    std::cout << "Position Z: " << mCamera->wordPos.z << std::endl;
+    std::cout << "FOV: " << mCamera->fov << std::endl;
+}
+
+void Session::PrintRenderProgressBar(const int& x) {
+    constexpr int barWidth = 20;
+    int clampedX = x;
+    if(clampedX < 0) clampedX = 0;
+    if(clampedX > barWidth) clampedX = barWidth;
+
+    const std::string done(clampedX, '#');
+    const std::string remaining(barWidth - clampedX, '-');
+
+    std::cout << "\r[" << done << remaining << "] "
+              << std::setw(3) << (clampedX * 5) << "%" << std::flush;
+}
+
+void Session::InitProgressBar(const int& batchSum) {
+    mTotalRows = batchSum * mSessionSettings.imageHeight;
+    mCompletedRows = 0;
+    mLastBucket = -1;
+}
+
+void Session::UpdateProgressBar() {
+    mCompletedRows++;
+    int percent = (mCompletedRows * 100) / mTotalRows;
+    int bucket = percent / 5;
+    if(bucket > 20) bucket = 20;
+    if(bucket != mLastBucket) {
+        PrintRenderProgressBar(bucket);
+        mLastBucket = bucket;
+    }
+}
+

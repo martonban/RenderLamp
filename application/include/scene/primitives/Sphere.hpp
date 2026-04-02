@@ -1,7 +1,7 @@
 #ifndef SPHERE_HPP
 #define SPHERE_HPP
 
-#include "utils/Geometry.hpp"
+#include "scene/primitives/Geometry.hpp"
 
 class Sphehe : public Geometry {};
 

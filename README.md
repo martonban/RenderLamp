@@ -11,6 +11,11 @@ RenderLamp is shiped with a Godot Plugin
 
 
 # Sources:
+Rendering Engine:
+- https://www.edmundoptics.com/knowledge-center/application-notes/imaging/understanding-focal-length-and-field-of-view/?srsltid=AfmBOoq7gCYqPvU96fcvSEI9JV5yOPyjuOgsJ2qh7ncHgr9NlJu8HiAM
+- https://photo.stackexchange.com/questions/97213/finding-focal-length-from-image-size-and-fov
+
+
 RenderLamp Application:
 - https://refactoring.guru/design-patterns/singleton/cpp/example
 - https://refactoring.guru/design-patterns/observer/cpp/example
