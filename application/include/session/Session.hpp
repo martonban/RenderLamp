@@ -16,6 +16,7 @@
 #include "utils/Camera.hpp"
 #include "scene/primitives/Geometry.hpp"
 #include "scene/primitives/Sphere.hpp"
+#include "scene/primitives/Mesh.hpp"
 
 // Rendering Pipeline 
 #include "kernels/RayGenKernel.hpp"

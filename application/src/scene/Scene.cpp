@@ -2,7 +2,7 @@
 
 Scene::Scene() {}
 
-void Scene::AddGeometryToTheScene(std::shared_ptr<Sphere> geometryPtr) {
+void Scene::AddGeometryToTheScene(std::shared_ptr<Geometry> geometryPtr) {
     mGeometriries.push_back(geometryPtr);
 }
 
