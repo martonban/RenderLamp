@@ -29,6 +29,14 @@ class Sphere : public Geometry {
             return true;
         }
 
+        void TransformPosition(const glm::dvec3& trs) {
+            pos += trs;
+        }
+
+        void TransformScale(const glm::dvec3& scale) {
+            mRadius *= glm::max(scale.x, glm::max(scale.y, scale.z));
+        }
+
         glm::dvec3 pos;
         double mRadius;
 };

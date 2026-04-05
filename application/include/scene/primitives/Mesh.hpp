@@ -13,18 +13,18 @@
 class Mesh : public Geometry {
     public:
         Mesh(const glm::dvec3& pos, const glm::dvec3& rot, const glm::dvec3& scale, const std::filesystem::path& path) {
-            wordPos = pos;
+            worldPos = pos;
             worldRot = rot;
             wordScale = scale;
             modelPath = path;
 
             // Load Verteces
             mTriangles = RenderLamp::ModelLoader::LoadPrimitiveObjFile(path);
-            ScaleDown(4.0);
-            MoveToOrigin();
 
-            // Transform World space
-
+            // Transform World space (SRT order: Scale -> Rotate -> Translate)
+            TransformScale(wordScale);
+            TransformRotation(worldRot);
+            TransformPosition(worldPos);
         }
 
         bool Hit(const Ray& r, const HitRecord& hitRecord) {
@@ -53,53 +53,58 @@ class Mesh : public Geometry {
             return false;
         }
 
-        // AI TEST CODE
-        void ScaleDown(double factor) {
-            glm::dvec3 center(0.0);
-            size_t vertexCount = 0;
-            for (const auto& tr : mTriangles) {
-                center += tr.v0 + tr.v1 + tr.v2;
-                vertexCount += 3;
-            }
-            if (vertexCount > 0) {
-                center /= static_cast<double>(vertexCount);
-            }
-
-            double scale = 1.0 / factor;
+        void TransformPosition(const glm::dvec3& trs) {
             for (auto& tr : mTriangles) {
-                tr.v0 = center + (tr.v0 - center) * scale;
-                tr.v1 = center + (tr.v1 - center) * scale;
-                tr.v2 = center + (tr.v2 - center) * scale;
+                tr.v0 += trs;
+                tr.v1 += trs;
+                tr.v2 += trs;
             }
         }
 
-        // AI TEST CODE
-        void MoveToOrigin() {
-            glm::dvec3 center(0.0);
-            size_t vertexCount = 0;
-            for (const auto& tr : mTriangles) {
-                center += tr.v0 + tr.v1 + tr.v2;
-                vertexCount += 3;
+        void TransformScale(const glm::dvec3& trs) {
+            glm::dvec3 invScale = 1.0 / trs;
+            for (auto& tr : mTriangles) {
+                tr.v0 *= trs;
+                tr.v1 *= trs;
+                tr.v2 *= trs;
+
+                tr.n0 = glm::normalize(tr.n0 * invScale);
+                tr.n1 = glm::normalize(tr.n1 * invScale);
+                tr.n2 = glm::normalize(tr.n2 * invScale);
             }
-            if (vertexCount > 0) {
-                center /= static_cast<double>(vertexCount);
-            }
+        }
+
+        void TransformRotation(const glm::dvec3& rot) {
+            double cx = cos(rot.x), sx = sin(rot.x);
+            double cy = cos(rot.y), sy = sin(rot.y);
+            double cz = cos(rot.z), sz = sin(rot.z);
+
+            // YXZ rotation matrix
+            glm::dmat3 matrix(
+                cy * cz + sy * sx * sz,  cx * sz, -sy * cz + cy * sx * sz,
+                -cy * sz + sy * sx * cz, cx * cz, sy * sz + cy * sx * cz,
+                sy * cx,                 -sx,     cy * cx
+            );
 
             for (auto& tr : mTriangles) {
-                tr.v0 -= center;
-                tr.v1 -= center;
-                tr.v2 -= center;
+                tr.v0 = matrix * tr.v0;
+                tr.v1 = matrix * tr.v1;
+                tr.v2 = matrix * tr.v2;
+
+                tr.n0 = matrix * tr.n0;
+                tr.n1 = matrix * tr.n1;
+                tr.n2 = matrix * tr.n2;
             }
         }
 
 
-    glm::dvec3 wordPos;
-    glm::dvec3 worldRot;
-    glm::dvec3 wordScale;
+        glm::dvec3 worldPos;
+        glm::dvec3 worldRot;
+        glm::dvec3 wordScale;
 
-    std::filesystem::path modelPath;
+        std::filesystem::path modelPath;
 
-    std::vector<Triangle> mTriangles;    
+        std::vector<Triangle> mTriangles;    
 };
 
 #endif

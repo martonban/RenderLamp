@@ -115,7 +115,7 @@ bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
     mCamera = std::make_shared<RenderLamp::Camera>(DeserializeCamera(json));
     mCamera->Process(mSessionSettings);
     
-    std::shared_ptr<Mesh> m1 = std::make_shared<Mesh>(glm::dvec3{0.0, 0.0, 0.0}, glm::dvec3{0.0, 0.0, 0.0}, glm::dvec3{0.0, 0.0, 0.0}, "C:/Project/Big Projects/RenderLamp/tool/Meshes/utah_teapot.obj" );
+    std::shared_ptr<Mesh> m1 = std::make_shared<Mesh>(glm::dvec3{0.0, 0.0, 0.0}, glm::dvec3{0.0, -0.174532935023308, 0.0}, glm::dvec3{0.1, 0.1, 0.1}, "C:/Project/Big Projects/RenderLamp/tool/Meshes/utah_teapot.obj" );
     mScene->AddGeometryToTheScene(m1);
     //std::shared_ptr<Sphere> s1 = std::make_shared<Sphere>(glm::dvec3{0.18244731426239, 0.0, 0.0}, 0.5);
     //std::shared_ptr<Sphere> s2 = std::make_shared<Sphere>(glm::dvec3{-0.60759836435318, 0.318219184875488, 0.304808497428894}, 0.25);
