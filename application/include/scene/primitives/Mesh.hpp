@@ -6,40 +6,25 @@
 #include <glm/glm.hpp>
 
 #include "scene/primitives/Geometry.hpp"
+#include "scene/primitives/Triangle.hpp"
+#include "utils/ModelLoader.hpp"
 
-struct Triangle {
-    glm::dvec3 v0, v1, v2;
-};
 
 class Mesh : public Geometry {
     public:
-        Mesh(const glm::dvec3& pos) {
+        Mesh(const glm::dvec3& pos, const glm::dvec3& rot, const glm::dvec3& scale, const std::filesystem::path& path) {
             wordPos = pos;
-            mTriangles.push_back(Triangle{
-                glm::dvec3(0, 0, 0),
-                glm::dvec3(1, 0, 0),
-                glm::dvec3(0, 1, -0.75)
-            });
-            mTriangles.push_back(Triangle{
-                glm::dvec3(0, 0, 0),
-                glm::dvec3(0, 1, 0),
-                glm::dvec3(0, 0, 1)
-            });
-            mTriangles.push_back(Triangle{
-                glm::dvec3(1, 1, 0),
-                glm::dvec3(2, 1, 0),
-                glm::dvec3(1, 2, 0)
-            });
-            mTriangles.push_back(Triangle{
-                glm::dvec3(-1, 0, 0),
-                glm::dvec3(-2, 0, 0),
-                glm::dvec3(-1, -1, 0)
-            });
-            mTriangles.push_back(Triangle{
-                glm::dvec3(0, 0, -1),
-                glm::dvec3(1, 0, -1),
-                glm::dvec3(0, 1, -1)
-            });
+            worldRot = rot;
+            wordScale = scale;
+            modelPath = path;
+
+            // Load Verteces
+            mTriangles = RenderLamp::ModelLoader::LoadPrimitiveObjFile(path);
+            ScaleDown(4.0);
+            MoveToOrigin();
+
+            // Transform World space
+
         }
 
         bool Hit(const Ray& r, const HitRecord& hitRecord) {
@@ -68,8 +53,52 @@ class Mesh : public Geometry {
             return false;
         }
 
+        // AI TEST CODE
+        void ScaleDown(double factor) {
+            glm::dvec3 center(0.0);
+            size_t vertexCount = 0;
+            for (const auto& tr : mTriangles) {
+                center += tr.v0 + tr.v1 + tr.v2;
+                vertexCount += 3;
+            }
+            if (vertexCount > 0) {
+                center /= static_cast<double>(vertexCount);
+            }
+
+            double scale = 1.0 / factor;
+            for (auto& tr : mTriangles) {
+                tr.v0 = center + (tr.v0 - center) * scale;
+                tr.v1 = center + (tr.v1 - center) * scale;
+                tr.v2 = center + (tr.v2 - center) * scale;
+            }
+        }
+
+        // AI TEST CODE
+        void MoveToOrigin() {
+            glm::dvec3 center(0.0);
+            size_t vertexCount = 0;
+            for (const auto& tr : mTriangles) {
+                center += tr.v0 + tr.v1 + tr.v2;
+                vertexCount += 3;
+            }
+            if (vertexCount > 0) {
+                center /= static_cast<double>(vertexCount);
+            }
+
+            for (auto& tr : mTriangles) {
+                tr.v0 -= center;
+                tr.v1 -= center;
+                tr.v2 -= center;
+            }
+        }
+
 
     glm::dvec3 wordPos;
+    glm::dvec3 worldRot;
+    glm::dvec3 wordScale;
+
+    std::filesystem::path modelPath;
+
     std::vector<Triangle> mTriangles;    
 };
 
