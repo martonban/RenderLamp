@@ -27,7 +27,8 @@ class Mesh : public Geometry {
             TransformPosition(worldPos);
         }
 
-        bool Hit(const Ray& r, const HitRecord& hitRecord) {
+        bool Hit(Ray& r, HitRecord& hitRecord) {
+            bool anyHit = false;
             for (const auto& tr : mTriangles) {
                 glm::dvec3 e1 = tr.v1 - tr.v0;
                 glm::dvec3 e2 = tr.v2 - tr.v0;
@@ -38,19 +39,22 @@ class Mesh : public Geometry {
                 double denom = glm::dot(p, e1);
                 if (fabs(denom) < 1e-8) continue;
 
-
-
                 double invDenom = 1.0 / denom;
                 double t2 = glm::dot(q, e2) * invDenom;
                 double u = glm::dot(p, t) * invDenom;
                 double v = glm::dot(q, r.direction()) * invDenom;
 
-                if (u >= 0 && v >= 0 && u + v <= 1 && t2 > 0) {
-                    return true;
+                double w = 1.0 - u - v;
+
+                if (u >= 0 && v >= 0 && u + v <= 1 && t2 > 0 && t2 < hitRecord.t) {
+                    hitRecord.t = t2;
+                    hitRecord.hitPoint = r.at(t2);
+                    hitRecord.normal = w * tr.n0 + u * tr.n1 + v * tr.n2;
+                    anyHit = true;
                 }
             }
 
-            return false;
+            return anyHit;
         }
 
         void TransformPosition(const glm::dvec3& trs) {

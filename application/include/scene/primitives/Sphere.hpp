@@ -14,7 +14,7 @@ class Sphere : public Geometry {
             mRadius = radius;
         }
 
-        bool Hit(const Ray& r, const HitRecord& hitRecord) {
+        bool Hit(Ray& r, HitRecord& hitRecord) {
             glm::dvec3 origin = pos - r.orgin();
             auto a = glm::dot(r.direction(), r.direction());
             auto h = glm::dot(r.direction(), origin);

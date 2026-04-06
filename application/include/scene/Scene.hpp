@@ -10,7 +10,7 @@
 class Scene {
     public:
         Scene();
-        bool Hit(const Ray& r, const HitRecord& h);
+        bool Hit(Ray& r, HitRecord& h);
         void AddGeometryToTheScene(std::shared_ptr<Geometry> geometryPtr);
     private:
         std::vector<std::shared_ptr<Geometry>> mGeometriries;
