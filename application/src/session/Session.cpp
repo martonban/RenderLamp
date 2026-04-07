@@ -42,24 +42,6 @@ void Session::StartRenderingPipeline() {
                     RenderLamp::PowderRenderer::RayIntersection(ray, hr, mScene);
                     RenderLamp::PowderRenderer::ShadingKernel(hr, ray, ir, ig, ib);
 
-                    /*
-                    if(mScene->Hit(ray, hr)) {
-                        ir = int(255.999);
-                        ig = int(0);
-                        ib = int(0); 
-                    } else {
-                        glm::dvec3 dir = glm::normalize(ray.direction());
-                        double t = 0.5 * (dir.y + 1.0);
-                        auto r = (1.0 - t) * 1.0 + t * 0.5;
-                        auto g = (1.0 - t) * 1.0 + t * 0.7;
-                        auto b = (1.0 - t) * 1.0 + t * 1.0;
-
-                        ir = int(255.999 * r);
-                        ig = int(255.999 * g);
-                        ib = int(255.999 * b);
-                    }
-                        */
-
                     file << ir << ' ' << ig << ' ' << ib << '\n';
                 }
                 UpdateProgressBar();
@@ -119,7 +101,9 @@ bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
     mCamera = std::make_shared<RenderLamp::Camera>(DeserializeCamera(json));
     mCamera->Process(mSessionSettings);
     
-    std::shared_ptr<Mesh> m1 = std::make_shared<Mesh>(glm::dvec3{0.0, 0.0, 0.0}, glm::dvec3{0.0, -0.174532935023308, 0.0}, glm::dvec3{0.2, 0.2, 0.2}, "C:/Project/Big Projects/RenderLamp/tool/Meshes/utah_teapot.obj" );
+    std::shared_ptr<Mesh> m1 = std::make_shared<Mesh>(glm::dvec3{0.0, 0.0, 0.0}, glm::dvec3{0.174532935023308, 0.0, 0.0}, glm::dvec3{0.25, 0.25, 0.25}, "C:/Project/Big Projects/RenderLamp/tool/Meshes/utah_teapot.obj");
+    Material mat1 { DIFFUSE_SHADER, glm::ivec3{255, 0, 0}, 0.0, 0.0 };
+    m1->AddMaterial(mat1);
     mScene->AddGeometryToTheScene(m1);
     //std::shared_ptr<Sphere> s1 = std::make_shared<Sphere>(glm::dvec3{-0.734, 0.619, -0.304}, 0.5);
     //mScene->AddGeometryToTheScene(s1);

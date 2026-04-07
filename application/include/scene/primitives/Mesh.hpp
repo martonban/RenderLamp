@@ -8,6 +8,8 @@
 #include "scene/primitives/Geometry.hpp"
 #include "scene/primitives/Triangle.hpp"
 #include "utils/ModelLoader.hpp"
+#include "utils/Material.hpp"
+#include "shaders/Shader.hpp"
 
 
 class Mesh : public Geometry {
@@ -25,6 +27,10 @@ class Mesh : public Geometry {
             TransformScale(wordScale);
             TransformRotation(worldRot);
             TransformPosition(worldPos);
+        }
+
+        void AddMaterial(const Material& material) {
+            mMaterialInfo = material;
         }
 
         bool Hit(Ray& r, HitRecord& hitRecord) {
@@ -50,6 +56,7 @@ class Mesh : public Geometry {
                     hitRecord.t = t2;
                     hitRecord.hitPoint = r.at(t2);
                     hitRecord.normal = w * tr.n0 + u * tr.n1 + v * tr.n2;
+                    hitRecord.material = std::make_shared<Material>(mMaterialInfo);
                     anyHit = true;
                 }
             }
@@ -108,7 +115,8 @@ class Mesh : public Geometry {
 
         std::filesystem::path modelPath;
 
-        std::vector<Triangle> mTriangles;    
+        std::vector<Triangle> mTriangles;
+        Material mMaterialInfo;
 };
 
 #endif

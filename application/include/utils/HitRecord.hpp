@@ -3,6 +3,9 @@
 
 #include <glm/vec3.hpp>
 #include <limits>
+#include <memory>
+
+#include "utils/Material.hpp"
 
 class HitRecord {
     public:
@@ -10,6 +13,7 @@ class HitRecord {
         double t = std::numeric_limits<double>::max();;    
         glm::dvec3 hitPoint;
         glm::dvec3 normal;
+        std::shared_ptr<Material> material;
 };
 
 #endif
