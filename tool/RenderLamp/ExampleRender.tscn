@@ -12,9 +12,10 @@ albedo_color = Color(0.23106942, 0.371215, 0.5843193, 1)
 albedo_color = Color(0.87209505, 0.31929427, 0.83375, 1)
 metallic = 1.0
 
-[node name="Render" type="Node3D" unique_id=1777651953 node_paths=PackedStringArray("node_array", "camera")]
+[node name="Render" type="Node3D" unique_id=1777651953 node_paths=PackedStringArray("node_array", "light_array", "camera")]
 script = ExtResource("1_tr1a5")
 node_array = [NodePath("MeshInstance3D")]
+light_array = [NodePath("OmniLight3D")]
 camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=871851425]
@@ -29,3 +30,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ut3yh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7336268, 0.6190235, -0.30425084)
 mesh = SubResource("SphereMesh_q02mk")
 surface_material_override/0 = SubResource("StandardMaterial3D_k2b4w")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=832554514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37307522, 0.9845648, 0.3037938)

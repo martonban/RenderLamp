@@ -2,6 +2,7 @@
 extends Node3D
 
 @export var node_array : Array[MeshInstance3D]
+@export var light_array : Array[OmniLight3D]
 @export var camera : Camera3D
 @export var animation_node : AnimationPlayer
 
@@ -108,7 +109,8 @@ func serilaize_scene() -> Dictionary:
 			},
 			"fov": camera_fov
 		},
-		"objects": []
+		"objects": [],
+		"lights": []
 	}
 
 	for n in node_array:
@@ -166,8 +168,37 @@ func serilaize_scene() -> Dictionary:
 				"roughness": roughness_value
 			}
 		}
-
 		scene_data["objects"].append(node_data)
+		
+	for l in light_array:
+		if not l.is_inside_tree():
+			push_warning("Node is not inside tree yet: ", l.name)
+			continue
+		var world_pos: Vector3 = l.global_transform.origin
+		var light_color: Color = l.light_color
+		var intensity: float = l.light_energy
+		var light_range: float = l.omni_range
+		var attenuation: float = l.omni_attenuation
+		
+		var light_data: Dictionary = {
+			"id": light_array.find(l),
+			"position": {
+				"x": world_pos.x,
+				"y": world_pos.y,
+				"z": world_pos.z
+			},
+			"color" : {
+				"r": light_color.r,
+				"g": light_color.g,
+				"b": light_color.b
+			},
+			
+			"intensity": intensity,
+			"range": light_range,
+			"attenuation": attenuation
+		}
+		scene_data["lights"].append(light_data)
+	
 	return scene_data
 
 
