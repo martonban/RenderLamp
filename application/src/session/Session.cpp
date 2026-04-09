@@ -105,8 +105,10 @@ bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
     Material mat1 { DIFFUSE_SHADER, glm::ivec3{75, 10, 100}, 0.0, 0.0 };
     m1->AddMaterial(mat1);
     mScene->AddGeometryToTheScene(m1);
-    //std::shared_ptr<Sphere> s1 = std::make_shared<Sphere>(glm::dvec3{-0.734, 0.619, -0.304}, 0.5);
-    //mScene->AddGeometryToTheScene(s1);
+    std::shared_ptr<Sphere> s1 = std::make_shared<Sphere>(glm::dvec3{-0.734, 0.619, -0.304}, 0.4);
+    Material mat2 { DIFFUSE_SHADER, glm::ivec3{10, 100, 250}, 0.0, 0.0 };
+    s1->AddMaterial(mat2);
+    mScene->AddGeometryToTheScene(s1);
     return true;
 }
 

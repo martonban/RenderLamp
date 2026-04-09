@@ -1,10 +1,13 @@
 #ifndef SPHERE_HPP
 #define SPHERE_HPP
 
+#include <memory>
+
 #include <glm/vec3.hpp>
 #include <glm/geometric.hpp>
 
 #include "scene/primitives/Geometry.hpp"
+#include "utils/Material.hpp"
 
 
 class Sphere : public Geometry {
@@ -12,6 +15,7 @@ class Sphere : public Geometry {
         Sphere(const glm::dvec3& wordPos, const double& radius) {
             pos = wordPos;
             mRadius = radius;
+            mMaterialInfo = Material {EMPTY_SHADER, glm::ivec3{0, 0, 0}, 0.0, 0.0};
         }
 
         bool Hit(Ray& r, Interval ray_t, HitRecord& hitRecord) {
@@ -38,8 +42,13 @@ class Sphere : public Geometry {
             hitRecord.t = root;
             hitRecord.hitPoint = r.at(root);
             hitRecord.normal = (hitRecord.hitPoint - pos) / mRadius;
+            hitRecord.material = std::make_shared<Material>(mMaterialInfo);
 
             return true;
+        }
+
+        void AddMaterial(const Material& material) {
+            mMaterialInfo = material;
         }
 
         void TransformPosition(const glm::dvec3& trs) {
@@ -52,6 +61,7 @@ class Sphere : public Geometry {
 
         glm::dvec3 pos;
         double mRadius;
+        Material mMaterialInfo;
 };
 
 #endif 
