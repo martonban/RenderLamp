@@ -14,7 +14,7 @@ class Sphere : public Geometry {
             mRadius = radius;
         }
 
-        bool Hit(Ray& r, HitRecord& hitRecord) {
+        bool Hit(Ray& r, Interval ray_t, HitRecord& hitRecord) {
             glm::dvec3 origin = pos - r.orgin();
             auto a = glm::dot(r.direction(), r.direction());
             auto h = glm::dot(r.direction(), origin);
@@ -25,6 +25,19 @@ class Sphere : public Geometry {
             if(discriminant < 0) {
                 return false;
             }
+
+            auto sqrtd = sqrt(discriminant);
+            auto root = (h - sqrtd) / a;
+            if(!ray_t.surrounds(root)) {
+                root = (h + sqrtd) / a;
+                if(!ray_t.surrounds(root)) {
+                    return false;
+                }
+            }
+
+            hitRecord.t = root;
+            hitRecord.hitPoint = r.at(root);
+            hitRecord.normal = (hitRecord.hitPoint - pos) / mRadius;
 
             return true;
         }

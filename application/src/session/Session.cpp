@@ -102,7 +102,7 @@ bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
     mCamera->Process(mSessionSettings);
     
     std::shared_ptr<Mesh> m1 = std::make_shared<Mesh>(glm::dvec3{0.0, 0.0, 0.0}, glm::dvec3{0.174532935023308, 0.0, 0.0}, glm::dvec3{0.25, 0.25, 0.25}, "C:/Project/Big Projects/RenderLamp/tool/Meshes/utah_teapot.obj");
-    Material mat1 { DIFFUSE_SHADER, glm::ivec3{255, 0, 0}, 0.0, 0.0 };
+    Material mat1 { DIFFUSE_SHADER, glm::ivec3{75, 10, 100}, 0.0, 0.0 };
     m1->AddMaterial(mat1);
     mScene->AddGeometryToTheScene(m1);
     //std::shared_ptr<Sphere> s1 = std::make_shared<Sphere>(glm::dvec3{-0.734, 0.619, -0.304}, 0.5);

@@ -28,7 +28,7 @@ class Interval {
         static const Interval empty, universe;
 };
 
-const Interval Interval::empty = Interval(+std::numeric_limits<double>::infinity(), -std::numeric_limits<double>::infinity());
-const Interval Interval::universe = Interval(-std::numeric_limits<double>::infinity(), +std::numeric_limits<double>::infinity());
+inline const Interval Interval::empty = Interval(+std::numeric_limits<double>::infinity(), -std::numeric_limits<double>::infinity());
+inline const Interval Interval::universe = Interval(-std::numeric_limits<double>::infinity(), +std::numeric_limits<double>::infinity());
 
 #endif

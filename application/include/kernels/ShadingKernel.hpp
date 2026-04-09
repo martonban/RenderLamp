@@ -7,7 +7,26 @@
 
 namespace RenderLamp::PowderRenderer {
     inline void ShadingKernel(HitRecord& hitRecord, Ray& ray, int& ir, int& ig, int& ib) {
-        if(hitRecord.hit) {
+        if(hitRecord.hit && hitRecord.material) {
+            switch (hitRecord.material->shaderType) {
+                case DIFFUSE_SHADER:
+                    ir = hitRecord.material->albedo.x;
+                    ig = hitRecord.material->albedo.y;
+                    ib = hitRecord.material->albedo.z;
+                    break;
+                case EMPTY_SHADER:
+                    ir = static_cast<int>((hitRecord.normal.x + 1.0) * 0.5 * 255.0);
+                    ig = static_cast<int>((hitRecord.normal.y + 1.0) * 0.5 * 255.0);
+                    ib = static_cast<int>((hitRecord.normal.z + 1.0) * 0.5 * 255.0);
+                    break;
+                default:
+                    ir = static_cast<int>((hitRecord.normal.x + 1.0) * 0.5 * 255.0);
+                    ig = static_cast<int>((hitRecord.normal.y + 1.0) * 0.5 * 255.0);
+                    ib = static_cast<int>((hitRecord.normal.z + 1.0) * 0.5 * 255.0);
+                    break;
+            }   
+           
+        } else if (hitRecord.hit) {
             ir = static_cast<int>((hitRecord.normal.x + 1.0) * 0.5 * 255.0);
             ig = static_cast<int>((hitRecord.normal.y + 1.0) * 0.5 * 255.0);
             ib = static_cast<int>((hitRecord.normal.z + 1.0) * 0.5 * 255.0);

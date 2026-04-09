@@ -1,6 +1,7 @@
 #pragma once 
 
 enum ShaderType {
-    DIFFUSE_SHADER = 0,
-    METALLIC_SHADER = 1
+    EMPTY_SHADER = 0,
+    DIFFUSE_SHADER = 1,
+    METALLIC_SHADER = 2
 };

@@ -19,6 +19,8 @@ class Mesh : public Geometry {
             worldRot = rot;
             wordScale = scale;
             modelPath = path;
+            mMaterialInfo = Material {EMPTY_SHADER, glm::ivec3{0, 0, 0}, 0.0, 0.0};
+
 
             // Load Verteces
             mTriangles = RenderLamp::ModelLoader::LoadPrimitiveObjFile(path);
@@ -33,7 +35,7 @@ class Mesh : public Geometry {
             mMaterialInfo = material;
         }
 
-        bool Hit(Ray& r, HitRecord& hitRecord) {
+        bool Hit(Ray& r, Interval ray_t, HitRecord& hitRecord) {
             bool anyHit = false;
             for (const auto& tr : mTriangles) {
                 glm::dvec3 e1 = tr.v1 - tr.v0;
@@ -52,7 +54,8 @@ class Mesh : public Geometry {
 
                 double w = 1.0 - u - v;
 
-                if (u >= 0 && v >= 0 && u + v <= 1 && t2 > 0 && t2 < hitRecord.t) {
+                if (u >= 0 && v >= 0 && u + v <= 1 && ray_t.surrounds(t2)) {
+                    ray_t.max = t2;
                     hitRecord.t = t2;
                     hitRecord.hitPoint = r.at(t2);
                     hitRecord.normal = w * tr.n0 + u * tr.n1 + v * tr.n2;

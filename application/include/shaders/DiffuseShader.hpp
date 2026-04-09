@@ -3,9 +3,10 @@
 
 #include "shaders/Shader.hpp"
 
+
 class DiffuseShader : public Shader {
     public:
-        void ExecuteShader(Ray& ray, HitRecord& hitRecord, glm::ivec3& color);
+        inline void ExecuteShader(Ray& ray, HitRecord& hitRecord, glm::ivec3& color);
 };
 
 #endif
