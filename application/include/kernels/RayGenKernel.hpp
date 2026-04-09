@@ -2,7 +2,7 @@
 #define RAY_GEN_KERNEL_HPP
 
 #include "utils/Ray.hpp"
-#include "utils/Camera.hpp"
+#include "scene/utils/Camera.hpp"
 #include "session/SessionUtils.hpp"
 
 

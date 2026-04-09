@@ -2,9 +2,9 @@
 #define RAY_INTERSECTION_KERNEL_HPP
 
 #include "scene/Scene.hpp"
-#include "scene/primitives/Geometry.hpp"
-#include "scene/primitives/Sphere.hpp"
-#include "scene/primitives/Mesh.hpp"
+#include "scene/geometries/Geometry.hpp"
+#include "scene/geometries/Sphere.hpp"
+#include "scene/geometries/Mesh.hpp"
 #include "utils/Ray.hpp"
 #include "utils/HitRecord.hpp"
 #include "utils/Interval.hpp"

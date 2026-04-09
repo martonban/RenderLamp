@@ -4,8 +4,8 @@
 #include <vector>
 #include <memory>
 
-#include "scene/primitives/Geometry.hpp"
-#include "scene/primitives/Sphere.hpp"
+#include "scene/geometries/Geometry.hpp"
+#include "scene/geometries/Sphere.hpp"
 
 class Scene {
     public:

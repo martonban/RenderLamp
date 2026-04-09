@@ -6,8 +6,8 @@
 #include <glm/vec3.hpp>
 #include <glm/geometric.hpp>
 
-#include "scene/primitives/Geometry.hpp"
-#include "utils/Material.hpp"
+#include "scene/geometries/Geometry.hpp"
+#include "scene/material/Material.hpp"
 
 
 class Sphere : public Geometry {

@@ -5,10 +5,10 @@
 #include <glm/vec3.hpp>
 #include <glm/glm.hpp>
 
-#include "scene/primitives/Geometry.hpp"
-#include "scene/primitives/Triangle.hpp"
-#include "utils/ModelLoader.hpp"
-#include "utils/Material.hpp"
+#include "scene/geometries/Geometry.hpp"
+#include "scene/geometries/Triangle.hpp"
+#include "loaders/ModelLoader.hpp"
+#include "scene/material/Material.hpp"
 #include "shaders/Shader.hpp"
 
 

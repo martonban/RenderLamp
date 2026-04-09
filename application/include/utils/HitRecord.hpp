@@ -5,7 +5,7 @@
 #include <limits>
 #include <memory>
 
-#include "utils/Material.hpp"
+#include "scene/material/Material.hpp"
 
 class HitRecord {
     public:

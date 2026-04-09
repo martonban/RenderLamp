@@ -8,8 +8,8 @@
 #include <vector>
 #include <stdexcept>
 
-#include "scene/primitives/Geometry.hpp"
-#include "scene/primitives/Triangle.hpp"
+#include "scene/geometries/Geometry.hpp"
+#include "scene/geometries/Triangle.hpp"
 
 namespace RenderLamp::ModelLoader {
 
