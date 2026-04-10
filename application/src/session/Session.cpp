@@ -32,20 +32,27 @@ void Session::StartRenderingPipeline() {
             // RenderLamp::PowderRenderer::VertexTransformStage(mScene, mBatch);
             
             file << "P3\n" << mSessionSettings.imageWidth << ' ' << mSessionSettings.imageHeight << "\n255\n"; 
+            double invSamples = 1.0 / mSessionSettings.samples;
             // Frame Loop
             for (int j = 0; j < mSessionSettings.imageHeight; j++) {
                 for (int i = 0; i < mSessionSettings.imageWidth; i++) {
-                    Ray ray = {};
-                    HitRecord hr = {};
-                    Color color;
+                    Color pixelColor;
 
-                    RenderLamp::PowderRenderer::RayGenarationFromCamera(ray, i, j, mCamera);
-                    //RenderLamp::PowderRenderer::PathTracerKernels::PrimaryRay();
+                    // Anti-Aliasing
+                    for (int s = 0; s < mSessionSettings.samples; s++) {
+                        Ray ray = {};
+                        HitRecord hr = {};
+                        Color color;
 
-                    RenderLamp::PowderRenderer::RayIntersection(ray, hr, mScene);
-                    RenderLamp::PowderRenderer::ShadingKernel(hr, ray, color);
-                    
-                    glm::ivec3 result = color.ToIntRGB();
+                        RenderLamp::PowderRenderer::RayGenerationFromCamera(ray, i, j, mCamera);
+                        RenderLamp::PowderRenderer::RayIntersection(ray, hr, mScene);
+                        RenderLamp::PowderRenderer::ShadingKernel(hr, ray, color);
+
+                        pixelColor += color;
+                    }
+
+                    pixelColor *= invSamples;
+                    glm::ivec3 result = pixelColor.ToIntRGB();
                     file << result.x << ' ' << result.y << ' ' << result.z << '\n';
                 }
                 UpdateProgressBar();
