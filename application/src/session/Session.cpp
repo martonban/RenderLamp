@@ -37,12 +37,16 @@ void Session::StartRenderingPipeline() {
                 for (int i = 0; i < mSessionSettings.imageWidth; i++) {
                     Ray ray = {};
                     HitRecord hr = {};
-                    int ir, ig, ib;
-                    RenderLamp::PowderRenderer::RayGenaration(ray, i, j, mCamera);
-                    RenderLamp::PowderRenderer::RayIntersection(ray, hr, mScene);
-                    RenderLamp::PowderRenderer::ShadingKernel(hr, ray, ir, ig, ib);
+                    Color color;
 
-                    file << ir << ' ' << ig << ' ' << ib << '\n';
+                    RenderLamp::PowderRenderer::RayGenarationFromCamera(ray, i, j, mCamera);
+                    //RenderLamp::PowderRenderer::PathTracerKernels::PrimaryRay();
+
+                    RenderLamp::PowderRenderer::RayIntersection(ray, hr, mScene);
+                    RenderLamp::PowderRenderer::ShadingKernel(hr, ray, color);
+                    
+                    glm::ivec3 result = color.ToIntRGB();
+                    file << result.x << ' ' << result.y << ' ' << result.z << '\n';
                 }
                 UpdateProgressBar();
             }
@@ -102,13 +106,13 @@ bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
     mCamera->Process(mSessionSettings);
     
     std::shared_ptr<Mesh> m1 = std::make_shared<Mesh>(glm::dvec3{0.0, 0.0, 0.0}, glm::dvec3{0.174532935023308, 0.0, 0.0}, glm::dvec3{0.25, 0.25, 0.25}, "C:/Project/Big Projects/RenderLamp/tool/Meshes/utah_teapot.obj");
-    Material mat1 { DIFFUSE_SHADER, glm::ivec3{75, 10, 100}, 0.0, 0.0 };
-    m1->AddMaterial(mat1);
+    //Material mat1 { DIFFUSE_SHADER, glm::ivec3{75, 10, 100}, 0.0, 0.0 };
+    //m1->AddMaterial(mat1);
     mScene->AddGeometryToTheScene(m1);
-    std::shared_ptr<Sphere> s1 = std::make_shared<Sphere>(glm::dvec3{-0.734, 0.619, -0.304}, 0.4);
-    Material mat2 { DIFFUSE_SHADER, glm::ivec3{10, 100, 250}, 0.0, 0.0 };
-    s1->AddMaterial(mat2);
-    mScene->AddGeometryToTheScene(s1);
+    //std::shared_ptr<Sphere> s1 = std::make_shared<Sphere>(glm::dvec3{-0.734, 0.619, -0.304}, 0.4);
+    //Material mat2 { DIFFUSE_SHADER, glm::ivec3{10, 100, 250}, 0.0, 0.0 };
+    //s1->AddMaterial(mat2);
+    //mScene->AddGeometryToTheScene(s1);
     return true;
 }
 

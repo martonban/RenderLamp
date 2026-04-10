@@ -9,7 +9,6 @@
 #include "scene/geometries/Triangle.hpp"
 #include "loaders/ModelLoader.hpp"
 #include "scene/material/Material.hpp"
-#include "shaders/Shader.hpp"
 
 
 class Mesh : public Geometry {

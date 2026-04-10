@@ -3,12 +3,18 @@
 
 #include <glm/vec3.hpp>
 
-struct PointLight {
+#include "scene/lights/Light.hpp"
+
+class PointLight : public Light{
+
     glm::dvec3 worldPos;
     glm::dvec3 LightColor;
     double intensity;
     double lightRange;
     double attenuation;
+
+
+    Color Radiance(Ray& r);
 };
 
 #endif

@@ -3,39 +3,43 @@
 
 #include "utils/HitRecord.hpp"
 #include "utils/Ray.hpp"
+#include "utils/Color.hpp"
 #include <glm/glm.hpp>
 
 namespace RenderLamp::PowderRenderer {
-    inline void ShadingKernel(HitRecord& hitRecord, Ray& ray, int& ir, int& ig, int& ib) {
+    inline void ShadingKernel(HitRecord& hitRecord, Ray& ray, Color& color) {
         if(hitRecord.hit && hitRecord.material) {
             switch (hitRecord.material->shaderType) {
                 case DIFFUSE_SHADER:
-                    ir = hitRecord.material->albedo.x;
-                    ig = hitRecord.material->albedo.y;
-                    ib = hitRecord.material->albedo.z;
+                    color = Color(
+                        static_cast<double>(hitRecord.material->albedo.x) / 255.0,
+                        static_cast<double>(hitRecord.material->albedo.y) / 255.0,
+                        static_cast<double>(hitRecord.material->albedo.z) / 255.0
+                    );
                     break;
                 case EMPTY_SHADER:
-                    ir = static_cast<int>((hitRecord.normal.x + 1.0) * 0.5 * 255.0);
-                    ig = static_cast<int>((hitRecord.normal.y + 1.0) * 0.5 * 255.0);
-                    ib = static_cast<int>((hitRecord.normal.z + 1.0) * 0.5 * 255.0);
-                    break;
                 default:
-                    ir = static_cast<int>((hitRecord.normal.x + 1.0) * 0.5 * 255.0);
-                    ig = static_cast<int>((hitRecord.normal.y + 1.0) * 0.5 * 255.0);
-                    ib = static_cast<int>((hitRecord.normal.z + 1.0) * 0.5 * 255.0);
+                    color = Color(
+                        (hitRecord.normal.x + 1.0) * 0.5,
+                        (hitRecord.normal.y + 1.0) * 0.5,
+                        (hitRecord.normal.z + 1.0) * 0.5
+                    );
                     break;
-            }   
-           
+            }
         } else if (hitRecord.hit) {
-            ir = static_cast<int>((hitRecord.normal.x + 1.0) * 0.5 * 255.0);
-            ig = static_cast<int>((hitRecord.normal.y + 1.0) * 0.5 * 255.0);
-            ib = static_cast<int>((hitRecord.normal.z + 1.0) * 0.5 * 255.0);
+            color = Color(
+                (hitRecord.normal.x + 1.0) * 0.5,
+                (hitRecord.normal.y + 1.0) * 0.5,
+                (hitRecord.normal.z + 1.0) * 0.5
+            );
         } else {
             glm::dvec3 dir = glm::normalize(ray.direction());
             double t = 0.5 * (dir.y + 1.0);
-            ir = static_cast<int>(255.999 * ((1.0 - t) * 1.0 + t * 0.5));
-            ig = static_cast<int>(255.999 * ((1.0 - t) * 1.0 + t * 0.7));
-            ib = static_cast<int>(255.999 * ((1.0 - t) * 1.0 + t * 1.0));
+            color = Color(
+                (1.0 - t) * 1.0 + t * 0.5,
+                (1.0 - t) * 1.0 + t * 0.7,
+                (1.0 - t) * 1.0 + t * 1.0
+            );
         }
     }
 }
