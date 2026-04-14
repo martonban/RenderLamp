@@ -1,3 +1,6 @@
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "loaders/stb_image_write.h"
+
 #include "session/Session.hpp"
 
 
@@ -25,17 +28,18 @@ void Session::StartRenderingPipeline() {
     if(mSessionStatus == true) {
         InitProgressBar(batchSum);
         // Batch Loop
+        const int width  = mSessionSettings.imageWidth;
+        const int height = mSessionSettings.imageHeight;
+        std::vector<uint8_t> pixelBuffer(static_cast<size_t>(width) * height * 3);
+
         for(int b = 0; b < batchSum; b++) {
             // SceneDeserilize();
-            std::string frameName = "frame_" + std::to_string(b) + ".ppm";
-            std::ofstream file(mSessionPath / mSessionSettings.sessionName / frameName);
             // RenderLamp::PowderRenderer::VertexTransformStage(mScene, mBatch);
             
-            file << "P3\n" << mSessionSettings.imageWidth << ' ' << mSessionSettings.imageHeight << "\n255\n"; 
             double invSamples = 1.0 / mSessionSettings.samples;
             // Frame Loop
-            for (int j = 0; j < mSessionSettings.imageHeight; j++) {
-                for (int i = 0; i < mSessionSettings.imageWidth; i++) {
+            for (int j = 0; j < height; j++) {
+                for (int i = 0; i < width; i++) {
                     Color pixelColor;
 
                     // Anti-Aliasing
@@ -47,18 +51,25 @@ void Session::StartRenderingPipeline() {
                         RenderLamp::PowderRenderer::RayGenerationFromCamera(ray, i, j, mCamera);
                         RenderLamp::PowderRenderer::RayIntersection(ray, hr, mScene);
                         RenderLamp::PowderRenderer::ShadingKernel(hr, ray, color);
-
+                        
                         pixelColor += color;
                     }
 
                     pixelColor *= invSamples;
                     glm::ivec3 result = pixelColor.ToIntRGB();
-                    file << result.x << ' ' << result.y << ' ' << result.z << '\n';
+                    size_t idx = (static_cast<size_t>(j) * width + i) * 3;
+                    pixelBuffer[idx + 0] = static_cast<uint8_t>(result.x);
+                    pixelBuffer[idx + 1] = static_cast<uint8_t>(result.y);
+                    pixelBuffer[idx + 2] = static_cast<uint8_t>(result.z);
                 }
                 UpdateProgressBar();
             }
+
+            std::string frameName = "frame_" + std::to_string(b) + ".png";
+            std::filesystem::path outPath = mSessionPath / mSessionSettings.sessionName / frameName;
+            stbi_write_png(outPath.string().c_str(), width, height, 3, pixelBuffer.data(), width * 3);
         }
-        PrintRenderProgressBar(20);
+        PrintRenderProgressBar(100);
         std::cout << std::endl;
     }
 }
@@ -167,16 +178,17 @@ void Session::PrintCameraData() {
 }
 
 void Session::PrintRenderProgressBar(const int& x) {
-    constexpr int barWidth = 20;
+    constexpr int barWidth = 50;
     int clampedX = x;
     if(clampedX < 0) clampedX = 0;
-    if(clampedX > barWidth) clampedX = barWidth;
+    if(clampedX > 100) clampedX = 100;
 
-    const std::string done(clampedX, '#');
-    const std::string remaining(barWidth - clampedX, '-');
+    int filled = (clampedX * barWidth) / 100;
+    const std::string done(filled, '#');
+    const std::string remaining(barWidth - filled, '-');
 
     std::cout << "\r[" << done << remaining << "] "
-              << std::setw(3) << (clampedX * 5) << "%" << std::flush;
+              << std::setw(3) << clampedX << "%" << std::flush;
 }
 
 void Session::InitProgressBar(const int& batchSum) {
@@ -188,11 +200,10 @@ void Session::InitProgressBar(const int& batchSum) {
 void Session::UpdateProgressBar() {
     mCompletedRows++;
     int percent = (mCompletedRows * 100) / mTotalRows;
-    int bucket = percent / 5;
-    if(bucket > 20) bucket = 20;
-    if(bucket != mLastBucket) {
-        PrintRenderProgressBar(bucket);
-        mLastBucket = bucket;
+    if(percent > 100) percent = 100;
+    if(percent != mLastBucket) {
+        PrintRenderProgressBar(percent);
+        mLastBucket = percent;
     }
 }
 

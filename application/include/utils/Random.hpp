@@ -15,6 +15,29 @@ namespace RenderLamp::Random {
         return glm::dvec2(RandomDouble() - 0.5, RandomDouble() - 0.5);
     }
 
+    inline glm::dvec3 SampleSphere(double min = 0.0, double max = 1.0) {
+        return glm::vec3(RandomDouble(min, max), RandomDouble(min, max), RandomDouble(min, max));
+    }
+
+    inline glm::dvec3 RandomUnitVector() {
+        while (true) {
+            auto p = SampleSphere(-1,1);
+            auto lensq = glm::dot(p, p);
+            if (1e-160 < lensq && lensq <= 1) {
+                return p / sqrt(lensq);
+            }
+        }
+    }
+
+    inline glm::dvec3 random_on_hemisphere(const glm::dvec3& normal) {
+        glm::dvec3 UnitSphere = RandomUnitVector();
+        if (dot(UnitSphere, normal) > 0.0) {
+            return UnitSphere;
+        } else {
+            return -UnitSphere;
+        } 
+    }
+
 }
 
 

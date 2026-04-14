@@ -22,7 +22,6 @@
 
 // Rendering Pipeline 
 #include "kernels/RayGenKernel.hpp"
-#include "kernels/PathTracerKernel.hpp"
 #include "kernels/RayIntersectionKernel.hpp"
 #include "kernels/ShadingKernel.hpp"
 
