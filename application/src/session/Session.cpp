@@ -1,8 +1,7 @@
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "loaders/stb_image_write.h"
-
 #include "session/Session.hpp"
 
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "loaders/stb_image_write.h"
 
 Session::Session(const std::filesystem::path& sessionPath) {
     if(DeserializeSession(sessionPath)) {
@@ -50,8 +49,8 @@ void Session::StartRenderingPipeline() {
 
                         RenderLamp::PowderRenderer::RayGenerationFromCamera(ray, i, j, mCamera);
                         RenderLamp::PowderRenderer::RayIntersection(ray, hr, mScene);
-                        RenderLamp::PowderRenderer::ShadingKernel(hr, ray, color);
-                        
+                        RenderLamp::PowderRenderer::StartPathTracingKernel(ray, hr, color, mScene, mSessionSettings);                     
+
                         pixelColor += color;
                     }
 
@@ -123,14 +122,21 @@ bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
     mCamera = std::make_shared<RenderLamp::Camera>(DeserializeCamera(json));
     mCamera->Process(mSessionSettings);
     
-    std::shared_ptr<Mesh> m1 = std::make_shared<Mesh>(glm::dvec3{0.0, 0.0, 0.0}, glm::dvec3{0.174532935023308, 0.0, 0.0}, glm::dvec3{0.25, 0.25, 0.25}, "C:/Project/Big Projects/RenderLamp/tool/Meshes/utah_teapot.obj");
-    //Material mat1 { DIFFUSE_SHADER, glm::ivec3{75, 10, 100}, 0.0, 0.0 };
-    //m1->AddMaterial(mat1);
+
+
+    std::shared_ptr<Mesh> m1 = std::make_shared<Mesh>(glm::dvec3{0.0, -0.234, 0.0}, glm::dvec3{0.0, -0.113446401, 0.0}, glm::dvec3{0.25, 0.25, 0.25}, "C:/Project/Big Projects/RenderLamp/tool/Meshes/utah_teapot.obj");
+    Material mat1 { DIFFUSE_SHADER, glm::ivec3{59, 95, 149}, 0.0, 0.0 };
+    m1->AddMaterial(mat1);
     mScene->AddGeometryToTheScene(m1);
-    //std::shared_ptr<Sphere> s1 = std::make_shared<Sphere>(glm::dvec3{-0.734, 0.619, -0.304}, 0.4);
-    //Material mat2 { DIFFUSE_SHADER, glm::ivec3{10, 100, 250}, 0.0, 0.0 };
-    //s1->AddMaterial(mat2);
-    //mScene->AddGeometryToTheScene(s1);
+
+    std::shared_ptr<Sphere> floor = std::make_shared<Sphere>(glm::dvec3{0.0, -1000.5, 0.0}, 1000.0);
+    Material floorMat { DIFFUSE_SHADER, glm::dvec3{1.0, 1.0, 1.0}, 0.0, 0.0 };
+    floor->AddMaterial(floorMat);
+    mScene->AddGeometryToTheScene(floor);
+
+    std::shared_ptr<PointLight> l1 = std::make_shared<PointLight> (glm::dvec3{ 0.706, 0.405, 0.998}, glm::dvec3{1.0, 1.0, 1.0}, 1.0, 5.0, 1.0 );
+    mScene->AddLightToTheScene(l1);
+
     return true;
 }
 

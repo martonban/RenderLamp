@@ -6,7 +6,7 @@ void Scene::AddGeometryToTheScene(std::shared_ptr<Geometry> geometryPtr) {
     mGeometriries.push_back(geometryPtr);
 }
 
-void Scene::AddLightToTheScene(std::shared_ptr<Light> lightPtr) {
+void Scene::AddLightToTheScene(std::shared_ptr<PointLight> lightPtr) {
     mLights.push_back(lightPtr);
 }
 

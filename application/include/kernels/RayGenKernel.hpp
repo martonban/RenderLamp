@@ -16,18 +16,7 @@ namespace RenderLamp::PowderRenderer {
             + (double(j) + offset.y) * camera->pixelDeltaV;
 
         ray = Ray(camera->wordPos, glm::normalize(pixelSample - camera->wordPos));
-    }
-
-    // TODO Later
-    inline void ShadowRayGeneration() {
-
-    }
-    
-    // TODO Later
-    inline void SecondaryRayGeneration() {
-        
-    }
-    
+    }    
 }
 
 

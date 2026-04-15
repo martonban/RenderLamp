@@ -122,10 +122,10 @@ func serilaize_scene() -> Dictionary:
 		var world_scale: Vector3 = n.global_transform.basis.get_scale()
 
 		var material: StandardMaterial3D = n.get_active_material(0)
-		var color: Vector3i = Vector3i(
-			int(material.albedo_color.r * 255),
-			int(material.albedo_color.g * 255),
-			int(material.albedo_color.b * 255)
+		var color: Vector3 = Vector3(
+			material.albedo_color.r,
+			material.albedo_color.g,
+			material.albedo_color.b
 		)
 		var metallic_value: float = material.metallic
 		var roughness_value: float = material.roughness

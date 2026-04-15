@@ -1,11 +1,25 @@
 #ifndef DIFFUSE_SHADER_HPP
 #define DIFFUSE_SHADER_HPP
 
-#include "shaders/Shader.hpp"
-
+#include "shaders/interfaces/Shader.hpp"
+#include "utils/HitRecord.hpp"
+#include "utils/Random.hpp"
+#include "utils/Color.hpp"
+#include "scene/material/Material.hpp"
 
 class DiffuseShader : public Shader {
+    public:
+        inline glm::dvec3 GetDirection(const glm::dvec3& normal) {
+            return RenderLamp::Random::RandomOnHemisphere(normal);
+        }
 
+        inline Color GetColor(const std::shared_ptr<Material> material, const glm::dvec3& dir) {
+            return Color(
+                material->albedo.r / 255.0,
+                material->albedo.g / 255.0,
+                material->albedo.b / 255.0
+            );
+        }
 };
 
 #endif

@@ -6,7 +6,7 @@
 
 struct Material {
     ShaderType shaderType;
-    glm::ivec3 albedo;
+    glm::dvec3 albedo;
     float roughness = 0.0;
     float metalic = 0.0;
 };

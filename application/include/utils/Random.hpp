@@ -29,17 +29,14 @@ namespace RenderLamp::Random {
         }
     }
 
-    inline glm::dvec3 random_on_hemisphere(const glm::dvec3& normal) {
-        glm::dvec3 UnitSphere = RandomUnitVector();
-        if (dot(UnitSphere, normal) > 0.0) {
-            return UnitSphere;
+    inline glm::dvec3 RandomOnHemisphere(const glm::dvec3& normal) {
+        glm::dvec3 unitSphere = RandomUnitVector();
+        if (dot(unitSphere, normal) > 0.0) {
+            return unitSphere;
         } else {
-            return -UnitSphere;
+            return -unitSphere;
         } 
     }
-
 }
-
-
 
 #endif

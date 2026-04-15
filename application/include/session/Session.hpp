@@ -23,6 +23,7 @@
 // Rendering Pipeline 
 #include "kernels/RayGenKernel.hpp"
 #include "kernels/RayIntersectionKernel.hpp"
+#include "kernels/PathTracerKernels.hpp"
 #include "kernels/ShadingKernel.hpp"
 
 class Session {

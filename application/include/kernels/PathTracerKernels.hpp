@@ -1,0 +1,66 @@
+#ifndef PATH_TRACER_KERNEL_HPP
+#define PATH_TRACER_KERNEL_HPP
+
+#include "session/SessionUtils.hpp"
+#include "utils/HitRecord.hpp"
+#include "kernels/ShadingKernel.hpp"
+#include "utils/Ray.hpp"
+#include "utils/Color.hpp"
+#include "utils/Interval.hpp"
+#include "scene/Scene.hpp"
+#include "scene/lights/PointLight.hpp"
+
+
+namespace RenderLamp::PowderRenderer {
+
+    // Forward declaration to fix usage before definition
+    inline void ShadowRayStage(HitRecord& hitRecord, std::shared_ptr<Scene> scene, Color& color);
+
+    inline void StartPathTracingKernel(Ray& ray, HitRecord& hitRecord, Color& color, std::shared_ptr<Scene> scene, const RenderLamp::SessionSettings& settings) {
+        if(!hitRecord.hit) {
+            RenderLamp::PowderRenderer::CalculateSkyboxColor(ray, color);
+            return;
+        }
+        
+        if(hitRecord.material && hitRecord.material->shaderType == DIFFUSE_SHADER) {
+            color = Color(
+                hitRecord.material->albedo.r / 255.0,
+                hitRecord.material->albedo.g / 255.0,
+                hitRecord.material->albedo.b / 255.0
+            );
+        } else {
+            color = Color(0.8, 0.8, 0.8);
+        }
+
+        ShadowRayStage(hitRecord, scene, color);
+
+        //RenderLamp::PowderRenderer::SecondaryRayStage()
+
+
+    }
+
+    inline void ShadowRayStage(HitRecord& hitRecord, std::shared_ptr<Scene> scene, Color& color) {
+        Color totalLight(0.0, 0.0, 0.0);
+        for(auto l : scene->mLights) {
+            glm::dvec3 toLight = l->worldPos - hitRecord.hitPoint;
+            double lightDist = glm::length(toLight);
+            glm::dvec3 dir = toLight / lightDist;
+            Ray r = Ray(hitRecord.hitPoint, dir);
+            HitRecord tmpHitRecord;
+
+            // Only test for occluders between surface and light
+            Interval shadowInterval(0.001, lightDist);
+            tmpHitRecord.hit = scene->Hit(r, shadowInterval, tmpHitRecord);
+        
+            if(!tmpHitRecord.hit) {
+                totalLight += RenderLamp::PowderRenderer::EvaluatePointLightContribution(r, hitRecord, l);
+            }
+        
+        }
+        color *= totalLight;
+    } 
+
+}
+
+
+#endif
