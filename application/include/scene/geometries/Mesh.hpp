@@ -57,7 +57,7 @@ class Mesh : public Geometry {
                     ray_t.max = t2;
                     hitRecord.t = t2;
                     hitRecord.hitPoint = r.at(t2);
-                    hitRecord.normal = w * tr.n0 + u * tr.n1 + v * tr.n2;
+                    hitRecord.normal = glm::normalize(w * tr.n0 + u * tr.n1 + v * tr.n2);
                     hitRecord.material = std::make_shared<Material>(mMaterialInfo);
                     anyHit = true;
                 }

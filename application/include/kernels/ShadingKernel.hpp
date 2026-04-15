@@ -12,8 +12,6 @@
 #include "shaders/DiffuseShader.hpp"
 
 
-
-
 namespace RenderLamp::PowderRenderer {
     inline void CalculateSkyboxColor(Ray& ray, Color& color) {
         glm::dvec3 dir = glm::normalize(ray.direction());

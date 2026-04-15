@@ -13,7 +13,6 @@
 
 namespace RenderLamp::PowderRenderer {
 
-    // Forward declaration to fix usage before definition
     inline void ShadowRayStage(HitRecord& hitRecord, std::shared_ptr<Scene> scene, Color& color);
 
     inline void StartPathTracingKernel(Ray& ray, HitRecord& hitRecord, Color& color, std::shared_ptr<Scene> scene, const RenderLamp::SessionSettings& settings) {
@@ -32,9 +31,11 @@ namespace RenderLamp::PowderRenderer {
             color = Color(0.8, 0.8, 0.8);
         }
 
+        
+
         ShadowRayStage(hitRecord, scene, color);
 
-        //RenderLamp::PowderRenderer::SecondaryRayStage()
+        //SecondaryRayStage();
 
 
     }
@@ -57,8 +58,16 @@ namespace RenderLamp::PowderRenderer {
             }
         
         }
+        
+        Color ambient(0.08, 0.08, 0.08);
+        totalLight += ambient;
+
+
         color *= totalLight;
     } 
+
+
+    //inline void SecondaryRayStage()
 
 }
 

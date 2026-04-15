@@ -1,7 +1,7 @@
 #include "session/Session.hpp"
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "loaders/stb_image_write.h"
+#include "loaders/stb_image_write.hpp"
 
 Session::Session(const std::filesystem::path& sessionPath) {
     if(DeserializeSession(sessionPath)) {
@@ -130,11 +130,11 @@ bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
     mScene->AddGeometryToTheScene(m1);
 
     std::shared_ptr<Sphere> floor = std::make_shared<Sphere>(glm::dvec3{0.0, -1000.5, 0.0}, 1000.0);
-    Material floorMat { DIFFUSE_SHADER, glm::dvec3{1.0, 1.0, 1.0}, 0.0, 0.0 };
+    Material floorMat { DIFFUSE_SHADER, glm::dvec3{255, 255, 255}, 0.0, 0.0 };
     floor->AddMaterial(floorMat);
     mScene->AddGeometryToTheScene(floor);
 
-    std::shared_ptr<PointLight> l1 = std::make_shared<PointLight> (glm::dvec3{ 0.706, 0.405, 0.998}, glm::dvec3{1.0, 1.0, 1.0}, 1.0, 5.0, 1.0 );
+    std::shared_ptr<PointLight> l1 = std::make_shared<PointLight> (glm::dvec3{ 0.706, 0.405, 0.998}, glm::dvec3{1.0, 1.0, 1.0}, 1.0, 40.0, 1.0 );
     mScene->AddLightToTheScene(l1);
 
     return true;
