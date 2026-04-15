@@ -42,15 +42,17 @@ namespace RenderLamp::PowderRenderer {
 
     inline void ShadowRayStage(HitRecord& hitRecord, std::shared_ptr<Scene> scene, Color& color) {
         Color totalLight(0.0, 0.0, 0.0);
+        constexpr double shadowOriginBias = 5e-3;
         for(auto l : scene->mLights) {
-            glm::dvec3 toLight = l->worldPos - hitRecord.hitPoint;
+            glm::dvec3 originOffset = hitRecord.hitPoint + hitRecord.normal * shadowOriginBias;
+            glm::dvec3 toLight = l->worldPos - originOffset;
             double lightDist = glm::length(toLight);
             glm::dvec3 dir = toLight / lightDist;
-            Ray r = Ray(hitRecord.hitPoint, dir);
+            Ray r = Ray(originOffset, dir);
             HitRecord tmpHitRecord;
 
             // Only test for occluders between surface and light
-            Interval shadowInterval(0.001, lightDist);
+            Interval shadowInterval(1e-4, lightDist);
             tmpHitRecord.hit = scene->Hit(r, shadowInterval, tmpHitRecord);
         
             if(!tmpHitRecord.hit) {
