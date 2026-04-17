@@ -31,8 +31,6 @@ namespace RenderLamp::PowderRenderer {
             color = Color(0.8, 0.8, 0.8);
         }
 
-        
-
         ShadowRayStage(hitRecord, scene, color);
 
         //SecondaryRayStage();
@@ -60,11 +58,6 @@ namespace RenderLamp::PowderRenderer {
             }
         
         }
-        
-        Color ambient(0.08, 0.08, 0.08);
-        totalLight += ambient;
-
-
         color *= totalLight;
     } 
 

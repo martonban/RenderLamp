@@ -134,8 +134,11 @@ bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
     floor->AddMaterial(floorMat);
     mScene->AddGeometryToTheScene(floor);
 
-    std::shared_ptr<PointLight> l1 = std::make_shared<PointLight> (glm::dvec3{ 0.706, 0.405, 0.998}, glm::dvec3{1.0, 1.0, 1.0}, 1.0, 40.0, 1.0 );
+    std::shared_ptr<PointLight> l1 = std::make_shared<PointLight> (glm::dvec3{ 0.706, 0.405, 0.998}, glm::dvec3{1.0, 1.0, 1.0}, 1.0, 5.0, 1.0 );
     mScene->AddLightToTheScene(l1);
+
+    //std::shared_ptr<PointLight> l2 = std::make_shared<PointLight> (glm::dvec3{ -0.706, 0.655, 1.01}, glm::dvec3{1.0, 0.2, 0.2}, 0.8, 5.0, 2.0 );
+    //mScene->AddLightToTheScene(l2);
 
     return true;
 }

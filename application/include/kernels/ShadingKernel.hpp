@@ -24,8 +24,14 @@ namespace RenderLamp::PowderRenderer {
     }
 
     inline Color EvaluatePointLightContribution(const Ray& ray, const HitRecord& hr, std::shared_ptr<PointLight> light) {
-        double cosTheta = glm::max(0.0,  glm::dot(hr.normal, ray.direction()));
-        return light->lightColor * light->intensity * light->attenuation * cosTheta;
+        glm::dvec3 lightDir = glm::normalize(light->worldPos - hr.hitPoint);
+
+        double cosTheta = glm::max(0.0,  glm::dot(hr.normal, lightDir));
+
+        double dist = glm::length(light->worldPos - hr.hitPoint);
+        double attenuation = 1.0f / (light->attenuation * dist * dist);
+
+        return light->lightColor * light->intensity * attenuation * cosTheta;
     }
 
 
