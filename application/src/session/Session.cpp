@@ -1,7 +1,7 @@
 #include "session/Session.hpp"
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "loaders/stb_image_write.hpp"
+#include "writers/stb_image_write.hpp"
 
 Session::Session(const std::filesystem::path& sessionPath) {
     if(DeserializeSession(sessionPath)) {
@@ -19,7 +19,7 @@ Session::Session(const std::filesystem::path& sessionPath) {
 
 
 void Session::StartRenderingPipeline() {
-    int batchSum = 10;
+    int batchSum = 2;
     if(!Arca::ArcaIO::CreateFolder(mSessionPath, mSessionSettings.sessionName)) {
         std::cerr << "Output folder creation issue" << std::endl;
     }
@@ -41,7 +41,7 @@ void Session::StartRenderingPipeline() {
                 for (int i = 0; i < width; i++) {
                     Color pixelColor;
 
-                    // Anti-Aliasing
+                    // Anti-Aliasing and Sampling 
                     for (int s = 0; s < mSessionSettings.samples; s++) {
                         Ray ray = {};
                         HitRecord hr = {};
@@ -54,6 +54,7 @@ void Session::StartRenderingPipeline() {
                         pixelColor += color;
                     }
 
+                    // Monte Carlo Integration
                     pixelColor *= invSamples;
                     glm::ivec3 result = pixelColor.ToIntRGB();
                     size_t idx = (static_cast<size_t>(j) * width + i) * 3;
@@ -137,8 +138,8 @@ bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
     std::shared_ptr<PointLight> l1 = std::make_shared<PointLight> (glm::dvec3{ 0.706, 0.405, 0.998}, glm::dvec3{1.0, 1.0, 1.0}, 1.0, 5.0, 1.0 );
     mScene->AddLightToTheScene(l1);
 
-    //std::shared_ptr<PointLight> l2 = std::make_shared<PointLight> (glm::dvec3{ -0.706, 0.655, 1.01}, glm::dvec3{1.0, 0.2, 0.2}, 0.8, 5.0, 2.0 );
-    //mScene->AddLightToTheScene(l2);
+    std::shared_ptr<PointLight> l2 = std::make_shared<PointLight> (glm::dvec3{ -0.706, 0.655, 1.01}, glm::dvec3{1.0, 0.2, 0.2}, 0.8, 5.0, 2.0 );
+    mScene->AddLightToTheScene(l2);
 
     return true;
 }
