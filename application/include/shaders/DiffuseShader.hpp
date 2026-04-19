@@ -9,15 +9,19 @@
 
 class DiffuseShader : public Shader {
     public:
-        inline glm::dvec3 GetDirection(const glm::dvec3& normal) {
-            return RenderLamp::Random::RandomOnHemisphere(normal);
+        inline glm::dvec3 BounceDirection(const Material& material, const glm::dvec3& normal) override {
+            return glm::normalize(normal + RenderLamp::Random::RandomUnitVector());
         }
 
-        inline Color GetColor(const std::shared_ptr<Material> material, const glm::dvec3& dir) {
+        inline glm::dvec3 BounceDirection(const glm::dvec3& normal) override {
+            return glm::normalize(normal + RenderLamp::Random::RandomUnitVector());
+        }
+
+        inline Color GetColorContribution(const Material& material) override {
             return Color(
-                material->albedo.r / 255.0,
-                material->albedo.g / 255.0,
-                material->albedo.b / 255.0
+                material.albedo.r / 255.0,
+                material.albedo.g / 255.0,
+                material.albedo.b / 255.0
             );
         }
 };

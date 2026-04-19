@@ -13,7 +13,8 @@
 
 namespace RenderLamp::PowderRenderer {
 
-    inline void ShadowRayStage(HitRecord& hitRecord, std::shared_ptr<Scene> scene, Color& color);
+    inline void DirectLightCalulation(HitRecord& hitRecord, std::shared_ptr<Scene> scene, Color& color);
+    inline void IndirectLightCalculation(HitRecord& hitRecord, std::shared_ptr<Scene> scene, Color& color, int depth);
 
     inline void StartPathTracingKernel(Ray& ray, HitRecord& hitRecord, Color& color, std::shared_ptr<Scene> scene, const RenderLamp::SessionSettings& settings) {
         if(!hitRecord.hit) {
@@ -31,14 +32,12 @@ namespace RenderLamp::PowderRenderer {
             color = Color(0.8, 0.8, 0.8);
         }
 
-        ShadowRayStage(hitRecord, scene, color);
-
-        //SecondaryRayStage();
-
+        DirectLightCalulation(hitRecord, scene, color);
+        IndirectLightCalculation(hitRecord, scene, color, settings.maxDepth);
 
     }
 
-    inline void ShadowRayStage(HitRecord& hitRecord, std::shared_ptr<Scene> scene, Color& color) {
+    inline void DirectLightCalulation(HitRecord& hitRecord, std::shared_ptr<Scene> scene, Color& color) {
         Color totalLight(0.0, 0.0, 0.0);
         constexpr double shadowOriginBias = 5e-3;
         for(auto l : scene->mLights) {
@@ -59,10 +58,73 @@ namespace RenderLamp::PowderRenderer {
         
         }
         color *= totalLight;
-    } 
+    }
+    
+    inline void IndirectLightCalculation(HitRecord& hitRecord, std::shared_ptr<Scene> scene, Color& color, int depth) {
+        if(depth <= 1) return;
 
+        constexpr double bounceOriginBias = 5e-3;
+        Color indirectLight(0.0, 0.0, 0.0);
+        Color throughput(1.0, 1.0, 1.0);
+        HitRecord currentHit = hitRecord;
 
-    //inline void SecondaryRayStage()
+        for(int i = 1; i < depth; i++) {
+            if(!currentHit.material) break;
+
+            Color currentAlbedo(0.8, 0.8, 0.8);
+            if(currentHit.material->shaderType == DIFFUSE_SHADER) {
+                currentAlbedo = Color(
+                    currentHit.material->albedo.r / 255.0,
+                    currentHit.material->albedo.g / 255.0,
+                    currentHit.material->albedo.b / 255.0
+                );
+            }
+            throughput *= currentAlbedo;
+
+            glm::dvec3 dir;
+
+            switch (currentHit.material->shaderType) {
+            case DIFFUSE_SHADER: {
+                auto shader = std::make_unique<DiffuseShader>();
+                dir = glm::normalize(shader->BounceDirection(currentHit.normal));
+                break;
+            }
+            default:
+                break;
+            }
+
+            glm::dvec3 originOffset = currentHit.hitPoint + currentHit.normal * bounceOriginBias;
+            Ray childRay {originOffset, dir};
+            HitRecord tmpHr;
+
+            RenderLamp::PowderRenderer::RayIntersection(childRay, tmpHr, scene);
+
+            if(!tmpHr.hit) {
+                constexpr double envStrength = 0.2;
+                Color skyColor;
+                CalculateSkyboxColor(childRay, skyColor);
+                indirectLight += throughput * skyColor * envStrength;
+                break;
+            }
+
+            Color surfaceColor(0.8, 0.8, 0.8);
+            if(tmpHr.material && tmpHr.material->shaderType == DIFFUSE_SHADER) {
+                surfaceColor = Color(
+                    tmpHr.material->albedo.r / 255.0,
+                    tmpHr.material->albedo.g / 255.0,
+                    tmpHr.material->albedo.b / 255.0
+                );
+            }
+
+            Color bounceColor = surfaceColor;
+            DirectLightCalulation(tmpHr, scene, bounceColor);
+            indirectLight += throughput * bounceColor;
+
+            currentHit = tmpHr;
+        }
+
+        color += indirectLight;
+    }
 
 }
 

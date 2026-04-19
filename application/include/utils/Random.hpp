@@ -6,9 +6,9 @@
 
 namespace RenderLamp::Random {
     inline double RandomDouble(double min = 0.0, double max = 1.0) {
-        static std::mt19937 gen(std::random_device{}());
+        static thread_local std::mt19937 gen(std::random_device{}());
         std::uniform_real_distribution<double> dist(min, max);
-        return min + dist(gen) * (max - min);
+        return dist(gen);
     }
 
     inline glm::dvec2 SampleSquare() {

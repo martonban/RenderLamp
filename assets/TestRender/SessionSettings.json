@@ -5,6 +5,6 @@
 	"RenderEngine": 0,
 	"Samples": 500,
 	"SessionName": "TestRender",
-	"TargetHeight": 1080,
-	"TargetWidth": 1920
+	"TargetHeight": 240,
+	"TargetWidth": 426
 }

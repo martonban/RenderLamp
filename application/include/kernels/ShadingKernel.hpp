@@ -39,9 +39,8 @@ namespace RenderLamp::PowderRenderer {
         if(hitRecord.hit && hitRecord.material) {
             switch (hitRecord.material->shaderType) {
                 case DIFFUSE_SHADER: {
-                    DiffuseShader shader;
-                    auto dir = shader.GetDirection(hitRecord.normal);
-                    color = shader.GetColor(hitRecord.material, dir);
+                    auto shader = std::make_unique<DiffuseShader>();
+                    color = shader->GetColorContribution(*hitRecord.material);
                     break;
                 }
                 case EMPTY_SHADER: {
