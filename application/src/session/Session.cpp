@@ -122,24 +122,9 @@ bool Session::DeserializeScene(const std::filesystem::path& scenePath) {
     file >> json;
     mCamera = std::make_shared<RenderLamp::Camera>(DeserializeCamera(json));
     mCamera->Process(mSessionSettings);
-    
 
-
-    std::shared_ptr<Mesh> m1 = std::make_shared<Mesh>(glm::dvec3{0.0, -0.234, 0.0}, glm::dvec3{0.0, -0.113446401, 0.0}, glm::dvec3{0.25, 0.25, 0.25}, "C:/Project/Big Projects/RenderLamp/tool/Meshes/utah_teapot.obj");
-    Material mat1 { DIFFUSE_SHADER, glm::ivec3{59, 95, 149}, 0.0, 0.0 };
-    m1->AddMaterial(mat1);
-    mScene->AddGeometryToTheScene(m1);
-
-    std::shared_ptr<Sphere> floor = std::make_shared<Sphere>(glm::dvec3{0.0, -1000.5, 0.0}, 1000.0);
-    Material floorMat { DIFFUSE_SHADER, glm::dvec3{255, 255, 255}, 0.0, 0.0 };
-    floor->AddMaterial(floorMat);
-    mScene->AddGeometryToTheScene(floor);
-
-    std::shared_ptr<PointLight> l1 = std::make_shared<PointLight> (glm::dvec3{ 0.706, 0.405, 0.998}, glm::dvec3{1.0, 1.0, 1.0}, 1.0, 5.0, 1.0 );
-    mScene->AddLightToTheScene(l1);
-
-    std::shared_ptr<PointLight> l2 = std::make_shared<PointLight> (glm::dvec3{ -0.706, 0.655, 1.01}, glm::dvec3{1.0, 0.2, 0.2}, 0.8, 5.0, 2.0 );
-    mScene->AddLightToTheScene(l2);
+    DeserializeLights(mScene, json);
+    DeserializeObjects(mScene, json);
 
     return true;
 }
@@ -164,6 +149,71 @@ RenderLamp::Camera Session::DeserializeCamera(const nlohmann::json& jsonObject) 
         return RenderLamp::Camera {{0.0, 0.0, 0.0}, 0.0}; 
     }
 }
+
+void Session::DeserializeLights(std::shared_ptr<Scene> scene, const nlohmann::json& jsonObject) {
+    if (jsonObject.contains("lights") && jsonObject["lights"].is_array()) {
+        for(const nlohmann::json& light_json : jsonObject["lights"]) {
+            nlohmann::json pos_json = light_json["position"];
+            nlohmann::json color_json = light_json["color"];
+
+            glm::dvec3 pos {0.0, 0.0, 0.0};
+            glm::dvec3 color {0.0, 0.0, 0.0};
+
+            pos.x = pos_json["x"];
+            pos.y = pos_json["y"];
+            pos.z = pos_json["z"];
+
+            color.x = color_json["r"];
+            color.y = color_json["g"];
+            color.z = color_json["b"];
+
+            double intensity = light_json["intensity"];
+            double range = light_json["range"];
+            double attenuation = light_json["attenuation"];
+
+            std::shared_ptr<PointLight> light =
+                std::make_shared<PointLight>(pos, color, intensity, range, attenuation);
+
+            scene->AddLightToTheScene(light);
+        } 
+    }
+}
+
+void Session::DeserializeObjects(std::shared_ptr<Scene> scene, const nlohmann::json& jsonObject) {
+    if (jsonObject.contains("objects") && jsonObject["objects"].is_array()) {
+        for (const nlohmann::json& obj_json : jsonObject["objects"]) {
+            std::string type = obj_json["type"];
+
+            nlohmann::json pos_json   = obj_json["transform"]["position"];
+            nlohmann::json rot_json   = obj_json["transform"]["rotation"];
+            nlohmann::json scale_json = obj_json["transform"]["scale"];
+
+            glm::dvec3 pos   { pos_json["x"],   pos_json["y"],   pos_json["z"]   };
+            glm::dvec3 rot   { rot_json["x"],   rot_json["y"],   rot_json["z"]   };
+            glm::dvec3 scale { scale_json["x"], scale_json["y"], scale_json["z"] };
+
+            nlohmann::json color_json = obj_json["material"]["color"];
+            glm::dvec3 color { color_json["r"], color_json["g"], color_json["b"] };
+            float roughness = obj_json["material"]["roughness"];
+            float metallic  = obj_json["material"]["metallic"];
+            Material mat { DIFFUSE_SHADER, color * 255.0, roughness, metallic };
+
+            if (type == "SphereMesh") {
+                double radius = scale.x;
+                std::shared_ptr<Sphere> sphere = std::make_shared<Sphere>(pos, radius);
+                sphere->AddMaterial(mat);
+                scene->AddGeometryToTheScene(sphere);
+            } else if (type == "ArrayMesh") {
+                std::string modelPath = obj_json["model_path"];
+                std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>(pos, rot, scale, modelPath);
+                mesh->AddMaterial(mat);
+                scene->AddGeometryToTheScene(mesh);
+            }
+        }
+    }
+}
+
+
 
 void Session::PrintSessionSettings() {
     std::cout << "=== Session Settings ===" << std::endl;

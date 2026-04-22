@@ -42,6 +42,8 @@ class Session {
         
         bool DeserializeScene(const std::filesystem::path& scenePath);
         RenderLamp::Camera DeserializeCamera(const nlohmann::json& jsonObject);
+        void DeserializeLights(std::shared_ptr<Scene> scene, const nlohmann::json& jsonObject);
+        void DeserializeObjects(std::shared_ptr<Scene> scene, const nlohmann::json& jsonObject);
 
 
         int mTotalRows = 0;

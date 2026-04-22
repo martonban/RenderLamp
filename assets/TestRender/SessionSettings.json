@@ -1,10 +1,11 @@
 {
-	"Depth": 50,
+	"Depth": 2,
 	"Device": 0,
+	"FrameRate": 25,
 	"Mode": 0,
 	"RenderEngine": 0,
-	"Samples": 500,
-	"SessionName": "TestRender",
+	"Samples": 2,
+	"SessionName": "CornelBox",
 	"TargetHeight": 240,
-	"TargetWidth": 426
+	"TargetWidth": 320
 }

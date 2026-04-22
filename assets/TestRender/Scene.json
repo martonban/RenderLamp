@@ -2,58 +2,99 @@
 	"camera": {
 		"fov": 75.0,
 		"position": {
-			"x": -0.00380194187164307,
-			"y": 0.507637619972229,
-			"z": 2.73592591285706
+			"x": 0.0137413740158081,
+			"y": 0.737715840339661,
+			"z": 2.29157137870789
+		},
+		"rotation": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0
 		}
 	},
+	"lights": [
+		{
+			"attenuation": 1.0,
+			"color": {
+				"b": 1.0,
+				"g": 1.0,
+				"r": 1.0
+			},
+			"id": 0,
+			"intensity": 1.0,
+			"position": {
+				"x": 0.0204381346702576,
+				"y": 1.45926749706268,
+				"z": 0.768671274185181
+			},
+			"range": 5.0
+		},
+		{
+			"attenuation": 1.0,
+			"color": {
+				"b": 1.0,
+				"g": 1.0,
+				"r": 1.0
+			},
+			"id": 1,
+			"intensity": 1.0,
+			"position": {
+				"x": 0.0204381346702576,
+				"y": 0.491900324821472,
+				"z": 2.05989050865173
+			},
+			"range": 5.0
+		}
+	],
 	"objects": [
 		{
+			"id": 0,
 			"material": {
 				"color": {
-					"b": 149,
-					"g": 94,
-					"r": 58
+					"b": 0.584313750267029,
+					"g": 0.372549027204514,
+					"r": 0.23137255012989
 				},
 				"metallic": 0.0,
 				"roughness": 1.0
 			},
-			"name": "MeshInstance3D",
+			"model_path": "C:/Project/Big Projects/RenderLamp/tool/Meshes/utah_teapot.obj",
 			"transform": {
 				"position": {
-					"x": 0.73412823677063,
-					"y": 0.370367527008057,
-					"z": 0.401120901107788
+					"x": -0.59279727935791,
+					"y": -0.247050881385803,
+					"z": 0.367011487483978
 				},
 				"rotation": {
 					"x": 0.0,
-					"y": 0.0,
+					"y": -0.113446392118931,
 					"z": 0.0
 				},
 				"scale": {
-					"x": 1.0,
-					"y": 1.0,
-					"z": 1.0
+					"x": 0.115000009536743,
+					"y": 0.115000002086163,
+					"z": 0.115000009536743
 				}
 			},
-			"type": "SphereMesh"
+			"type": "ArrayMesh"
 		},
 		{
+			"id": 1,
 			"material": {
 				"color": {
-					"b": 212,
-					"g": 81,
-					"r": 222
+					"b": 1.0,
+					"g": 1.0,
+					"r": 1.0
 				},
-				"metallic": 1.0,
+				"metallic": 0.0,
 				"roughness": 1.0
 			},
-			"name": "MeshInstance3D2",
+			"model_path": "C:/Project/Big Projects/RenderLamp/tool/Meshes/cube.obj",
 			"transform": {
 				"position": {
-					"x": -0.58774995803833,
-					"y": 0.397648096084595,
-					"z": -0.391003608703613
+					"x": -0.00794386863708496,
+					"y": -0.284939169883728,
+					"z": -0.100234389305115
 				},
 				"rotation": {
 					"x": 0.0,
@@ -62,11 +103,166 @@
 				},
 				"scale": {
 					"x": 1.0,
-					"y": 1.0,
+					"y": 0.0514536052942276,
 					"z": 1.0
 				}
 			},
-			"type": "SphereMesh"
+			"type": "ArrayMesh"
+		},
+		{
+			"id": 2,
+			"material": {
+				"color": {
+					"b": 1.0,
+					"g": 1.0,
+					"r": 1.0
+				},
+				"metallic": 0.0,
+				"roughness": 1.0
+			},
+			"model_path": "C:/Project/Big Projects/RenderLamp/tool/Meshes/cube.obj",
+			"transform": {
+				"position": {
+					"x": -0.00794386863708496,
+					"y": 1.80423486232758,
+					"z": -0.100234389305115
+				},
+				"rotation": {
+					"x": 0.0,
+					"y": 0.0,
+					"z": 0.0
+				},
+				"scale": {
+					"x": 1.0,
+					"y": 0.0514536052942276,
+					"z": 1.0
+				}
+			},
+			"type": "ArrayMesh"
+		},
+		{
+			"id": 3,
+			"material": {
+				"color": {
+					"b": 0.0,
+					"g": 0.0,
+					"r": 1.0
+				},
+				"metallic": 0.0,
+				"roughness": 1.0
+			},
+			"model_path": "C:/Project/Big Projects/RenderLamp/tool/Meshes/cube.obj",
+			"transform": {
+				"position": {
+					"x": -0.963391661643982,
+					"y": 0.769962310791016,
+					"z": -0.100234389305115
+				},
+				"rotation": {
+					"x": 0.0,
+					"y": 0.0,
+					"z": -1.57079637050629
+				},
+				"scale": {
+					"x": 1.0,
+					"y": 0.0514536052942276,
+					"z": 1.0
+				}
+			},
+			"type": "ArrayMesh"
+		},
+		{
+			"id": 4,
+			"material": {
+				"color": {
+					"b": 0.215686276555061,
+					"g": 1.0,
+					"r": 0.0
+				},
+				"metallic": 0.0,
+				"roughness": 1.0
+			},
+			"model_path": "C:/Project/Big Projects/RenderLamp/tool/Meshes/cube.obj",
+			"transform": {
+				"position": {
+					"x": 0.948415398597717,
+					"y": 0.769962310791016,
+					"z": -0.100234389305115
+				},
+				"rotation": {
+					"x": 0.0,
+					"y": 0.0,
+					"z": -1.57079637050629
+				},
+				"scale": {
+					"x": 1.0,
+					"y": 0.0514536052942276,
+					"z": 1.0
+				}
+			},
+			"type": "ArrayMesh"
+		},
+		{
+			"id": 5,
+			"material": {
+				"color": {
+					"b": 1.0,
+					"g": 1.0,
+					"r": 1.0
+				},
+				"metallic": 0.0,
+				"roughness": 1.0
+			},
+			"model_path": "C:/Project/Big Projects/RenderLamp/tool/Meshes/cube.obj",
+			"transform": {
+				"position": {
+					"x": 0.0754415169358253,
+					"y": 0.298655211925507,
+					"z": 0.0793312788009644
+				},
+				"rotation": {
+					"x": 0.0,
+					"y": -2.24655294418335,
+					"z": -1.57079637050629
+				},
+				"scale": {
+					"x": -0.530074119567871,
+					"y": -0.283082872629166,
+					"z": -0.262253969907761
+				}
+			},
+			"type": "ArrayMesh"
+		},
+		{
+			"id": 6,
+			"material": {
+				"color": {
+					"b": 1.0,
+					"g": 1.0,
+					"r": 1.0
+				},
+				"metallic": 0.0,
+				"roughness": 1.0
+			},
+			"model_path": "C:/Project/Big Projects/RenderLamp/tool/Meshes/cube.obj",
+			"transform": {
+				"position": {
+					"x": -0.0321695804595947,
+					"y": 0.769962310791016,
+					"z": -1.14860427379608
+				},
+				"rotation": {
+					"x": 0.0,
+					"y": 1.57079637050629,
+					"z": -1.57079637050629
+				},
+				"scale": {
+					"x": 1.0,
+					"y": 0.0514536052942276,
+					"z": 1.0
+				}
+			},
+			"type": "ArrayMesh"
 		}
 	]
 }
