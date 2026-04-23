@@ -4,7 +4,8 @@ RenderLamp is a CPU path tracer engine in C++, alongside a companion DCC tool im
 # Editor
 RenderLamp requires a DCC (Digital Content Creation) tool, which I implemented as a Godot plugin. The plugin's operation is relatively straightforward. Using Godot's MeshInstance3D, we are able to assemble a scene and export it to disk along with transformation data, organized into what are referred to as `Sessions`.
 <br><br>
-<img width="1919" height="1020" alt="Képernyőkép 2026-04-21 023709" src="https://github.com/user-attachments/assets/8ddf8242-f7bd-4dfc-b44e-9dfeffa8a635" />
+<img width="1919" height="1016" alt="Képernyőkép 2026-04-23 004445" src="https://github.com/user-attachments/assets/69d75296-fa87-4ae8-ad11-3a26bf77c783" />
+
 
 
 # Rendering Engine
@@ -15,6 +16,7 @@ RenderLamp features a 3D path tracer engine, accessible through a lightweight CL
 - Calculating indirect lighting contributions using secondary rays.
 
 ## Results:
+<img width="1920" height="1080" alt="frame_0" src="https://github.com/user-attachments/assets/f8585060-b2e0-4963-a14b-9c561ae6c633" /> <br>
 <img width="1920" height="1080" alt="frame_0" src="https://github.com/user-attachments/assets/47be30d8-bfa2-4183-86be-45b6c6c2501b" />
 
 
