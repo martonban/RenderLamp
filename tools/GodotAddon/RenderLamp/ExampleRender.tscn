@@ -9,6 +9,8 @@ albedo_color = Color(0.23137255, 0.37254903, 0.58431375, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6uec"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_backf"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3wm8"]
 albedo_color = Color(1, 0, 0, 1)
 
@@ -22,45 +24,48 @@ light_array = [NodePath("OmniLight3D"), NodePath("OmniLight3D2")]
 camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=871851425]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013741374, 0.73771584, 2.2915714)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013741374, 0.76333725, 3.4444392)
+fov = 48.4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1445141586]
-transform = Transform3D(0.11426077, 0, -0.01301837, 0, 0.115, 0, 0.01301837, 0, 0.11426077, -0.5927973, -0.24705088, 0.3670115)
+transform = Transform3D(0.112103805, 0, -0.02564637, 0, 0.115, 0, 0.02564637, 0, 0.112103805, -0.5095314, -0.24705088, 0.31882316)
 mesh = ExtResource("2_se0qy")
 surface_material_override/0 = SubResource("StandardMaterial3D_ut3yh")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=832554514]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020438135, 1.4592675, 0.7686713)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0034478307, 1.4592675, -0.2829993)
+light_energy = 0.535
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=2094835817]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020438135, 0.49190032, 2.0598905)
+light_energy = 0.429
 
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=488143831]
-transform = Transform3D(1, 0, 0, 0, 0.051453605, 0, 0, 0, 1, -0.007943869, -0.28493917, -0.10023439)
+transform = Transform3D(1, 0, 0, 0, 0.051453605, 0, 0, 0, 1, -0.007943869, -0.2739411, -0.10023439)
 mesh = ExtResource("3_backf")
 surface_material_override/0 = SubResource("StandardMaterial3D_a6uec")
 
 [node name="Cube5" type="MeshInstance3D" parent="." unique_id=77469715]
-transform = Transform3D(1, 0, 0, 0, 0.051453605, 0, 0, 0, 1, -0.007943869, 1.8042349, -0.10023439)
+transform = Transform3D(1, 0, 0, 0, 0.051453605, 0, 0, 0, 1, -0.009926677, 1.8213183, -0.10023439)
 mesh = ExtResource("3_backf")
-surface_material_override/0 = SubResource("StandardMaterial3D_a6uec")
+surface_material_override/0 = SubResource("StandardMaterial3D_backf")
 
 [node name="Cube2" type="MeshInstance3D" parent="." unique_id=1456377607]
-transform = Transform3D(-4.371139e-08, 0.051453605, 0, -1, -2.2491085e-09, 0, 0, 0, 1, -0.96339166, 0.7699623, -0.10023439)
+transform = Transform3D(-4.371139e-08, 0.051453605, 0, -1, -2.2491085e-09, 0, 0, 0, 1, -0.95294106, 0.7699623, -0.10023439)
 mesh = ExtResource("3_backf")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3wm8")
 
 [node name="Cube3" type="MeshInstance3D" parent="." unique_id=1724121699]
-transform = Transform3D(-4.371139e-08, 0.051453605, 0, -1, -2.2491085e-09, 0, 0, 0, 1, 0.9484154, 0.7699623, -0.10023439)
+transform = Transform3D(-4.371139e-08, 0.051453605, 0, -1, -2.2491085e-09, 0, 0, 0, 1, 0.9391645, 0.77166224, -0.10023439)
 mesh = ExtResource("3_backf")
 surface_material_override/0 = SubResource("StandardMaterial3D_nnbg1")
 
 [node name="Cube6" type="MeshInstance3D" parent="." unique_id=926997793]
-transform = Transform3D(-1.449273e-08, 0.1770649, -0.20461945, -0.5300741, -1.2373945e-08, 0, 1.807824e-08, -0.22087085, -0.16403666, 0.07544152, 0.2986552, 0.07933128)
+transform = Transform3D(-1.449273e-08, 0.1770649, -0.20461945, -0.5300741, -1.2373945e-08, 0, 1.807824e-08, -0.22087085, -0.16403666, 0.07544152, 0.2986552, -0.24096715)
 mesh = ExtResource("3_backf")
 surface_material_override/0 = SubResource("StandardMaterial3D_a6uec")
 
 [node name="Cube4" type="MeshInstance3D" parent="." unique_id=1610578345]
-transform = Transform3D(1.9106855e-15, -2.2491085e-09, 1, -1, -2.2491085e-09, 0, 4.371139e-08, -0.051453605, -4.371139e-08, -0.03216958, 0.7699623, -1.1486043)
+transform = Transform3D(2.096936e-15, -2.2491085e-09, 1, -1.0974784, -2.2491085e-09, 0, 4.7972303e-08, -0.051453605, -4.371139e-08, -0.017489195, 0.7600484, -1.1486043)
 mesh = ExtResource("3_backf")
 surface_material_override/0 = SubResource("StandardMaterial3D_a6uec")

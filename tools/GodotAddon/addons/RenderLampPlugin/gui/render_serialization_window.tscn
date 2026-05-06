@@ -231,11 +231,3 @@ offset_bottom = 647.0
 min_value = 15.0
 max_value = 120.0
 value = 25.0
-
-[node name="DebugText" type="Label" parent="Panel" unique_id=636768334]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 704.0
-offset_right = 153.0
-offset_bottom = 728.0
-text = "dsdsddsdsdsdsdsd"

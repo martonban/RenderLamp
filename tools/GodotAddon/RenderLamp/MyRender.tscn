@@ -42,11 +42,8 @@ _data = {
 &"new_animation": SubResource("Animation_kgapf")
 }
 
-[node name="Node3D" type="Node3D" unique_id=406611426 node_paths=PackedStringArray("node_array", "camera", "animation_node")]
+[node name="Node3D" type="Node3D" unique_id=406611426]
 script = ExtResource("1_o6l1g")
-node_array = [NodePath("Spehere1"), NodePath("Sphere2")]
-camera = NodePath("Camera3D")
-animation_node = NodePath("AnimationPlayer")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1752729352]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.336353, 1.35716)
