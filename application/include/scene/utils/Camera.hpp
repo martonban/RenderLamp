@@ -19,7 +19,6 @@ namespace RenderLamp {
 
                 // Focal Length calculation
                 focalLength =  (viewportHeight / 2.0) / std::tan(glm::radians(fov) / 2.0);
-                std::cout << focalLength << std::endl;
 
                 viewportU = { viewportWidth, 0.0, 0.0 };
                 viewportV = { 0.0, -viewportHeight , 0.0 };
