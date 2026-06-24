@@ -34,3 +34,4 @@ enable_testing()
 
 
 add_subdirectory(application)
+add_subdirectory(core)

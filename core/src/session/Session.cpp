@@ -15,6 +15,10 @@ Session::Session(const std::filesystem::path& sessionPath) {
     } else {
         std::cerr << "Invalid Session!" << std::endl;
     }
+
+    // Init Device 
+    
+
 }
 
 
